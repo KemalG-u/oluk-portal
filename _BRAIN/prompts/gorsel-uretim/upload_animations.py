@@ -16,7 +16,7 @@ cloudinary.config(
     api_secret="dm_7xFvraZI-IwcvAxnWGTeNrWM"
 )
 
-# Video dosyaları
+# Video dosyaları (4 adet mevcut, 5. video eksik)
 VIDEOLAR = [
     {
         "dosya": "seans-nefes-4-4-4-4.mp4",
@@ -33,11 +33,8 @@ VIDEOLAR = [
     {
         "dosya": "seans-arinma-mor-alev.mp4",
         "aciklama": "Mor Alev Arınma Animasyonu (12 saniye loop)"
-    },
-    {
-        "dosya": "seans-altin-isik-doldurma.mp4",
-        "aciklama": "Altın Işık Doldurma Animasyonu (10 saniye loop)"
     }
+    # EKSIK: seans-altin-isik-doldurma.mp4 (kullanıcıdan alınacak)
 ]
 
 CLOUDINARY_KLASOR = "oluk/ders1/seans/animations"
