@@ -1,0 +1,134 @@
+[
+  {
+    "dosya_adi": "ders1-kapi-hero",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162300/oluk-org/gorseller/ders-1/ders1-kapi-hero.png",
+    "seo_tr": {
+      "alt": "OLUK Kapı dersi altın kapı turkuaz ışık temel arınma meditasyon",
+      "keywords": "kapı dersi, temel arınma, meditasyon, ruhsal gelişim, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Door lesson golden door teal light foundational purification meditation",
+      "keywords": "door lesson, foundational purification, meditation, spiritual growth, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders2-ayna-hero",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162322/oluk-org/gorseller/ders-2/ders2-ayna-hero.png",
+    "seo_tr": {
+      "alt": "OLUK Ayna dersi altın çerçeveli ayna kendini tanıma gölge çalışması",
+      "keywords": "ayna dersi, kendini tanıma, gölge çalışması, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Mirror lesson golden framed mirror self-recognition shadow work",
+      "keywords": "mirror lesson, self-recognition, shadow work, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders5-yol-hero",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162367/oluk-org/gorseller/ders-5/ders5-yol-hero.png",
+    "seo_tr": {
+      "alt": "OLUK Yol dersi sonsuz ışıklı patika yolculuk sürekli gelişim",
+      "keywords": "yol dersi, yolculuk, sürekli gelişim, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Path lesson infinite luminous trail journey continuous growth",
+      "keywords": "path lesson, journey, continuous growth, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders1-kapi-5seans-akis",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162389/oluk-org/gorseller/ders-1/ders1-kapi-5seans-akis.png",
+    "seo_tr": {
+      "alt": "OLUK Kapı dersi 5 seans akış şeması infografik",
+      "keywords": "kapı dersi, 5 seans, meditasyon programı, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Door lesson 5 sessions flow chart infographic",
+      "keywords": "door lesson, 5 sessions, meditation program, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders1-7chakra-haritasi",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162409/oluk-org/gorseller/ders-1/ders1-7chakra-haritasi.png",
+    "seo_tr": {
+      "alt": "7 chakra enerji merkezi haritası insan bedeni kundalini",
+      "keywords": "7 çakra, enerji merkezi, chakra sistemi, OLUK"
+    },
+    "seo_en": {
+      "alt": "7 chakra energy centers map human body kundalini",
+      "keywords": "7 chakras, energy centers, chakra system, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders2-ayna-5seans-akis",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162430/oluk-org/gorseller/ders-2/ders2-ayna-5seans-akis.png",
+    "seo_tr": {
+      "alt": "OLUK Ayna dersi 5 seans spiral infografik kendini tanıma",
+      "keywords": "ayna dersi, spiral meditasyon, kendini tanıma, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Mirror lesson 5 sessions spiral infographic self-discovery",
+      "keywords": "mirror lesson, spiral meditation, self-discovery, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders2-golge-calisma-sureci",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162452/oluk-org/gorseller/ders-2/ders2-golge-calisma-sureci.png",
+    "seo_tr": {
+      "alt": "Gölge çalışması 3 aşama karanlık aydınlık dönüşüm infografik",
+      "keywords": "gölge çalışması, Jung, bilinçaltı, dönüşüm, OLUK"
+    },
+    "seo_en": {
+      "alt": "Shadow work 3 stages darkness light transformation infographic",
+      "keywords": "shadow work, Jung, subconscious, transformation, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders3-kopru-5seans-akis",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162474/oluk-org/gorseller/ders-3/ders3-kopru-5seans-akis.png",
+    "seo_tr": {
+      "alt": "OLUK Köprü dersi 5 seans köprü infografik geçiş yolculuğu",
+      "keywords": "köprü dersi, geçiş, belirsizlik, denge, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Bridge lesson 5 sessions bridge infographic transition journey",
+      "keywords": "bridge lesson, transition, uncertainty, balance, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders4-isik-5seans-akis",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162495/oluk-org/gorseller/ders-4/ders4-isik-5seans-akis.png",
+    "seo_tr": {
+      "alt": "OLUK Işık dersi 5 seans radyal infografik aydınlanma yolculuğu",
+      "keywords": "ışık dersi, radyal meditasyon, aydınlanma, OLUK"
+    },
+    "seo_en": {
+      "alt": "OLUK Light lesson 5 sessions radial infographic illumination journey",
+      "keywords": "light lesson, radial meditation, illumination, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "ders4-karanlik-aydinlik-donusum",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162516/oluk-org/gorseller/ders-4/ders4-karanlik-aydinlik-donusum.png",
+    "seo_tr": {
+      "alt": "Karanlıktan aydınlığa dönüşüm 3 faz uyanış infografik",
+      "keywords": "karanlık, aydınlık, dönüşüm, uyanış, OLUK"
+    },
+    "seo_en": {
+      "alt": "Darkness to light transformation 3 phases awakening infographic",
+      "keywords": "darkness, light, transformation, awakening, OLUK"
+    }
+  },
+  {
+    "dosya_adi": "oluk-5ders-yolculuk-haritasi",
+    "cloudinary_url": "https://res.cloudinary.com/dzegofdgp/image/upload/v1766162549/oluk-org/gorseller/genel/oluk-5ders-yolculuk-haritasi.png",
+    "seo_tr": {
+      "alt": "OLUK 5 ders yolculuk haritası kapı ayna köprü ışık yol tam program",
+      "keywords": "OLUK tam program, 5 ders, ruhsal dönüşüm haritası"
+    },
+    "seo_en": {
+      "alt": "OLUK 5 lessons journey map door mirror bridge light path complete program",
+      "keywords": "OLUK complete program, 5 lessons, spiritual transformation map"
+    }
+  }
+]
