@@ -232,7 +232,7 @@ export default function DersDetay({ params }: { params: { slug: string } }) {
                   playsInline
                   className="w-full h-full object-cover"
                 >
-                  <source src={ders1Animations.nefes.mp4} type="video/mp4" />
+                  <source src={ders1Animations.nefes.url} type="video/mp4" />
                   {ders1Animations.nefes.alt}
                 </video>
               </div>
@@ -282,7 +282,7 @@ export default function DersDetay({ params }: { params: { slug: string } }) {
                     playsInline
                     className="w-full h-full object-cover"
                   >
-                    <source src={ders1Animations.kalpTohum.mp4} type="video/mp4" />
+                    <source src={ders1Animations.kalpTohum.url} type="video/mp4" />
                     {ders1Animations.kalpTohum.alt}
                   </video>
                 </div>
@@ -312,7 +312,7 @@ export default function DersDetay({ params }: { params: { slug: string } }) {
                     playsInline
                     className="w-full h-full object-cover"
                   >
-                    <source src={ders1Animations.enerjiAkis.mp4} type="video/mp4" />
+                    <source src={ders1Animations.enerjiAkis.url} type="video/mp4" />
                     {ders1Animations.enerjiAkis.alt}
                   </video>
                 </div>
@@ -342,7 +342,7 @@ export default function DersDetay({ params }: { params: { slug: string } }) {
                     playsInline
                     className="w-full h-full object-cover"
                   >
-                    <source src={ders1Animations.morAlev.mp4} type="video/mp4" />
+                    <source src={ders1Animations.morAlev.url} type="video/mp4" />
                     {ders1Animations.morAlev.alt}
                   </video>
                 </div>
