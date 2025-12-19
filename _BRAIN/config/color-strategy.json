@@ -1,0 +1,41 @@
+{
+  "palette": {
+    "soft_cream": {
+      "hex": "#FBF9F6",
+      "usage": "Ana zemin - %70",
+      "psychology": "Temizlik, huzur, güvenli alan hissi"
+    },
+    "sage_green": {
+      "hex": "#9CB4A3",
+      "usage": "Vurgu 1 - %15, CTA butonları",
+      "psychology": "Denge, doğa, şifa, yenilenme vaadi"
+    },
+    "dusty_rose": {
+      "hex": "#D4A5A5",
+      "usage": "Vurgu 2 - %10, testimonial sections",
+      "psychology": "Sıcaklık, bakım, anlaşıldım hissi"
+    },
+    "warm_gold": {
+      "hex": "#C9A962",
+      "usage": "Aksan - %5, premium elements",
+      "psychology": "Premium, değer, özel hissi"
+    },
+    "deep_teal": {
+      "hex": "#0D4F4F",
+      "usage": "Minimal aksan, çok az kullan",
+      "psychology": "Derinlik, bilgelik, denge"
+    },
+    "soft_charcoal": {
+      "hex": "#4A4A4A",
+      "usage": "Metin rengi",
+      "psychology": "Okunabilir, yumuşak siyah"
+    }
+  },
+  "forbidden": [
+    "#0f0f1a (midnight)",
+    "#1a1a2e (charcoal)",
+    "Karanlık temalar",
+    "Sert siyah arka planlar"
+  ],
+  "reasoning": "95% kadın kitle = soft, warm, huzur veren renkler gerekli"
+}

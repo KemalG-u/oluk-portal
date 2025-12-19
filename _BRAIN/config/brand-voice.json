@@ -1,0 +1,35 @@
+{
+  "voice": {
+    "characteristics": [
+      "Samimi ama profesyonel",
+      "Bilge ama ukala değil",
+      "Sıcak ama yapay değil",
+      "Güvenilir ama soğuk değil",
+      "Kadınsı ama pembe değil"
+    ]
+  },
+  "examples": {
+    "good": [
+      "Koşturmanın ortasında kendine 5 dakika ayır.",
+      "Bugün sadece nefes al. Gerisi gelir.",
+      "Huzur hak ettiğin bir şey değil, zaten senin.",
+      "Dönüşüm bir anda olmaz. Ama bir yerden başlar.",
+      "Her nefes yeni bir başlangıç, her an dönüşüm için bir fırsat."
+    ],
+    "bad": [
+      "Chakralarını temizle!",
+      "Ruhsal yükseliş için...",
+      "En kapsamlı meditasyon platformu",
+      "Meditasyon yapın, huzur bulun",
+      "Binlerce kullanıcı"
+    ]
+  },
+  "taglines": {
+    "main": "Akışın Kanalı, Dönüşümün Yolu",
+    "hero_variants": [
+      "Koşturmanın Ortasında Kendine Dön",
+      "Her Nefes Yeni Bir Başlangıç",
+      "Dönüşüm Bir Yerden Başlar"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "demographics": {
+    "gender": "95% kadın",
+    "age_range": "28-55",
+    "core_age": "35-45",
+    "education": "Üniversite mezunu, entelektüel",
+    "income": "Orta-üst (99TL/ay ödeyebilir)",
+    "location": "Büyükşehirler, Anadolu kentleri",
+    "marital_status": "Evli, çocuklu, yoğun yaşam"
+  },
+  "psychographics": {
+    "seeking": ["İç huzur", "anlam", "denge"],
+    "experiencing": ["Stres", "tükenmişlik", "boşluk hissi"],
+    "tried": ["YouTube meditasyonları", "kitaplar", "kurslar"],
+    "frustration": "Hiçbiri işe yaramadı",
+    "secret_desire": "Gerçekten DÖNÜŞÜM (kozmetik değil)",
+    "fear": "Bu da işe yaramazsa?"
+  },
+  "behavior": {
+    "morning": "Telefon scroll, stresli başlangıç",
+    "daytime": "İş/ev/çocuk koşturması",
+    "evening": "Yorgunluk, kendime vakit yok",
+    "night": "Uyuyamama, düşünceler",
+    "search": "Beni gerçekten anlayan bir sistem"
+  },
+  "needs_from_wellness": [
+    "Güvenlik hissi - Burası güvenli, zarar vermez",
+    "Anlaşılma - Beni anlıyorlar",
+    "Topluluk - Yalnız değilim",
+    "Somut sonuç - Gerçekten işe yarıyor mu?",
+    "Kolay erişim - Zamanım az, kısa olsun"
+  ]
+}
