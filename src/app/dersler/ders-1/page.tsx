@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ders1Visuals, ders1Animations } from '@/constants/ders1-assets';
@@ -65,12 +64,10 @@ export default function Ders1Page() {
             </div>
             
             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
-              <Image
+              <img
                 src={ders1Visuals.bakgecFelsefe.url}
                 alt={ders1Visuals.bakgecFelsefe.alt}
-                fill
-                className="object-cover"
-                priority
+                className="w-full h-full object-cover"
               />
             </div>
           </motion.div>
@@ -103,11 +100,10 @@ export default function Ders1Page() {
               className="bg-white rounded-2xl overflow-hidden shadow-xl"
             >
               <div className="relative aspect-[9/16]">
-                <Image
+                <img
                   src={ders1Visuals.aurikKatman.url}
                   alt={ders1Visuals.aurikKatman.alt}
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
@@ -128,11 +124,10 @@ export default function Ders1Page() {
               className="bg-white rounded-2xl overflow-hidden shadow-xl"
             >
               <div className="relative aspect-[9/16]">
-                <Image
+                <img
                   src={ders1Visuals.adimSifa.url}
                   alt={ders1Visuals.adimSifa.alt}
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
@@ -161,11 +156,10 @@ export default function Ders1Page() {
             </h2>
             
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-8">
-              <Image
+              <img
                 src={ders1Visuals.chakraSistem.url}
                 alt={ders1Visuals.chakraSistem.alt}
-                fill
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
 
@@ -190,11 +184,10 @@ export default function Ders1Page() {
             </h2>
             
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-8">
-              <Image
+              <img
                 src={ders1Visuals.aktivasyonAkis.url}
                 alt={ders1Visuals.aktivasyonAkis.alt}
-                fill
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
 
@@ -382,11 +375,10 @@ export default function Ders1Page() {
               className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow cursor-pointer group"
             >
               <div className="relative aspect-square">
-                <Image
+                <img
                   src={ders1Visuals.menzilKapak.url}
                   alt={ders1Visuals.menzilKapak.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
@@ -438,11 +430,10 @@ export default function Ders1Page() {
             viewport={{ once: true }}
           >
             <div className="relative aspect-square max-w-md mx-auto mb-8">
-              <Image
+              <img
                 src={ders1Visuals.muhurKapani.url}
                 alt={ders1Visuals.muhurKapani.alt}
-                fill
-                className="object-cover rounded-full shadow-2xl"
+                className="w-full h-full object-cover rounded-full shadow-2xl"
               />
             </div>
 
