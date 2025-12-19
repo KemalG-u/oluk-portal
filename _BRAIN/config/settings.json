@@ -1,0 +1,26 @@
+{
+  "project": {
+    "name": "Siber Işık Portal",
+    "version": "2.0.0",
+    "status": "development"
+  },
+  "team": {
+    "patron": "Kemal",
+    "projectManager": "Claude",
+    "technical": "Codespaces/Copilot"
+  },
+  "pricing": {
+    "free_lessons": 2,
+    "premium_price": "99 TL/ay",
+    "currency": "TRY"
+  },
+  "content": {
+    "total_lessons": 10,
+    "source": "Yücel Balkancı",
+    "language": "tr"
+  },
+  "crisis": {
+    "hotline": "182",
+    "country": "Turkey"
+  }
+}
