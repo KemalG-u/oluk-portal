@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-12-19T20:05:42.858Z",
+  "score": 80,
+  "issues": [
+    {
+      "severity": "info",
+      "category": "Sitemap",
+      "message": "✅ 32 URL başarıyla indexlendi"
+    },
+    {
+      "severity": "info",
+      "category": "Robots.txt",
+      "message": "✅ robots.txt doğru yapılandırılmış"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "title meta tag eksik",
+      "fix": "src/lib/seo.ts'deki metadata fonksiyonlarını kullanın"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "description meta tag eksik",
+      "fix": "src/lib/seo.ts'deki metadata fonksiyonlarını kullanın"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "openGraph meta tag eksik",
+      "fix": "src/lib/seo.ts'deki metadata fonksiyonlarını kullanın"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "twitter meta tag eksik",
+      "fix": "src/lib/seo.ts'deki metadata fonksiyonlarını kullanın"
+    },
+    {
+      "severity": "info",
+      "category": "Meta Tags",
+      "message": "✅ SEO metadata fonksiyonları aktif"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "✅ 2 JSON-LD schema aktif"
+    },
+    {
+      "severity": "info",
+      "category": "Images",
+      "message": "✅ 11 görsel CDN üzerinde"
+    }
+  ],
+  "stats": {
+    "totalPages": 32,
+    "imagesOptimized": 11,
+    "metaTagsComplete": 1,
+    "structuredData": 1
+  }
+}

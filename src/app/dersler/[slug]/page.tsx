@@ -6,7 +6,9 @@ import { notFound } from 'next/navigation';
 import { dersler, type DersSlug } from '@/lib/dersler-data';
 import { ders1Visuals, ders1Animations } from '@/constants/ders1-assets';
 
-export default function DersDetay({ params }: { params: { slug: string } }) {
+// This is now a client component - SEO metadata is handled in page.server.tsx
+
+export default function DersDetayClient({ params }: { params: { slug: string } }) {
   const ders = dersler[params.slug as DersSlug];
   
   if (!ders) {

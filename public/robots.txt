@@ -1,4 +1,26 @@
+# oluk.org - SEO Optimized robots.txt
+# Generated: 2025-12-19T20:05:35.437Z
+
 User-agent: *
 Allow: /
 
+# Hızlı indexleme için özel bot'lar
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# İstatistikler
+User-agent: Google-InspectionTool
+Allow: /
+
+# Disallow admin/private paths (gelecek için)
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap location
 Sitemap: https://oluk.org/sitemap.xml
+Sitemap: https://oluk.org/sitemap-index.xml

@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+// SEO metadata is now in page.server.tsx
+
 const dersler = [
   {
     id: 1,
