@@ -31,6 +31,16 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${cormorant.variable} ${sourceSans.variable}`}>
       <head>
+        {/* Font preload için critical fonts */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         {/* Favicon and PWA Manifest */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/svg+xml" href="/icon.svg" />

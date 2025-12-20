@@ -6,40 +6,46 @@ import { motion } from 'framer-motion';
 
 export default function Home() {
   useEffect(() => {
-    // Scroll reveal animation
+    // Scroll reveal animation with IntersectionObserver (performanslı)
     const revealElements = document.querySelectorAll('.reveal');
     
-    const revealOnScroll = () => {
-      revealElements.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementTop < windowHeight - 100) {
-          el.classList.add('active');
-        }
-      });
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -100px 0px' }
+    );
     
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
+    revealElements.forEach(el => observer.observe(el));
     
-    // Parallax for decorative elements
+    // Parallax - debounced ve passive
+    let ticking = false;
     const handleMouseMove = (e: MouseEvent) => {
-      const decors = document.querySelectorAll('[data-parallax]');
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      
-      decors.forEach((decor, i) => {
-        const speed = (i + 1) * 10;
-        (decor as HTMLElement).style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-      });
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const decors = document.querySelectorAll('[data-parallax]');
+          const x = e.clientX / window.innerWidth;
+          const y = e.clientY / window.innerHeight;
+          
+          decors.forEach((decor, i) => {
+            const speed = (i + 1) * 10;
+            (decor as HTMLElement).style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
     
     return () => {
-      window.removeEventListener('scroll', revealOnScroll);
-      window.removeEventListener('load', revealOnScroll);
+      observer.disconnect();
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);

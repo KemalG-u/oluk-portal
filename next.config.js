@@ -4,6 +4,26 @@ const nextConfig = {
   // trailingSlash: true,  // 404 sorununa sebep oluyor, kapatıldı
   reactStrictMode: true,
   
+  // Compiler optimizasyonları
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
+  // Static dosyalar için cache
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|jpeg|png|webp|avif|ico)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+  
   // Image optimization (unoptimized for static export)
   images: {
     unoptimized: true,
