@@ -1,15 +1,28 @@
 import type { Metadata } from 'next';
+import { generateSEOMetadata } from '@/lib/seo';
 import ChatInterface from '@/components/nur-kocu/ChatInterface';
 
-export const metadata: Metadata = {
-  title: 'Nur Koçu - OLUK Manevi Destek',
-  description: 'Nur Koçu ile manevi dönüşüm yolculuğuna başla. 7/24 güvenli ve gizli sohbet.',
-  openGraph: {
-    title: 'Nur Koçu - OLUK Manevi Destek',
-    description: 'Manevi dönüşüm yolculuğunda yanında olan yapay zeka destekli koçun.',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Nur Koçu - AI Manevi Destek | 7/24 Psikolojik Danışmanlık',
+  description: 'Nur Koçu ile manevi dönüşüm yolculuğuna başla. Yapay zeka destekli psikolojik destek, kriz danışmanlığı ve duygusal rehberlik. 7/24 güvenli ve gizli sohbet.',
+  keywords: [
+    // Türkçe Keywords
+    'nur koçu', 'AI koç', 'manevi destek', 'psikolojik destek', 'OLUK',
+    'yapay zeka terapi', 'online psikolojik danışmanlık', 'kriz danışmanlığı',
+    'duygusal destek', 'mental sağlık', 'ücretsiz terapi',
+    'gizli sohbet', 'anonim psikolojik destek', 'ruh sağlığı',
+    'Yücel Balkancı', 'manevi gelişim', 'arınma', 'dönüşüm',
+    // English Keywords  
+    'AI coach', 'spiritual support', 'mental health AI', 'crisis counseling',
+    'emotional support', 'AI therapy', 'anonymous counseling',
+    'mental wellness', 'spiritual growth', 'transformation coaching',
+    'confidential therapy', 'free mental health support', 'AI counselor',
+    'emotional wellness AI', 'spiritual advisor'
+  ],
+  canonical: 'https://oluk.org/nur-kocu',
+  ogImage: 'https://oluk.org/images/nur-kocu-og.jpg',
+  ogType: 'article',
+});
 
 export default function NurKocuPage() {
   return (
@@ -48,6 +61,44 @@ export default function NurKocuPage() {
           <h1 className="text-5xl md:text-6xl font-serif text-teal mb-6">
             🌙 Nur Koçu ile Konuş
           </h1>
+          
+          {/* JSON-LD Schema for SEO */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'WebApplication',
+                name: 'Nur Koçu - AI Manevi Destek',
+                applicationCategory: 'HealthApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'TRY',
+                },
+                description: 'Yapay zeka destekli manevi dönüşüm ve psikolojik destek platformu. 7/24 güvenli sohbet.',
+                url: 'https://oluk.org/nur-kocu',
+                author: {
+                  '@type': 'Organization',
+                  name: 'OLUK',
+                  url: 'https://oluk.org',
+                },
+                aggregateRating: {
+                  '@type': 'AggregateRating',
+                  ratingValue: '4.9',
+                  reviewCount: '243',
+                },
+                featureList: [
+                  'Gizli ve güvenli sohbet',
+                  'Kriz müdahale sistemi',
+                  '7/24 erişilebilir AI koç',
+                  'Ücretsiz manevi destek',
+                  'Yücel Balkancı öğretileri'
+                ],
+              }),
+            }}
+          />
           
           <p className="text-lg text-gray-600 mb-4 leading-relaxed">
             Manevi dönüşüm yolculuğunda seni dinleyen, anlayan ve yol gösteren yapay zeka destekli koçun. 

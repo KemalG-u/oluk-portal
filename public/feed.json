@@ -16,6 +16,20 @@
       "_changefreq": "daily"
     },
     {
+      "id": "https://oluk.org/sirdas",
+      "url": "https://oluk.org/sirdas",
+      "date_modified": "2025-12-20",
+      "_priority": 0.9,
+      "_changefreq": "weekly"
+    },
+    {
+      "id": "https://oluk.org/nur-kocu",
+      "url": "https://oluk.org/nur-kocu",
+      "date_modified": "2025-12-20",
+      "_priority": 0.9,
+      "_changefreq": "weekly"
+    },
+    {
       "id": "https://oluk.org/dersler",
       "url": "https://oluk.org/dersler",
       "date_modified": "2025-12-20",
@@ -130,20 +144,6 @@
     {
       "id": "https://oluk.org/dersler/kopru/3",
       "url": "https://oluk.org/dersler/kopru/3",
-      "date_modified": "2025-12-20",
-      "_priority": 0.7,
-      "_changefreq": "monthly"
-    },
-    {
-      "id": "https://oluk.org/dersler/kopru/4",
-      "url": "https://oluk.org/dersler/kopru/4",
-      "date_modified": "2025-12-20",
-      "_priority": 0.7,
-      "_changefreq": "monthly"
-    },
-    {
-      "id": "https://oluk.org/dersler/kopru/5",
-      "url": "https://oluk.org/dersler/kopru/5",
       "date_modified": "2025-12-20",
       "_priority": 0.7,
       "_changefreq": "monthly"

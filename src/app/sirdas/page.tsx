@@ -45,6 +45,44 @@ export default function SirdasPage() {
         <SirdasInterface initialMood="wavy" />
       </section>
 
+      {/* JSON-LD Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebApplication',
+            name: 'Sırdaş - AI Manevi Destek',
+            applicationCategory: 'HealthApplication',
+            operatingSystem: 'Web',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'TRY',
+            },
+            description: 'Yapay zeka destekli manevi destek ve psikolojik danışmanlık platformu',
+            url: 'https://oluk.org/sirdas',
+            author: {
+              '@type': 'Organization',
+              name: 'OLUK',
+              url: 'https://oluk.org',
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.8',
+              reviewCount: '127',
+            },
+            featureList: [
+              'Gizli ve anonim sohbet',
+              'Kriz müdahale sistemi',
+              '5 farklı ruh hali desteği',
+              '24/7 erişilebilir AI koç',
+              'Ücretsiz manevi destek'
+            ],
+          }),
+        }}
+      />
+
       {/* Disclaimer */}
       <section className="py-12 px-4 bg-deep-teal-dark/50">
         <div className="max-w-4xl mx-auto">

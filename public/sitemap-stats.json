@@ -1,15 +1,15 @@
 {
-  "total_pages": 32,
-  "last_generated": "2025-12-20T18:39:49.886Z",
+  "total_pages": 34,
+  "last_generated": "2025-12-20T18:49:12.772Z",
   "priorities": {
-    "high": 7,
+    "high": 9,
     "medium": 25,
     "low": 0
   },
   "change_frequency": {
     "daily": 1,
-    "weekly": 6,
+    "weekly": 8,
     "monthly": 25
   },
-  "estimated_crawl_budget": 64
+  "estimated_crawl_budget": 68
 }

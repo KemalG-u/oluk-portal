@@ -53,7 +53,22 @@ function generateSitemapURLs(): SitemapURL[] {
     priority: PRIORITIES.homepage,
   });
 
-  // 2. Dersler index sayfası
+  // 2. AI Chat Sayfaları (yüksek öncelik)
+  urls.push({
+    loc: `${DOMAIN}/sirdas`,
+    lastmod: today,
+    changefreq: 'weekly' as const,
+    priority: 0.9,
+  });
+
+  urls.push({
+    loc: `${DOMAIN}/nur-kocu`,
+    lastmod: today,
+    changefreq: 'weekly' as const,
+    priority: 0.9,
+  });
+
+  // 3. Dersler index sayfası
   urls.push({
     loc: `${DOMAIN}/dersler`,
     lastmod: today,
