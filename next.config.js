@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // output: 'export',  // API routes için kapatıldı (Nur Koçu)
   trailingSlash: true,
   reactStrictMode: true,
   
@@ -31,4 +31,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig

@@ -118,15 +118,24 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link 
-              href="#" 
+              href="/dersler" 
               className="inline-flex items-center gap-3 px-10 py-[1.1rem] bg-teal text-cream font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-teal transition-all duration-400 hover:bg-teal-light hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(13,79,79,0.3)] relative overflow-hidden group"
             >
               <span className="relative z-10">Kapıyı Arala</span>
               <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+            </Link>
+
+            <Link 
+              href="/nur-kocu" 
+              className="inline-flex items-center gap-3 px-10 py-[1.1rem] bg-gradient-to-br from-gold to-gold/90 text-white font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-gold transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(201,169,98,0.4)] relative overflow-hidden group"
+            >
+              <span className="relative z-10">🌙 Nur Koçu</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
             </Link>
           </motion.div>
