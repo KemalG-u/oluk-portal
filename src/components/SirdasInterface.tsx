@@ -3,6 +3,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, AlertCircle, Phone } from 'lucide-react';
+import { 
+  Leaf, 
+  WaveSine, 
+  Lightning, 
+  Moon, 
+  SunHorizon,
+  PaperPlaneTilt,
+  Warning
+} from '@phosphor-icons/react';
 import { detectCrisis } from '@/lib/crisis-detection';
 import { useAnalytics } from '@/lib/analytics';
 import { 
@@ -203,22 +212,35 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
         <div className="max-w-4xl mx-auto">
           <p className="text-soft-cream/70 text-sm mb-3">Bugün nasılsın?</p>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {MOOD_OPTIONS.map((option) => (
-              <motion.button
-                key={option.id}
-                onClick={() => setMood(option.id)}
-                className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${
-                  mood === option.id
-                    ? 'bg-warm-gold text-white shadow-lg scale-105'
-                    : 'bg-white/10 text-soft-cream hover:bg-white/20'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="mr-2">{option.emoji}</span>
-                {option.label}
-              </motion.button>
-            ))}
+            {MOOD_OPTIONS.map((option) => {
+              const iconMap: Record<string, any> = {
+                'Leaf': Leaf,
+                'WaveSine': WaveSine,
+                'Lightning': Lightning,
+                'Moon': Moon,
+                'SunHorizon': SunHorizon,
+              };
+              const IconComponent = iconMap[option.icon];
+              
+              return (
+                <motion.button
+                  key={option.id}
+                  onClick={() => setMood(option.id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${
+                    mood === option.id
+                      ? 'bg-warm-gold text-white shadow-lg ring-2 ring-warm-gold/50 ring-offset-2 ring-offset-deep-teal'
+                      : 'bg-white/10 text-soft-cream hover:bg-white/20 hover:scale-105'
+                  }`}
+                  whileHover={{ scale: mood === option.id ? 1 : 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {IconComponent && (
+                    <IconComponent size={20} weight="duotone" color={mood === option.id ? '#fff' : option.color} />
+                  )}
+                  {option.label}
+                </motion.button>
+              );
+            })}
           </div>
         </div>
       </div>

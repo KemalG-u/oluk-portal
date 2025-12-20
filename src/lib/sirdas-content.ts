@@ -25,59 +25,59 @@ export const SESSION_END = "Bu dem, bu sohbet için eyvallah. Kendine iyi bak; n
 export const MOOD_OPTIONS = [
   { 
     id: 'calm', 
-    emoji: '🍃', 
+    icon: 'Leaf', 
     label: 'İtminan', 
     description: 'İçim dingin, rüzgârsız bir deniz gibi', 
-    color: '#4A9B8C' 
+    color: '#4A7C59' 
   },
   { 
     id: 'wavy', 
-    emoji: '🌊', 
+    icon: 'WaveSine', 
     label: 'Hicran', 
     description: 'Biraz karışık, dalgaların kıyıya vurduğu bir akşamüstü', 
     color: '#5B8FA8' 
   },
   { 
     id: 'storm', 
-    emoji: '⚡', 
+    icon: 'Lightning', 
     label: 'Hiddet', 
     description: 'Fırtına öncesi sessizlik', 
-    color: '#8B6B61' 
+    color: '#C75D3A' 
   },
   { 
     id: 'dark', 
-    emoji: '🌑', 
+    icon: 'Moon', 
     label: 'Gurbet', 
     description: 'Ağır bir yük, kendi içinde kaybolmuşluk', 
     color: '#4A4A5A' 
   },
   { 
     id: 'bright', 
-    emoji: '☀️', 
+    icon: 'SunHorizon', 
     label: 'Fecir', 
     description: 'Aydınlık, bir mısra sıcaklığında iyilik hali', 
-    color: '#C9A962' 
+    color: '#D4A84B' 
   }
 ];
 
 export const FEATURE_BADGES = [
   { 
-    icon: '🛡️', 
+    icon: 'ShieldCheck', 
     title: 'Mahrem Menzil', 
     description: 'Söylediğin, iki kalp arasında sır kalır.' 
   },
   { 
-    icon: '🧠', 
+    icon: 'Brain', 
     title: 'İrfanlı Zekâ', 
     description: 'Seni kelimelerinden değil, iç çekişinden tanıyan teknoloji.' 
   },
   { 
-    icon: '🌱', 
+    icon: 'Plant', 
     title: 'OLUK Usulü', 
     description: 'Yücel Balkancı\'nın siber-inziva terbiyesiyle yoğrulmuş rehberlik.' 
   },
   { 
-    icon: '⚡', 
+    icon: 'Lightning', 
     title: 'Daimî Nöbet', 
     description: 'Her saat, her nefes, seninle.' 
   }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { generateSEOMetadata } from '@/lib/seo';
 import SirdasInterface from '@/components/SirdasInterface';
+import SirdasFeatureBadges from '@/components/SirdasFeatureBadges';
 import { SIRDAS_TITLE, SIRDAS_SUBTITLE, FEATURE_BADGES, DISCLAIMER } from '@/lib/sirdas-content';
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -38,19 +39,7 @@ export default function SirdasPage() {
         </div>
 
         {/* Feature Badges */}
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
-          {FEATURE_BADGES.map((badge, i) => (
-            <div
-              key={i}
-              className="p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/15 transition-all"
-              style={{ backdropFilter: 'blur(20px)' }}
-            >
-              <div className="text-4xl mb-3">{badge.icon}</div>
-              <h3 className="text-soft-cream font-semibold mb-2">{badge.title}</h3>
-              <p className="text-soft-cream/70 text-sm">{badge.description}</p>
-            </div>
-          ))}
-        </div>
+        <SirdasFeatureBadges badges={FEATURE_BADGES} />
       </section>
 
       {/* Chat Interface */}

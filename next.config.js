@@ -4,6 +4,17 @@ const nextConfig = {
   // trailingSlash: true,  // 404 sorununa sebep oluyor, kapatıldı
   reactStrictMode: true,
   
+  // Redirects
+  async redirects() {
+    return [
+      {
+        source: '/nur-kocu',
+        destination: '/sirdas',
+        permanent: true,
+      },
+    ];
+  },
+  
   // Compiler optimizasyonları
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -48,6 +59,7 @@ const nextConfig = {
   // Experimental features
   experimental: {
     optimizeCss: false,
+    optimizePackageImports: ['@phosphor-icons/react'],
   },
 }
 
