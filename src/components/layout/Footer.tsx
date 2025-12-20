@@ -19,18 +19,18 @@ export default function Footer() {
             <h4 className="text-[#C9A962] font-medium mb-4">Keşfet</h4>
             <ul className="space-y-2 text-sm text-[#F5F0E6]/60">
               <li><Link href="/dersler" className="hover:text-[#C9A962] transition">Dersler</Link></li>
-              <li><Link href="/hakkinda" className="hover:text-[#C9A962] transition">Hakkımızda</Link></li>
-              <li><Link href="/blog" className="hover:text-[#C9A962] transition">Blog</Link></li>
+              <li><Link href="/sirdas" className="hover:text-[#C9A962] transition">Sırdaş</Link></li>
+              <li><span className="text-[#F5F0E6]/30">(Yakında: Blog & Hakkımızda)</span></li>
             </ul>
           </div>
 
-          {/* Yasal */}
+          {/* Yasal - Şimdilik sadece bilgilendirme */}
           <div>
             <h4 className="text-[#C9A962] font-medium mb-4">Yasal</h4>
             <ul className="space-y-2 text-sm text-[#F5F0E6]/60">
-              <li><Link href="/gizlilik" className="hover:text-[#C9A962] transition">Gizlilik Politikası</Link></li>
-              <li><Link href="/kvkk" className="hover:text-[#C9A962] transition">KVKK</Link></li>
-              <li><Link href="/kullanim-kosullari" className="hover:text-[#C9A962] transition">Kullanım Koşulları</Link></li>
+              <li><span className="text-[#F5F0E6]/30">Gizlilik Politikası (hazırlanıyor)</span></li>
+              <li><span className="text-[#F5F0E6]/30">KVKK (hazırlanıyor)</span></li>
+              <li><span className="text-[#F5F0E6]/30">Kullanım Koşulları (hazırlanıyor)</span></li>
             </ul>
           </div>
 
@@ -38,8 +38,8 @@ export default function Footer() {
           <div>
             <h4 className="text-[#C9A962] font-medium mb-4">İletişim</h4>
             <ul className="space-y-2 text-sm text-[#F5F0E6]/60">
-              <li><Link href="/iletisim" className="hover:text-[#C9A962] transition">Bize Ulaşın</Link></li>
               <li><a href="mailto:merhaba@oluk.org" className="hover:text-[#C9A962] transition">merhaba@oluk.org</a></li>
+              <li><span className="text-[#F5F0E6]/30">(Yakında: İletişim formu)</span></li>
             </ul>
           </div>
         </div>

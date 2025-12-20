@@ -9,12 +9,23 @@ import { getNurKocuSystemPrompt } from '@/lib/nur-kocu-prompt';
 
 export const runtime = 'edge';
 
+interface Message {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
+
+interface RequestBody {
+  messages: Message[];
+  mood?: 'happy' | 'sad' | 'anxious' | 'calm' | 'angry' | 'wavy';
+  lessons?: string[];
+}
+
 export async function POST(req: Request) {
   try {
-    const { messages, mood = 'wavy', lessons = [] } = await req.json();
+    const { messages, mood = 'wavy', lessons = [] } = await req.json() as RequestBody;
 
     // Son mesajı al
-    const lastMessage = messages.filter((m: any) => m.role === 'user').pop();
+    const lastMessage = messages.filter((m) => m.role === 'user').pop();
     if (!lastMessage) {
       return new Response(JSON.stringify({ error: 'Mesaj bulunamadı' }), { status: 400 });
     }
