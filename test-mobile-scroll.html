@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLUK Mobil Scroll Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0D4F4F 0%, #1a6666 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .device-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
+            transform: scale(1.05);
+        }
+        
+        button.active {
+            background: rgba(201, 169, 98, 0.3);
+            border-color: #C9A962;
+        }
+        
+        .iframe-container {
+            position: relative;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: all 0.5s;
+        }
+        
+        iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+        
+        .device-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .checklist {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+        }
+        
+        .checklist h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .checklist ul {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checklist li:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .checklist li.checked::before {
+            content: '✅ ';
+        }
+        
+        .checklist li:not(.checked)::before {
+            content: '⬜ ';
+        }
+        
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(201, 169, 98, 0.95);
+            color: #0D4F4F;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 OLUK Mobil Scroll Test</h1>
+        
+        <div class="device-buttons">
+            <button onclick="setDevice('iphone-se')" data-device="iphone-se">
+                iPhone SE<br>375x667
+            </button>
+            <button onclick="setDevice('iphone-12')" data-device="iphone-12" class="active">
+                iPhone 12 Pro<br>390x844
+            </button>
+            <button onclick="setDevice('pixel-5')" data-device="pixel-5">
+                Pixel 5<br>393x851
+            </button>
+            <button onclick="setDevice('samsung')" data-device="samsung">
+                Samsung S21<br>360x800
+            </button>
+        </div>
+        
+        <div class="iframe-container" id="iframeContainer">
+            <iframe id="testFrame" src="https://oluk.org" scrolling="yes"></iframe>
+        </div>
+        
+        <div class="device-info" id="deviceInfo">
+            📱 iPhone 12 Pro (390 x 844)
+        </div>
+        
+        <div class="checklist">
+            <h2>✅ Test Checklist</h2>
+            <ul id="checklist">
+                <li onclick="toggleCheck(this)">Sayfa yükleniyor</li>
+                <li onclick="toggleCheck(this)">Scroll çalışıyor (yukarı/aşağı)</li>
+                <li onclick="toggleCheck(this)">Yatay scroll YOK</li>
+                <li onclick="toggleCheck(this)">Momentum scroll smooth</li>
+                <li onclick="toggleCheck(this)">Animasyonlar çalışıyor</li>
+                <li onclick="toggleCheck(this)">Parallax efektler smooth</li>
+                <li onclick="toggleCheck(this)">Hero section tam görünüyor</li>
+                <li onclick="toggleCheck(this)">Butonlar tıklanabiliyor</li>
+                <li onclick="toggleCheck(this)">Menü açılıyor</li>
+                <li onclick="toggleCheck(this)">Footer'a kadar scroll oluyor</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="status" id="status">
+        🧪 Test Başladı
+    </div>
+    
+    <script>
+        const devices = {
+            'iphone-se': { width: 375, height: 667, name: 'iPhone SE' },
+            'iphone-12': { width: 390, height: 844, name: 'iPhone 12 Pro' },
+            'pixel-5': { width: 393, height: 851, name: 'Pixel 5' },
+            'samsung': { width: 360, height: 800, name: 'Samsung S21' }
+        };
+        
+        let checkedCount = 0;
+        
+        function setDevice(deviceName) {
+            const device = devices[deviceName];
+            const container = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('testFrame');
+            const info = document.getElementById('deviceInfo');
+            
+            // Update container size
+            container.style.width = device.width + 'px';
+            container.style.height = device.height + 'px';
+            iframe.style.height = device.height + 'px';
+            
+            // Update info
+            info.textContent = `📱 ${device.name} (${device.width} x ${device.height})`;
+            
+            // Update active button
+            document.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-device="${deviceName}"]`).classList.add('active');
+        }
+        
+        function toggleCheck(element) {
+            element.classList.toggle('checked');
+            updateStatus();
+        }
+        
+        function updateStatus() {
+            const total = document.querySelectorAll('#checklist li').length;
+            const checked = document.querySelectorAll('#checklist li.checked').length;
+            const status = document.getElementById('status');
+            
+            if (checked === 0) {
+                status.textContent = '🧪 Test Başladı';
+                status.style.background = 'rgba(201, 169, 98, 0.95)';
+            } else if (checked < total) {
+                status.textContent = `⏳ ${checked}/${total} Tamamlandı`;
+                status.style.background = 'rgba(122, 158, 126, 0.95)';
+            } else {
+                status.textContent = '✅ Tüm Testler Başarılı!';
+                status.style.background = 'rgba(0, 200, 0, 0.95)';
+            }
+        }
+        
+        // Set initial device
+        setDevice('iphone-12');
+        
+        // Auto-reload iframe every 30 seconds
+        setInterval(() => {
+            const iframe = document.getElementById('testFrame');
+            iframe.src = iframe.src;
+        }, 30000);
+    </script>
+</body>
+</html>
