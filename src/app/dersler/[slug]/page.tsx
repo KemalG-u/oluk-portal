@@ -66,7 +66,7 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
                   Bak, Gör, Geç
                 </h2>
                 <p className="text-lg text-text-muted mb-4 leading-relaxed">
-                  OLUK'un temel felsefesi: Durma, takılma, yapışma. 
+                  OLUK&apos;un temel felsefesi: Durma, takılma, yapışma. 
                   Her şeyi gözlemle, anla ve bırak. Akış içinde kal.
                 </p>
                 <p className="text-lg text-text-muted leading-relaxed">
@@ -123,7 +123,7 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
                     7 Aurik Katman
                   </h3>
                   <p className="text-text-muted">
-                    Enerji bedeninizin yedi tabakası: Fiziksel'den Tanrısal'a
+                    Enerji bedeninizin yedi tabakası: Fiziksel&apos;den Tanrısal&apos;a
                   </p>
                 </div>
               </motion.div>

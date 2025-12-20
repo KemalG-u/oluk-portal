@@ -109,7 +109,7 @@ export default function NurKocuPage() {
           <p className="text-sm text-amber-800 leading-relaxed">
             <strong>OLUK manevi destek platformudur.</strong> Nur Koçu terapötik tedavi yerine geçmez. 
             Psikolojik veya psikiyatrik destek gerektiğinde mutlaka profesyonel yardım alınmalıdır. 
-            Kriz anlarında <strong>182 İntihar Önleme Hattı</strong> (7/24 ücretsiz) veya <strong>112 Acil Yardım</strong>'ı arayabilirsiniz.
+            Kriz anlarında <strong>182 İntihar Önleme Hattı</strong> (7/24 ücretsiz) veya <strong>112 Acil Yardım</strong>&apos;ı arayabilirsiniz.
           </p>
         </div>
       </main>

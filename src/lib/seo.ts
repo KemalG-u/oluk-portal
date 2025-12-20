@@ -11,7 +11,7 @@ interface SEOProps {
   description: string;
   keywords?: string[];
   ogImage?: string;
-  ogType?: 'website' | 'article' | 'course';
+  ogType?: 'website' | 'article';
   noindex?: boolean;
   canonical?: string;
 }
@@ -140,7 +140,7 @@ export function generateDersMetadata(
       'kişisel gelişim',
       'meditasyon',
     ],
-    ogType: 'course',
+    ogType: 'article',
     canonical: `${SITE_URL}/dersler/${slug}`,
     ogImage: `${SITE_URL}/images/ders-${slug}-og.jpg`,
   });
