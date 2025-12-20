@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // output: 'export',  // API routes için kapatıldı (Nur Koçu)
-  trailingSlash: true,
+  // trailingSlash: true,  // 404 sorununa sebep oluyor, kapatıldı
   reactStrictMode: true,
   
   // Image optimization (unoptimized for static export)
