@@ -4,11 +4,5 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "regions": ["iad1"],
-  "functions": {
-    "api/nur-kocu/route.ts": {
-      "runtime": "edge",
-      "maxDuration": 30
-    }
-  }
+  "regions": ["iad1"]
 }
