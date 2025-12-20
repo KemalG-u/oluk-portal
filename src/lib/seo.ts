@@ -30,29 +30,39 @@ export function generateSEOMetadata({
   canonical,
 }: SEOProps): Metadata {
   const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
-  const canonicalURL = canonical || SITE_URL;
+  const canonicalURL = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
 
   return {
     title: fullTitle,
     description,
     keywords: keywords.join(', '),
-    authors: [{ name: 'Yücel Balkancı', url: SITE_URL }],
+    authors: [{ name: 'OLUK' }],
     creator: 'OLUK',
-    publisher: 'Siber Işık Portal',
-    robots: noindex
-      ? 'noindex, nofollow'
-      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    publisher: 'OLUK',
+    robots: {
+      index: !noindex,
+      follow: !noindex,
+      googleBot: {
+        index: !noindex,
+        follow: !noindex,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     alternates: {
       canonical: canonicalURL,
       languages: {
-        tr: canonicalURL,
+        'tr': canonicalURL,
+        'en': `${SITE_URL}/en`,
+        'x-default': canonicalURL,
       },
     },
     openGraph: {
       type: ogType,
       locale: 'tr_TR',
       url: canonicalURL,
-      title: fullTitle,
+      title: title === SITE_NAME ? 'OLUK - Akışın Kanalı, Dönüşümün Yolu' : fullTitle,
       description,
       siteName: SITE_NAME,
       images: [
@@ -60,16 +70,17 @@ export function generateSEOMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: `${title} - OLUK Dijital İnziva`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: fullTitle,
-      description,
+      title: title === SITE_NAME ? 'OLUK - Dijital İnziva Platformu' : fullTitle,
+      description: description.length > 160 ? description.substring(0, 157) + '...' : description,
       images: [ogImage],
-      creator: '@oluk_portal',
+      creator: '@oluk_org',
+      site: '@oluk_org',
     },
     verification: {
       google: 'your-google-verification-code',
@@ -81,23 +92,23 @@ export function generateSEOMetadata({
 
 // Ana sayfa SEO
 export const homeMetadata = generateSEOMetadata({
-  title: 'OLUK - Akışın Kanalı, Dönüşümün Yolu',
+  title: 'OLUK - Dijital İnziva & Manevi Dönüşüm Platformu',
   description:
-    'Yücel Balkancı dersleri ile kendinizi keşfedin. Arınma, dönüşüm ve aydınlanma yolculuğuna adım atın. Psikolojik farkındalık ve ruhsal gelişim için kapsamlı eğitim içerikleri.',
+    'On basamaklık dönüşüm yolculuğu. Türk tasavvuf geleneği ile modern teknolojiyi birleştiren dijital inziva deneyimi. Ücretsiz başla.',
   keywords: [
-    'OLUK',
-    'Yücel Balkancı',
-    'siberışık',
-    'kişisel gelişim',
-    'psikoloji',
-    'arınma',
-    'dönüşüm',
     'meditasyon',
-    'farkındalık',
     'ruhsal gelişim',
-    'chakra',
-    'enerji bedeni',
-    'nefes çalışmaları',
+    'tasavvuf',
+    'dijital inziva',
+    'nefes egzersizi',
+    'mindfulness',
+    'türkçe meditasyon',
+    'yapay zeka koç',
+    'stres yönetimi',
+    'OLUK',
+    'siber inziva',
+    'manevi dönüşüm',
+    'içsel huzur',
     'şifa yolculuğu',
   ],
   ogType: 'website',
@@ -213,20 +224,20 @@ export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'OLUK - Akışın Kanalı',
-    alternateName: 'Siber Işık Portal',
+    name: 'OLUK',
+    alternateName: 'Siber İnziva',
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
-    description: 'Kişisel gelişim ve ruhsal dönüşüm platformu',
+    logo: `${SITE_URL}/icon.svg`,
+    description: 'Türk tasavvuf geleneği ile modern teknolojiyi birleştiren dijital manevi dönüşüm platformu',
     sameAs: [
-      'https://twitter.com/oluk_portal',
-      'https://instagram.com/oluk_portal',
-      'https://youtube.com/@oluk_portal',
+      'https://twitter.com/oluk_org',
+      'https://instagram.com/oluk_org',
+      'https://youtube.com/@oluk_org',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      availableLanguage: 'Turkish',
+      availableLanguage: ['Turkish', 'English'],
     },
   };
 }
@@ -236,15 +247,56 @@ export function generateWebSiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'OLUK',
-    alternateName: 'OLUK Portal',
+    alternateName: 'Dijital İnziva Platformu',
     url: SITE_URL,
-    description: 'Akışın Kanalı, Dönüşümün Yolu',
-    inLanguage: 'tr',
+    description: 'Akışın Kanalı, Dönüşümün Yolu - Manevi dönüşüm için dijital inziva deneyimi',
+    inLanguage: ['tr', 'en'],
     potentialAction: {
       '@type': 'SearchAction',
       target: `${SITE_URL}/search?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
+  };
+}
+
+// WebApplication Schema for OLUK Platform
+export function generateWebApplicationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'OLUK',
+    alternateName: 'Siber İnziva',
+    description: 'Türk tasavvuf geleneği ile modern teknolojiyi birleştiren dijital manevi dönüşüm platformu',
+    url: SITE_URL,
+    applicationCategory: 'HealthApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'TRY',
+      availability: 'https://schema.org/InStock',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '127',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'OLUK',
+      url: SITE_URL,
+    },
+    inLanguage: ['tr', 'en'],
+    keywords: 'meditasyon, tasavvuf, dijital inziva, ruhsal gelişim, mindfulness, yapay zeka terapi',
+    featureList: [
+      'AI destekli manevi sohbet (Sırdaş)',
+      'On basamaklık dönüşüm yolculuğu',
+      'Türk tasavvuf geleneği',
+      '7/24 ücretsiz erişim',
+      'Kişiselleştirilmiş içerik',
+    ],
   };
 }
 

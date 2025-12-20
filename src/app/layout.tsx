@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import { homeMetadata, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/seo";
+import { homeMetadata, generateOrganizationSchema, generateWebSiteSchema, generateWebApplicationSchema } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"],
@@ -26,8 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const organizationSchema = generateOrganizationSchema();
-  const websiteSchema = generateWebSiteSchema();
-
+  const websiteSchema = generateWebSiteSchema();  const webApplicationSchema = generateWebApplicationSchema();
   return (
     <html lang="tr" className={`${cormorant.variable} ${sourceSans.variable}`}>
       <head>
@@ -59,6 +58,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
         />
         {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://res.cloudinary.com" />

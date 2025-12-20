@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLUK OG Image Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: #1a1a1a;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        #canvas {
+            border: 2px solid #C9A962;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .controls {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            width: 1200px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-group {
+            margin: 20px 0;
+        }
+        
+        label {
+            color: #C9A962;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #0D4F4F;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #0D4F4F, #1a6666);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(13, 79, 79, 0.5);
+        }
+        
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .preset-btn {
+            background: rgba(201, 169, 98, 0.3);
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        
+        h1 {
+            color: #C9A962;
+            font-size: 42px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>OLUK OG Image Generator</h1>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label>Preset Tasarımlar:</label>
+            <div class="preset-buttons">
+                <button class="preset-btn" onclick="loadPreset('home')">Ana Sayfa</button>
+                <button class="preset-btn" onclick="loadPreset('sirdas')">Sırdaş</button>
+                <button class="preset-btn" onclick="loadPreset('dersler')">Dersler</button>
+                <button class="preset-btn" onclick="loadPreset('minimalist')">Minimalist</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label>Başlık (Ana Metin):</label>
+            <input type="text" id="title" value="OLUK" oninput="draw()">
+        </div>
+        
+        <div class="control-group">
+            <label>Alt Başlık:</label>
+            <textarea id="subtitle" oninput="draw()">Akışın Kanalı, Dönüşümün Yolu</textarea>
+        </div>
+        
+        <div class="control-group">
+            <label>Alt Metin:</label>
+            <input type="text" id="subtext" value="Dijital İnziva Platformu" oninput="draw()">
+        </div>
+        
+        <div class="control-group">
+            <label>Arka Plan Rengi:</label>
+            <input type="color" id="bgColor" value="#0D4F4F" oninput="draw()">
+        </div>
+        
+        <div class="control-group">
+            <label>Başlık Rengi:</label>
+            <input type="color" id="titleColor" value="#C9A962" oninput="draw()">
+        </div>
+        
+        <button onclick="download()">📥 İndir (1200x630)</button>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const presets = {
+            home: {
+                title: 'OLUK',
+                subtitle: 'Akışın Kanalı, Dönüşümün Yolu',
+                subtext: 'Dijital İnziva Platformu',
+                bgColor: '#0D4F4F',
+                titleColor: '#C9A962'
+            },
+            sirdas: {
+                title: 'Sırdaş',
+                subtitle: 'Kelâmın Süzüldüğü Durak',
+                subtext: '7/24 Manevi Sohbet Arkadaşı - AI Destekli',
+                bgColor: '#1a1a1a',
+                titleColor: '#C9A962'
+            },
+            dersler: {
+                title: 'On Basamak',
+                subtitle: 'Kapıdan Işığa Uzanan Yolculuk',
+                subtext: 'Manevi Dönüşüm Dersleri - OLUK',
+                bgColor: '#7A9E7E',
+                titleColor: '#FAF7F0'
+            },
+            minimalist: {
+                title: 'OLUK',
+                subtitle: 'Siber İnziva',
+                subtext: 'oluk.org',
+                bgColor: '#FAF7F0',
+                titleColor: '#0D4F4F'
+            }
+        };
+        
+        function loadPreset(name) {
+            const preset = presets[name];
+            document.getElementById('title').value = preset.title;
+            document.getElementById('subtitle').value = preset.subtitle;
+            document.getElementById('subtext').value = preset.subtext;
+            document.getElementById('bgColor').value = preset.bgColor;
+            document.getElementById('titleColor').value = preset.titleColor;
+            draw();
+        }
+        
+        function draw() {
+            const title = document.getElementById('title').value;
+            const subtitle = document.getElementById('subtitle').value;
+            const subtext = document.getElementById('subtext').value;
+            const bgColor = document.getElementById('bgColor').value;
+            const titleColor = document.getElementById('titleColor').value;
+            
+            // Clear canvas
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // Add gradient overlay
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, 'rgba(0,0,0,0.1)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0.3)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // Decorative elements
+            ctx.strokeStyle = titleColor + '40';
+            ctx.lineWidth = 2;
+            
+            // Top left circle
+            ctx.beginPath();
+            ctx.arc(150, 150, 80, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Bottom right square
+            ctx.beginPath();
+            ctx.rotate(Math.PI / 4);
+            ctx.strokeRect(700, -300, 100, 100);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            
+            // Title
+            ctx.fillStyle = titleColor;
+            ctx.font = 'bold 120px Cormorant Garamond, serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(title, 600, 250);
+            
+            // Subtitle (multi-line)
+            ctx.font = '42px Cormorant Garamond, serif';
+            ctx.fillStyle = titleColor + 'DD';
+            const lines = subtitle.split('\n');
+            lines.forEach((line, i) => {
+                ctx.fillText(line, 600, 350 + (i * 50));
+            });
+            
+            // Subtext
+            ctx.font = '28px Cormorant Garamond, serif';
+            ctx.fillStyle = titleColor + '99';
+            ctx.fillText(subtext, 600, 530);
+            
+            // Decorative line
+            ctx.strokeStyle = titleColor;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(400, 310);
+            ctx.lineTo(800, 310);
+            ctx.stroke();
+        }
+        
+        function download() {
+            const link = document.createElement('a');
+            link.download = 'oluk-og-image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Initial draw
+        draw();
+    </script>
+</body>
+</html>

@@ -5,9 +5,22 @@ import { SIRDAS_TITLE, SIRDAS_SUBTITLE, FEATURE_BADGES, DISCLAIMER } from '@/lib
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Sırdaş - Kelâmın Süzüldüğü Durak',
-  description: 'Burada söz dinlenir, sükût şerh edilir. Gönül, kendi akislerini seyrettiği bir aynadır; ne getirirsen getir, o aynada yerin var.',
-  keywords: ['sırdaş', 'AI koç', 'manevi destek', 'psikolojik destek', 'OLUK'],
+  description: 'Gecenin her vaktinde açık bir kapı. AI destekli manevi sohbet arkadaşınız. Sırrınızı verin, sükûneti alın. 7/24 ücretsiz.',
+  keywords: [
+    'sırdaş',
+    'yapay zeka terapi',
+    'online psikolojik destek',
+    'manevi sohbet',
+    'AI koç',
+    'kriz danışmanlığı',
+    '7/24 destek',
+    'dijital inziva',
+    'OLUK',
+    'ruhsal destek',
+    'meditasyon yardımcısı',
+  ],
   canonical: '/sirdas',
+  ogType: 'website',
 });
 
 export default function SirdasPage() {
