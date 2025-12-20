@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { dersler, type DersSlug } from '@/lib/dersler-data';
 import { ders1Visuals, ders1Animations } from '@/constants/ders1-assets';
@@ -76,10 +77,12 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
               </div>
               
               <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                <img
+                <Image
                   src={ders1Visuals.bakgecFelsefe.url}
                   alt={ders1Visuals.bakgecFelsefe.alt}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </motion.div>
@@ -112,10 +115,12 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
                 className="bg-white rounded-2xl overflow-hidden shadow-xl"
               >
                 <div className="relative aspect-[9/16]">
-                  <img
+                  <Image
                     src={ders1Visuals.aurikKatman.url}
                     alt={ders1Visuals.aurikKatman.alt}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
@@ -136,10 +141,12 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
                 className="bg-white rounded-2xl overflow-hidden shadow-xl"
               >
                 <div className="relative aspect-[9/16]">
-                  <img
+                  <Image
                     src={ders1Visuals.adimSifa.url}
                     alt={ders1Visuals.adimSifa.alt}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
@@ -168,10 +175,12 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
               </h2>
               
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-8">
-                <img
+                <Image
                   src={ders1Visuals.chakraSistem.url}
                   alt={ders1Visuals.chakraSistem.alt}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 90vw"
                 />
               </div>
 
@@ -196,10 +205,12 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
               </h2>
               
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-8">
-                <img
+                <Image
                   src={ders1Visuals.aktivasyonAkis.url}
                   alt={ders1Visuals.aktivasyonAkis.alt}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 90vw"
                 />
               </div>
 
@@ -386,11 +397,13 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow cursor-pointer group"
               >
-                <div className="relative aspect-square">
-                  <img
+                <div className="relative aspect-square overflow-hidden">
+                  <Image
                     src={ders1Visuals.menzilKapak.url}
                     alt={ders1Visuals.menzilKapak.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <div className="p-6">
@@ -441,11 +454,13 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative aspect-square max-w-md mx-auto mb-8">
-                <img
+              <div className="relative aspect-square max-w-md mx-auto mb-8 rounded-full overflow-hidden">
+                <Image
                   src={ders1Visuals.muhurKapani.url}
                   alt={ders1Visuals.muhurKapani.alt}
-                  className="w-full h-full object-cover rounded-full shadow-2xl"
+                  fill
+                  className="object-cover shadow-2xl"
+                  sizes="(max-width: 768px) 80vw, 500px"
                 />
               </div>
 

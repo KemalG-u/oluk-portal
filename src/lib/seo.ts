@@ -18,7 +18,7 @@ interface SEOProps {
 
 const SITE_NAME = 'OLUK';
 const SITE_URL = 'https://oluk.org';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-default.jpg`;
+const DEFAULT_OG_IMAGE = 'https://res.cloudinary.com/dzegofdgp/image/upload/w_1200,h_630,f_auto,q_auto/oluk/og-default';
 
 export function generateSEOMetadata({
   title,

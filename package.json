@@ -10,7 +10,9 @@
     "seo:generate": "npx tsx scripts/generate-sitemap.ts",
     "seo:check": "npx tsx scripts/seo-health-check.ts",
     "seo:all": "npm run seo:generate && npm run seo:check",
-    "prebuild": "npm run seo:generate"
+    "prebuild": "npm run seo:generate",
+    "cloudinary:upload": "node scripts/upload-to-cloudinary.cjs",
+    "cloudinary:check": "echo 'Cloudinary Cloud Name: dzegofdgp'"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.56",
@@ -19,10 +21,12 @@
     "@langchain/langgraph": "^1.0.7",
     "@supabase/supabase-js": "^2.89.0",
     "ai": "^5.0.116",
+    "cloudinary": "^2.8.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.460.0",
     "next": "^14.2.35",
+    "next-cloudinary": "^6.17.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.5",
