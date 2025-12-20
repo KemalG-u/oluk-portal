@@ -31,6 +31,16 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${cormorant.variable} ${sourceSans.variable}`}>
       <head>
+        {/* Favicon and PWA Manifest */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#0D4F4F" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="OLUK" />
+        
         {/* JSON-LD Structured Data for SEO */}
         <script
           type="application/ld+json"

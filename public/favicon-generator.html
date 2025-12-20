@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><title>OLUK Favicon</title></head><body>
+<canvas id="c" width="512" height="512"></canvas>
+<script>
+const c = document.getElementById("c");
+const ctx = c.getContext("2d");
+const sizes = [16, 32, 48, 180, 192, 512];
+
+// Deep Teal background
+ctx.fillStyle = "#0D4F4F";
+ctx.fillRect(0, 0, 512, 512);
+
+// Warm Gold "O" 
+ctx.strokeStyle = "#C9A962";
+ctx.lineWidth = 40;
+ctx.beginPath();
+ctx.arc(256, 256, 180, 0, Math.PI * 2);
+ctx.stroke();
+
+// Save as PNG
+const link = document.createElement("a");
+link.download = "oluk-icon-512.png";
+link.href = c.toDataURL();
+document.body.appendChild(link);
+console.log("Open browser console and click the link to download");
+</script></body></html>

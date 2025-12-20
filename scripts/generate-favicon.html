@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OLUK Favicon Generator</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        // OLUK Favicon - Spiral/Girdap Konsepti
+        const sizes = [16, 32, 48, 180, 192, 512];
+        
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Deep Teal background
+            ctx.fillStyle = '#0D4F4F';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Warm Gold spiral
+            ctx.strokeStyle = '#C9A962';
+            ctx.lineWidth = size / 16;
+            ctx.lineCap = 'round';
+            
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const maxRadius = size * 0.4;
+            const turns = 2.5;
+            
+            ctx.beginPath();
+            for (let angle = 0; angle <= turns * Math.PI * 2; angle += 0.1) {
+                const radius = (angle / (turns * Math.PI * 2)) * maxRadius;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                if (angle === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            
+            // Center dot
+            ctx.fillStyle = '#C9A962';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, size / 20, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Download
+            const link = document.createElement('a');
+            if (size === 180) {
+                link.download = 'apple-touch-icon.png';
+            } else if (size === 192) {
+                link.download = 'android-chrome-192x192.png';
+            } else if (size === 512) {
+                link.download = 'android-chrome-512x512.png';
+            } else {
+                link.download = `favicon-${size}x${size}.png`;
+            }
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+        
+        document.body.innerHTML = '<h1>OLUK Favicon files downloaded!</h1><p>Check your Downloads folder for:<br>- favicon-16x16.png<br>- favicon-32x32.png<br>- favicon-48x48.png<br>- apple-touch-icon.png<br>- android-chrome-192x192.png<br>- android-chrome-512x512.png</p>';
+    </script>
+</body>
+</html>

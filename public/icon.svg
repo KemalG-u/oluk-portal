@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- OLUK Favicon - Spiral/Girdap Konsepti -->
+  <!-- Deep Teal Background -->
+  <rect width="512" height="512" fill="#0D4F4F"/>
+  
+  <!-- Warm Gold Spiral -->
+  <g stroke="#C9A962" stroke-width="32" stroke-linecap="round" fill="none">
+    <path d="M 256 256 
+             Q 256 226 276 226
+             Q 306 226 306 256
+             Q 306 296 266 296
+             Q 216 296 216 246
+             Q 216 186 276 186
+             Q 346 186 346 256
+             Q 346 336 256 336
+             Q 156 336 156 236
+             Q 156 126 266 126"/>
+  </g>
+  
+  <!-- Center Dot -->
+  <circle cx="256" cy="256" r="25" fill="#C9A962"/>
+</svg>
