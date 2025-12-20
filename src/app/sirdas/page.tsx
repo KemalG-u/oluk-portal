@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { generateSEOMetadata } from '@/lib/seo';
+import { WarningCircle } from '@phosphor-icons/react';
 import SirdasInterface from '@/components/SirdasInterface';
 import SirdasFeatureBadges from '@/components/SirdasFeatureBadges';
 import { SIRDAS_TITLE, SIRDAS_SUBTITLE, FEATURE_BADGES, DISCLAIMER } from '@/lib/sirdas-content';
@@ -89,7 +90,7 @@ export default function SirdasPage() {
       <section className="py-12 px-4 bg-deep-teal-dark/50">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10">
-            <div className="text-2xl">⚠️</div>
+            <WarningCircle size={32} weight="duotone" color="#D4A84B" className="flex-shrink-0" />
             <div>
               <h3 className="text-soft-cream font-semibold mb-3">Önemli Not</h3>
               <p className="text-soft-cream/80 text-sm leading-relaxed whitespace-pre-line">
