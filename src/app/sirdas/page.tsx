@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { generateSEOMetadata } from '@/lib/seo';
-import { WarningCircle } from '@phosphor-icons/react';
 import SirdasInterface from '@/components/SirdasInterface';
 import SirdasFeatureBadges from '@/components/SirdasFeatureBadges';
+import DisclaimerSection from '@/components/DisclaimerSection';
 import { SIRDAS_TITLE, SIRDAS_SUBTITLE, FEATURE_BADGES, DISCLAIMER } from '@/lib/sirdas-content';
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Sırdaş - Kelâmın Süzüldüğü Durak',
@@ -87,19 +90,7 @@ export default function SirdasPage() {
       />
 
       {/* Disclaimer */}
-      <section className="py-12 px-4 bg-deep-teal-dark/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10">
-            <WarningCircle size={32} weight="duotone" color="#D4A84B" className="flex-shrink-0" />
-            <div>
-              <h3 className="text-soft-cream font-semibold mb-3">Önemli Not</h3>
-              <p className="text-soft-cream/80 text-sm leading-relaxed whitespace-pre-line">
-                {DISCLAIMER}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <DisclaimerSection text={DISCLAIMER} />
     </main>
   );
 }
