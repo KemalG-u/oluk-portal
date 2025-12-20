@@ -23,6 +23,21 @@ const config: Config = {
         "rose-light": "#D9C5C5",
         "text-dark": "#2C2C2C",
         "text-muted": "#5A5A5A",
+        'deep-teal': {
+          DEFAULT: '#0D4F4F',
+          light: '#1a6b6b',
+          dark: '#0a3a3a',
+        },
+        'warm-gold': {
+          DEFAULT: '#C9A962',
+          light: '#d4b87a',
+          dark: '#b8944d',
+        },
+        'soft-cream': {
+          DEFAULT: '#F5F0E6',
+          light: '#FAF8F3',
+          dark: '#EDE5D6',
+        },
       },
       fontFamily: {
         serif: ["var(--font-cormorant)", "serif"],
@@ -41,6 +56,11 @@ const config: Config = {
         drip: "drip 2s ease-in-out infinite",
         "sand-flow": "sandFlow 2s linear infinite",
         pulse: "pulse 8s ease-in-out infinite",
+        shimmer: "shimmer 1.5s infinite",
+        "glow-teal": "glowTeal 2s ease-in-out infinite",
+        "glow-gold": "glowGold 2s ease-in-out infinite",
+        "fire-glow": "fireGlow 1.5s ease-in-out infinite",
+        "badge-unlock": "badgeUnlock 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
       },
       keyframes: {
         fadeIn: {
@@ -90,6 +110,26 @@ const config: Config = {
         pulse: {
           "0%, 100%": { transform: "scale(1)", opacity: "0.5" },
           "50%": { transform: "scale(1.1)", opacity: "0.8" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        glowTeal: {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(13, 79, 79, 0.5)" },
+          "50%": { boxShadow: "0 0 30px rgba(13, 79, 79, 0.8)" },
+        },
+        glowGold: {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(201, 169, 98, 0.5)" },
+          "50%": { boxShadow: "0 0 30px rgba(201, 169, 98, 0.8)" },
+        },
+        fireGlow: {
+          "0%, 100%": { textShadow: "0 0 10px #ff6b00, 0 0 20px #ff6b00" },
+          "50%": { textShadow: "0 0 20px #ff6b00, 0 0 30px #ff6b00, 0 0 40px #ff0000" },
+        },
+        badgeUnlock: {
+          "0%": { transform: "scale(0) rotate(-180deg)", opacity: "0" },
+          "100%": { transform: "scale(1) rotate(0deg)", opacity: "1" },
         },
       },
     },
