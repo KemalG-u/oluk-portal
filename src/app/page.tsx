@@ -132,10 +132,10 @@ export default function Home() {
             </Link>
 
             <Link 
-              href="/nur-kocu" 
+              href="/sirdas" 
               className="inline-flex items-center gap-3 px-10 py-[1.1rem] bg-gradient-to-br from-gold to-gold/90 text-white font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-gold transition-all duration-400 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(201,169,98,0.4)] relative overflow-hidden group"
             >
-              <span className="relative z-10">🌙 Nur Koçu</span>
+              <span className="relative z-10">🌊 Sırdaş</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
             </Link>
           </motion.div>
