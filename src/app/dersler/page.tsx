@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Door, MagicWand, Bridge, Lightbulb, Path } from '@phosphor-icons/react';
 
 // SEO metadata is now in page.server.tsx
 
@@ -14,7 +15,7 @@ const dersler = [
     durum: 'ücretsiz',
     sure: '45 dakika',
     renk: 'from-teal to-teal-dark',
-    ikon: '🚪',
+    ikon: Door,
   },
   {
     id: 2,
@@ -24,7 +25,7 @@ const dersler = [
     durum: 'ücretsiz',
     sure: '50 dakika',
     renk: 'from-gold to-gold-muted',
-    ikon: '🪞',
+    ikon: MagicWand,
   },
   {
     id: 3,
@@ -34,7 +35,7 @@ const dersler = [
     durum: 'premium',
     sure: '55 dakika',
     renk: 'from-sage to-sage-dark',
-    ikon: '🌉',
+    ikon: Bridge,
   },
   {
     id: 4,
@@ -44,7 +45,7 @@ const dersler = [
     durum: 'premium',
     sure: '60 dakika',
     renk: 'from-gold to-amber-600',
-    ikon: '💡',
+    ikon: Lightbulb,
   },
   {
     id: 5,
@@ -54,7 +55,7 @@ const dersler = [
     durum: 'premium',
     sure: '65 dakika',
     renk: 'from-teal-dark to-midnight',
-    ikon: '🛤️',
+    ikon: Path,
   },
 ];
 
@@ -97,7 +98,9 @@ export default function DerslerPage() {
                   
                   <div className="relative flex items-center justify-between gap-6">
                     <div className="flex items-center gap-6 flex-1">
-                      <div className="text-5xl">{ders.ikon}</div>
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal/10 to-gold/10 flex items-center justify-center">
+                        <ders.ikon size={32} weight="duotone" className="text-teal" />
+                      </div>
                       
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
