@@ -21,6 +21,7 @@ export const metadata: Metadata = generateSEOMetadata({
     'ruhsal destek',
     'meditasyon yardımcısı',
   ],
+  ogImage: 'https://res.cloudinary.com/dzegofdgp/image/upload/w_1200,h_630,c_fill,b_rgb:0D4F4F,q_auto,f_auto/l_text:Arial_100_bold:Sırdaş,co_rgb:C9A962,g_center,y_-80/l_text:Arial_40:Yapay%20Zeka%20Ruhsal%20Danışman,co_rgb:F5F0E6,g_center,y_40/l_text:Arial_28:oluk.org,co_rgb:F5F0E680,g_south,y_80/oluk-placeholder.png',
   canonical: '/sirdas',
   ogType: 'website',
 });
