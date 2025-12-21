@@ -36,11 +36,11 @@ interface SirdasInterfaceProps {
 }
 
 const moodIcons = {
-  wavy: WaveSine,
   calm: Leaf,
+  wavy: WaveSine,
   storm: Lightning,
-  night: Moon,
-  dawn: SunHorizon,
+  dark: Moon,
+  bright: SunHorizon,
 };
 
 export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: SirdasInterfaceProps) {
