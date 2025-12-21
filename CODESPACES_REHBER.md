@@ -1,5 +1,8 @@
 # 🚀 OLUK Codespaces Hızlı Başlangıç Rehberi
 
+> **✅ ARTIK OTOMATİK:** Codespace açtığınızda tüm uzantılar ve ayarlar otomatik yüklenir!  
+> Detaylar: [.devcontainer/README.md](.devcontainer/README.md)
+
 ## ⚡ 3 Dakikada Başla
 
 ### 1. Environment Setup
@@ -17,7 +20,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxx
 
 ### 2. Kurulum ve Başlatma
 ```bash
-# Hızlı kurulum
+# Hızlı kurulum (artık otomatik)
 bash setup.sh
 
 # Veya manuel

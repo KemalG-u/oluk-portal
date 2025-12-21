@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLUK OG Image Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0D4F4F, #1A7A7A);
+            color: #F5F0E6;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .control-group {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid rgba(245, 240, 230, 0.3);
+            background: rgba(13, 79, 79, 0.6);
+            color: #F5F0E6;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+        input[type="color"] {
+            height: 50px;
+            cursor: pointer;
+        }
+        button {
+            background: linear-gradient(135deg, #8B7355, #A0826D);
+            color: #F5F0E6;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .preview-section {
+            margin-top: 30px;
+        }
+        .preview-label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        canvas {
+            border: 3px solid rgba(245, 240, 230, 0.3);
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            background: white;
+        }
+        .download-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preset-btn {
+            padding: 10px;
+            font-size: 14px;
+        }
+        .info-box {
+            background: rgba(139, 115, 85, 0.2);
+            border-left: 4px solid #8B7355;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 OLUK OG Image Generator</h1>
+        <p class="subtitle">Sosyal medya ve SEO için optimize edilmiş görsel üretici</p>
+
+        <div class="info-box">
+            <strong>📐 Standart Boyutlar:</strong><br>
+            • OG Image: 1200x630px (Facebook, LinkedIn, Twitter)<br>
+            • Instagram Square: 1080x1080px<br>
+            • Twitter Card: 1200x675px (16:9)
+        </div>
+
+        <div class="preset-buttons">
+            <button class="preset-btn" onclick="loadPreset('homepage')">🏠 Ana Sayfa</button>
+            <button class="preset-btn" onclick="loadPreset('sirdas')">💬 Sırdaş</button>
+            <button class="preset-btn" onclick="loadPreset('sss')">❓ SSS</button>
+            <button class="preset-btn" onclick="loadPreset('hakkinda')">ℹ️ Hakkında</button>
+            <button class="preset-btn" onclick="loadPreset('ders')">📚 Ders Template</button>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Başlık</label>
+                <input type="text" id="title" value="OLUK - Dijital Manevi Dönüşüm" maxlength="60">
+            </div>
+            
+            <div class="control-group">
+                <label>Alt Başlık</label>
+                <textarea id="subtitle">Türk tasavvuf geleneği ile modern teknolojiyi birleştiren siber inziva platformu</textarea>
+            </div>
+            
+            <div class="control-group">
+                <label>Boyut</label>
+                <select id="size" onchange="updateCanvas()">
+                    <option value="1200x630">1200x630 (OG Standard)</option>
+                    <option value="1200x675">1200x675 (Twitter 16:9)</option>
+                    <option value="1080x1080">1080x1080 (Instagram Square)</option>
+                    <option value="1200x1200">1200x1200 (Large Square)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Gradient Renk 1</label>
+                <input type="color" id="color1" value="#0D4F4F">
+            </div>
+
+            <div class="control-group">
+                <label>Gradient Renk 2</label>
+                <input type="color" id="color2" value="#1A7A7A">
+            </div>
+
+            <div class="control-group">
+                <label>Accent Renk</label>
+                <input type="color" id="accentColor" value="#8B7355">
+            </div>
+        </div>
+
+        <button onclick="updateCanvas()">🎨 Önizlemeyi Güncelle</button>
+
+        <div class="preview-section">
+            <div class="preview-label">
+                <span>Önizleme</span>
+                <span id="dimensions">1200 x 630 px</span>
+            </div>
+            <canvas id="canvas"></canvas>
+            
+            <div class="download-section">
+                <button onclick="downloadImage('og-image')">⬇️ Ana OG Image İndir</button>
+                <button onclick="downloadAll()">📦 Tümünü İndir (ZIP)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        const presets = {
+            homepage: {
+                title: 'OLUK - Dijital Manevi Dönüşüm',
+                subtitle: 'Türk tasavvuf geleneği ile modern teknolojiyi birleştiren siber inziva platformu',
+                color1: '#0D4F4F',
+                color2: '#1A7A7A',
+                accentColor: '#8B7355'
+            },
+            sirdas: {
+                title: 'Sırdaş - Yapay Zeka Manevi Rehber',
+                subtitle: '7/24 Türkçe konuşan, tasavvuf bilgisi ile desteklenen kişisel rehberiniz',
+                color1: '#1A7A7A',
+                color2: '#0D4F4F',
+                accentColor: '#D4A574'
+            },
+            sss: {
+                title: 'Sıkça Sorulan Sorular',
+                subtitle: 'OLUK hakkında merak ettiğiniz her şey - Ücretsiz, güvenli, herkes için',
+                color1: '#8B7355',
+                color2: '#A0826D',
+                accentColor: '#0D4F4F'
+            },
+            hakkinda: {
+                title: 'Hikayemiz - OLUK',
+                subtitle: 'Akışın kanalı, dönüşümün yolu. 2019\'dan beri manevi teknoloji öncüsü',
+                color1: '#0D4F4F',
+                color2: '#8B7355',
+                accentColor: '#D4A574'
+            },
+            ders: {
+                title: 'Ders [X]: [Ders Adı]',
+                subtitle: 'On basamaklık yolculukta bir adım daha. Pratik egzersizler ve derin içgörüler',
+                color1: '#1A7A7A',
+                color2: '#0D4F4F',
+                accentColor: '#F5F0E6'
+            }
+        };
+
+        function loadPreset(presetName) {
+            const preset = presets[presetName];
+            if (preset) {
+                document.getElementById('title').value = preset.title;
+                document.getElementById('subtitle').value = preset.subtitle;
+                document.getElementById('color1').value = preset.color1;
+                document.getElementById('color2').value = preset.color2;
+                document.getElementById('accentColor').value = preset.accentColor;
+                updateCanvas();
+            }
+        }
+
+        function updateCanvas() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const sizeValue = document.getElementById('size').value;
+            const [width, height] = sizeValue.split('x').map(Number);
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            document.getElementById('dimensions').textContent = `${width} x ${height} px`;
+            
+            const title = document.getElementById('title').value;
+            const subtitle = document.getElementById('subtitle').value;
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+            const accentColor = document.getElementById('accentColor').value;
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Pattern overlay (subtle)
+            ctx.globalAlpha = 0.05;
+            for (let i = 0; i < width; i += 40) {
+                for (let j = 0; j < height; j += 40) {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.beginPath();
+                    ctx.arc(i, j, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            ctx.globalAlpha = 1;
+            
+            // OLUK Logo (simplified text version)
+            ctx.fillStyle = accentColor;
+            ctx.font = 'bold 60px Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('OLUK', 60, 100);
+            
+            // Decorative line under logo
+            ctx.fillStyle = accentColor;
+            ctx.fillRect(60, 120, 150, 4);
+            
+            // Title
+            ctx.fillStyle = '#F5F0E6';
+            ctx.font = 'bold 56px Arial, sans-serif';
+            ctx.textAlign = 'left';
+            
+            // Word wrap for title
+            const maxWidth = width - 120;
+            const words = title.split(' ');
+            let line = '';
+            let y = 220;
+            const lineHeight = 70;
+            
+            words.forEach(word => {
+                const testLine = line + word + ' ';
+                const metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && line !== '') {
+                    ctx.fillText(line, 60, y);
+                    line = word + ' ';
+                    y += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            });
+            ctx.fillText(line, 60, y);
+            
+            // Subtitle
+            ctx.fillStyle = 'rgba(245, 240, 230, 0.85)';
+            ctx.font = '32px Arial, sans-serif';
+            
+            const subtitleWords = subtitle.split(' ');
+            line = '';
+            y += 80;
+            const subtitleLineHeight = 45;
+            
+            subtitleWords.forEach(word => {
+                const testLine = line + word + ' ';
+                const metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && line !== '') {
+                    ctx.fillText(line, 60, y);
+                    line = word + ' ';
+                    y += subtitleLineHeight;
+                } else {
+                    line = testLine;
+                }
+            });
+            ctx.fillText(line, 60, y);
+            
+            // Footer branding
+            ctx.fillStyle = 'rgba(245, 240, 230, 0.6)';
+            ctx.font = '24px Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('oluk.org', 60, height - 40);
+            
+            // Decorative circle (bottom right)
+            ctx.strokeStyle = accentColor;
+            ctx.lineWidth = 3;
+            ctx.globalAlpha = 0.3;
+            ctx.beginPath();
+            ctx.arc(width - 150, height - 150, 100, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
+
+        function downloadImage(filename) {
+            const canvas = document.getElementById('canvas');
+            const link = document.createElement('a');
+            link.download = `${filename}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        async function downloadAll() {
+            const zip = new JSZip();
+            const sizes = ['1200x630', '1200x675', '1080x1080', '1200x1200'];
+            
+            const originalSize = document.getElementById('size').value;
+            
+            for (const size of sizes) {
+                document.getElementById('size').value = size;
+                updateCanvas();
+                
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                const canvas = document.getElementById('canvas');
+                const dataUrl = canvas.toDataURL('image/png');
+                const base64Data = dataUrl.split(',')[1];
+                
+                const filename = `og-image-${size}.png`;
+                zip.file(filename, base64Data, {base64: true});
+            }
+            
+            document.getElementById('size').value = originalSize;
+            updateCanvas();
+            
+            const content = await zip.generateAsync({type: 'blob'});
+            const link = document.createElement('a');
+            link.download = 'oluk-og-images.zip';
+            link.href = URL.createObjectURL(content);
+            link.click();
+        }
+
+        // Initial render
+        window.onload = () => {
+            updateCanvas();
+        };
+
+        // Auto-update on input changes
+        document.getElementById('title').addEventListener('input', updateCanvas);
+        document.getElementById('subtitle').addEventListener('input', updateCanvas);
+        document.getElementById('color1').addEventListener('input', updateCanvas);
+        document.getElementById('color2').addEventListener('input', updateCanvas);
+        document.getElementById('accentColor').addEventListener('input', updateCanvas);
+    </script>
+</body>
+</html>
