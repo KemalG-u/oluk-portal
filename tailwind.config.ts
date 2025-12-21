@@ -17,6 +17,7 @@ const config: Config = {
         gold: "#C9A962",
         "gold-muted": "#D4BC7D",
         "gold-light": "#E8D9A8",
+        "gold-dark": "#B8944D",
         sage: "#7A9E7E",
         "sage-light": "#A8C4AB",
         rose: "#C4A4A4",

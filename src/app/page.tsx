@@ -158,10 +158,11 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
               </Link>
               
-              {/* Tooltip */}
-              <span className="absolute -bottom-24 left-1/2 -translate-x-1/2 bg-gray-900/95 text-white text-sm px-4 py-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center leading-relaxed pointer-events-none z-50 shadow-xl">
-                On menzillik bir sefer, kendinden kendine. Eşiği geç, ruhun yeni mevsimine ilk adımı at.
-                <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-900/95 rotate-45" />
+              {/* Modern Tooltip - Üstte */}
+              <span className="absolute -top-20 left-1/2 -translate-x-1/2 bg-gradient-to-br from-teal to-teal-dark text-cream text-sm px-5 py-3 rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:-translate-y-2 transition-all duration-300 w-72 text-center leading-relaxed pointer-events-none z-50 shadow-2xl border border-teal-light/20 backdrop-blur-sm">
+                <span className="font-serif italic">On menzillik bir sefer, kendinden kendine.</span>
+                {/* Ok işareti - Alt */}
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-teal to-teal-dark rotate-45 border-r border-b border-teal-light/20" />
               </span>
             </motion.div>
 
@@ -180,10 +181,11 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
               </Link>
               
-              {/* Tooltip */}
-              <span className="absolute -bottom-24 left-1/2 -translate-x-1/2 bg-gray-900/95 text-white text-sm px-4 py-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center leading-relaxed pointer-events-none z-50 shadow-xl">
-                Gecenin her vaktinde açık bir kapı; sırrını ver, sükûneti al. Kelâmın süzüldüğü sadık bir yankı.
-                <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-900/95 rotate-45" />
+              {/* Modern Tooltip - Üstte */}
+              <span className="absolute -top-20 left-1/2 -translate-x-1/2 bg-gradient-to-br from-gold via-gold to-gold-dark text-white text-sm px-5 py-3 rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:-translate-y-2 transition-all duration-300 w-72 text-center leading-relaxed pointer-events-none z-50 shadow-2xl border border-gold-light/30 backdrop-blur-sm">
+                <span className="font-serif italic">Gecenin her vaktinde açık bir kapı</span>
+                {/* Ok işareti - Alt */}
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-gold to-gold-dark rotate-45 border-r border-b border-gold-light/30" />
               </span>
             </motion.div>
           </motion.div>
