@@ -187,3 +187,74 @@ main,
     100% { background-position: 200% 0; }
   }
 }
+
+/* =====================================================
+   OLUK MOBİL SCROLL FIX - 21 Aralık 2025
+   Ek mobil optimizasyonlar ve touch iyileştirmeleri
+   ===================================================== */
+
+@layer utilities {
+  /* Touch action - mobil tıklama optimizasyonu */
+  * {
+    touch-action: manipulation;
+  }
+
+  /* Video background fix - scroll engellemesini kaldır */
+  .video-background,
+  [class*="video-bg"],
+  video[class*="absolute"],
+  video[class*="fixed"] {
+    position: fixed !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+  }
+
+  /* iOS Safari özel düzeltmeler */
+  @supports (-webkit-touch-callout: none) {
+    html {
+      height: -webkit-fill-available;
+    }
+    
+    body {
+      min-height: -webkit-fill-available;
+      position: relative;
+    }
+  }
+
+  /* Mobil viewport fix */
+  @media screen and (max-width: 639px) {
+    html, body {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      height: 100%;
+    }
+    
+    /* Buton minimum boyutları (Apple HIG) */
+    button, 
+    .btn, 
+    a[class*="btn"],
+    [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+      touch-action: manipulation;
+    }
+    
+    /* Input alanları */
+    input,
+    textarea,
+    select {
+      font-size: 16px; /* iOS zoom engelleyici */
+    }
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
