@@ -10,6 +10,7 @@ export default function Header() {
   const menuItems = [
     { href: '/', label: 'Ana Sayfa' },
     { href: '/dersler', label: 'Dersler' },
+    { href: '/sirdas', label: 'Sırdaş' },
     { href: '/hakkinda', label: 'Hakkımızda' },
     { href: '/iletisim', label: 'İletişim' },
   ];
