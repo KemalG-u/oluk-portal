@@ -4,9 +4,11 @@
 
 ### **ADIM 1: Script'i İndir**
 
-**Windows'ta şunu aç:**
-1. Bu linke tıkla: https://github.com/KemalG-u/oluk-portal/raw/main/.openmemory/windows-auto-install.ps1
-2. Dosya indirilecek → Masaüstüne kaydet
+**ÇOK KOLAY - Direkt İndir:**
+
+📥 **[BURAYA TIKLA - İNDİR](https://raw.githubusercontent.com/KemalG-u/oluk-portal/main/.openmemory/windows-auto-install.ps1)**
+
+(Sağ tıkla → "Farklı Kaydet" → Masaüstüne kaydet → Dosya adı: `windows-auto-install.ps1`)
 
 **VEYA Manuel:**
 1. Bu repo'da `.openmemory/windows-auto-install.ps1` dosyasını aç
