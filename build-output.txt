@@ -1,0 +1,86 @@
+
+> oluk-portal@2.0.0 prebuild
+> npm run seo:generate
+
+
+> oluk-portal@2.0.0 seo:generate
+> npx tsx scripts/generate-sitemap.ts
+
+🚀 OLUK.ORG SEO Sitemap Generator başlatılıyor...
+
+✅ 34 URL keşfedildi
+✅ sitemap.xml oluşturuldu
+✅ sitemap-index.xml oluşturuldu
+✅ robots.txt güncellendi
+✅ feed.json oluşturuldu
+✅ sitemap-stats.json oluşturuldu
+
+📊 SEO İstatistikleri:
+   Toplam sayfa: 34
+   Yüksek öncelikli: 9
+   Orta öncelikli: 25
+   Düşük öncelikli: 0
+   Tahmini crawl budget: 68 request
+
+🎉 Tüm SEO dosyaları başarıyla oluşturuldu!
+
+📝 Sonraki adımlar:
+   1. Google Search Console'a sitemap gönderin:
+      https://oluk.org/sitemap.xml
+   2. Bing Webmaster Tools'a kaydedin
+   3. package.json'a script ekleyin:
+      "seo:generate": "tsx scripts/generate-sitemap.ts"
+
+> oluk-portal@2.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+./src/components/SirdasInterface.tsx
+60:6  Warning: React Hook useEffect has missing dependencies: 'analytics', 'initialMood', and 'lessons'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+ ⚠ Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/37) ...
+   Generating static pages (9/37) 
+   Generating static pages (18/37) 
+   Generating static pages (27/37) 
+ ✓ Generating static pages (37/37)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    15.9 kB         147 kB
+├ ○ /_not-found                          154 B          87.3 kB
+├ ƒ /api/sirdas                          0 B                0 B
+├ ƒ /apple-icon                          0 B                0 B
+├ ○ /dersler                             1.52 kB         133 kB
+├ ● /dersler/[slug]                      11.4 kB         143 kB
+├   ├ /dersler/kapi
+├   ├ /dersler/ayna
+├   ├ /dersler/kopru
+├   └ [+2 more paths]
+├ ● /dersler/[slug]/[seans]              2.98 kB         135 kB
+├   ├ /dersler/kapi/1
+├   ├ /dersler/kapi/2
+├   ├ /dersler/kapi/3
+├   └ [+22 more paths]
+├ ○ /dersler/ders-2                      177 B            96 kB
+├ ƒ /icon                                0 B                0 B
+└ ƒ /sirdas                              16.9 kB         140 kB
++ First Load JS shared by all            87.2 kB
+  ├ chunks/117-235562aee30462a8.js       31.7 kB
+  ├ chunks/fd9d1056-ac728e40aa330f74.js  53.6 kB
+  └ other shared chunks (total)          1.9 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

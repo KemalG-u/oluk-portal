@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-12-20T18:47:36.383Z",
+  "timestamp": "2025-12-21T08:52:29.034Z",
   "score": 80,
   "issues": [
     {
       "severity": "info",
       "category": "Sitemap",
-      "message": "✅ 32 URL başarıyla indexlendi"
+      "message": "✅ 34 URL başarıyla indexlendi"
     },
     {
       "severity": "info",
@@ -53,7 +53,7 @@
     }
   ],
   "stats": {
-    "totalPages": 32,
+    "totalPages": 34,
     "imagesOptimized": 11,
     "metaTagsComplete": 1,
     "structuredData": 1

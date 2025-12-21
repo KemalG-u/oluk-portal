@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLUK Favicon Generator</title>
+</head>
+<body style="font-family: system-ui; padding: 20px; background: #f5f0e6;">
+    <h1>🎨 OLUK Favicon Generator</h1>
+    <p>Tüm boyutlar için favicon'lar oluşturuluyor...</p>
+    
+    <canvas id="canvas" style="border: 2px solid #0D4F4F; margin: 20px 0;"></canvas>
+    
+    <div id="downloads"></div>
+    
+    <script>
+        const sizes = [
+            { size: 16, name: 'favicon-16x16.png' },
+            { size: 32, name: 'favicon-32x32.png' },
+            { size: 48, name: 'favicon-48x48.png' },
+            { size: 192, name: 'android-chrome-192x192.png' },
+            { size: 512, name: 'android-chrome-512x512.png' },
+        ];
+        
+        function drawOlukIcon(ctx, size) {
+            // Background gradient
+            const bgGrad = ctx.createLinearGradient(0, 0, size, size);
+            bgGrad.addColorStop(0, '#0D4F4F');
+            bgGrad.addColorStop(1, '#1A6B6B');
+            
+            // Rounded rectangle background
+            const radius = size * 0.176; // 90/512
+            ctx.fillStyle = bgGrad;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            
+            // Gold gradient
+            const goldGrad = ctx.createLinearGradient(0, 0, size, size);
+            goldGrad.addColorStop(0, '#D4AF37');
+            goldGrad.addColorStop(1, '#C9A962');
+            
+            const scale = size / 512;
+            const strokeWidth = 40 * scale;
+            
+            // Üst kavis
+            ctx.strokeStyle = goldGrad;
+            ctx.lineWidth = strokeWidth;
+            ctx.lineCap = 'round';
+            ctx.globalAlpha = 0.9;
+            ctx.beginPath();
+            ctx.moveTo(150 * scale, 180 * scale);
+            ctx.quadraticCurveTo(256 * scale, 120 * scale, 362 * scale, 180 * scale);
+            ctx.stroke();
+            
+            // Ana kanal
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = goldGrad;
+            ctx.beginPath();
+            ctx.roundRect(226 * scale, 180 * scale, 60 * scale, 200 * scale, 30 * scale);
+            ctx.fill();
+            
+            // Alt kavis
+            ctx.globalAlpha = 0.9;
+            ctx.beginPath();
+            ctx.moveTo(150 * scale, 380 * scale);
+            ctx.quadraticCurveTo(256 * scale, 440 * scale, 362 * scale, 380 * scale);
+            ctx.stroke();
+            
+            // Akış noktaları
+            ctx.fillStyle = '#F5F0E6';
+            
+            ctx.globalAlpha = 0.8;
+            ctx.beginPath();
+            ctx.arc(256 * scale, 220 * scale, 12 * scale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.globalAlpha = 0.6;
+            ctx.beginPath();
+            ctx.arc(256 * scale, 280 * scale, 12 * scale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.globalAlpha = 0.4;
+            ctx.beginPath();
+            ctx.arc(256 * scale, 340 * scale, 12 * scale, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        const canvas = document.getElementById('canvas');
+        const downloadsDiv = document.getElementById('downloads');
+        
+        sizes.forEach(({ size, name }) => {
+            canvas.width = size;
+            canvas.height = size;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, size, size);
+            drawOlukIcon(ctx, size);
+            
+            // Download link oluştur
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = name;
+                link.textContent = `⬇️ ${name} (${size}x${size})`;
+                link.style.display = 'block';
+                link.style.margin = '10px 0';
+                link.style.padding = '10px';
+                link.style.background = '#fff';
+                link.style.border = '1px solid #0D4F4F';
+                link.style.borderRadius = '8px';
+                link.style.textDecoration = 'none';
+                link.style.color = '#0D4F4F';
+                
+                downloadsDiv.appendChild(link);
+            });
+        });
+        
+        // En büyük boyutu göster
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        drawOlukIcon(ctx, 512);
+    </script>
+</body>
+</html>

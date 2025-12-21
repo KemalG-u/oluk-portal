@@ -41,9 +41,12 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         {/* Favicon and PWA Manifest */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
         <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0D4F4F" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
