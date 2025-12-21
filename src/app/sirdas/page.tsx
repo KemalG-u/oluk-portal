@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import { generateSEOMetadata } from '@/lib/seo';
 import SirdasInterface from '@/components/SirdasInterface';
-import SirdasFeatureBadges from '@/components/SirdasFeatureBadges';
-import DisclaimerSection from '@/components/DisclaimerSection';
-import { SIRDAS_TITLE, SIRDAS_SUBTITLE, FEATURE_BADGES, DISCLAIMER } from '@/lib/sirdas-content';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -30,28 +27,9 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function SirdasPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-deep-teal via-deep-teal-dark to-black">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-5xl md:text-6xl text-soft-cream mb-6 leading-tight">
-            {SIRDAS_TITLE}
-          </h1>
-          <p className="text-xl md:text-2xl text-soft-cream/80 leading-relaxed max-w-3xl mx-auto">
-            {SIRDAS_SUBTITLE}
-          </p>
-        </div>
+    <main className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
+      <SirdasInterface initialMood="wavy" />
 
-        {/* Feature Badges */}
-        <SirdasFeatureBadges badges={FEATURE_BADGES} />
-      </section>
-
-      {/* Chat Interface */}
-      <section className="relative">
-        <SirdasInterface initialMood="wavy" />
-      </section>
-
-      {/* JSON-LD Schema for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -78,19 +56,9 @@ export default function SirdasPage() {
               ratingValue: '4.8',
               reviewCount: '127',
             },
-            featureList: [
-              'Gizli ve anonim sohbet',
-              'Kriz müdahale sistemi',
-              '5 farklı ruh hali desteği',
-              '24/7 erişilebilir AI koç',
-              'Ücretsiz manevi destek'
-            ],
           }),
         }}
       />
-
-      {/* Disclaimer */}
-      <DisclaimerSection text={DISCLAIMER} />
     </main>
   );
 }

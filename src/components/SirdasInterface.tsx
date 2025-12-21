@@ -2,26 +2,24 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, AlertCircle, Phone } from 'lucide-react';
+import Link from 'next/link';
 import { 
-  Leaf, 
-  WaveSine, 
-  Lightning, 
-  Moon, 
-  SunHorizon,
   PaperPlaneTilt,
-  Warning
+  House,
+  Sparkle,
+  Heart,
+  WaveSine,
+  Leaf,
+  Lightning,
+  Moon,
+  SunHorizon
 } from '@phosphor-icons/react';
 import { detectCrisis } from '@/lib/crisis-detection';
 import { useAnalytics } from '@/lib/analytics';
 import { 
   WELCOME_MESSAGE, 
-  PLACEHOLDER_TEXT, 
-  LOADING_TEXT, 
-  EMPTY_STATE,
   MOOD_OPTIONS,
   CRISIS_MESSAGE,
-  CRISIS_FOOTER,
   CRISIS_HOTLINES
 } from '@/lib/sirdas-content';
 
@@ -37,27 +35,30 @@ interface SirdasInterfaceProps {
   lessons?: string[];
 }
 
+const moodIcons = {
+  wavy: WaveSine,
+  calm: Leaf,
+  storm: Lightning,
+  night: Moon,
+  dawn: SunHorizon,
+};
+
 export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: SirdasInterfaceProps) {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: WELCOME_MESSAGE,
-      timestamp: new Date(),
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [mood, setMood] = useState(initialMood);
   const [isLoading, setIsLoading] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const [showCrisisWarning, setShowCrisisWarning] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const analytics = useAnalytics();
 
   useEffect(() => {
     analytics.startSession(initialMood, lessons);
+    inputRef.current?.focus();
     return () => analytics.endSession();
-  }, []);
+  }, [analytics, initialMood, lessons]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -66,6 +67,8 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
+
+    if (showWelcome) setShowWelcome(false);
 
     const userMessage: Message = {
       role: 'user',
@@ -77,6 +80,11 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
     setInput('');
     setIsLoading(true);
     analytics.trackMessage();
+
+    // Auto-resize textarea
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+    }
 
     try {
       const crisisResult = detectCrisis(input);
@@ -100,57 +108,249 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
       const response = await fetch('/api/sirdas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: [...messages, userMessage],
-          mood,
-          lessons,
+        body: JSON.stringify({ 
+          message: input, 
+          mood, 
+          lessons: lessons.length > 0 ? lessons : undefined 
         }),
       });
 
-      if (!response.ok) throw new Error('API error');
+      if (!response.ok) throw new Error('Network response was not ok');
 
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
-      let assistantMessage = '';
-
-      if (reader) {
-        setMessages(prev => [...prev, {
-          role: 'assistant',
-          content: '',
-          timestamp: new Date(),
-        }]);
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          const text = decoder.decode(value);
-          assistantMessage += text;
-
-          setMessages(prev => {
-            const newMessages = [...prev];
-            const lastMessage = newMessages[newMessages.length - 1];
-            if (lastMessage.role === 'assistant') {
-              lastMessage.content = assistantMessage;
-            }
-            return newMessages;
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Sırdaş error:', error);
-      setMessages(prev => [...prev, {
+      const data = await response.json();
+      
+      const assistantMessage: Message = {
         role: 'assistant',
-        content: 'Bir lahza aksadı. Tekrar dene lütfen.',
+        content: data.reply,
         timestamp: new Date(),
-      }]);
+      };
+
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+      const errorMessage: Message = {
+        role: 'assistant',
+        content: 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      inputRef.current?.focus();
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
+  const startConversation = (selectedMood: string) => {
+    setMood(selectedMood);
+    setShowWelcome(false);
+    inputRef.current?.focus();
+  };
+
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-deep-teal via-deep-teal-dark to-black">
+    <div className="flex flex-col h-screen max-h-screen">
+      {/* Header */}
+      <header className="border-b border-teal/10 bg-white/80 backdrop-blur-md sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-70 transition">
+              <House size={24} weight="duotone" className="text-teal" />
+              <span className="text-sm text-text-muted hidden sm:inline">Ana Sayfa</span>
+            </Link>
+            <div className="w-px h-6 bg-teal/20" />
+            <div className="flex items-center gap-2">
+              <Sparkle size={24} weight="duotone" className="text-gold" />
+              <h1 className="font-serif text-xl sm:text-2xl text-teal">Sırdaş</h1>
+            </div>
+          </div>
+          <div className="text-xs text-text-muted hidden sm:block">
+            AI destekli manevi destek
+          </div>
+        </div>
+      </header>
+
+      {/* Main Chat Area */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+          {/* Welcome Screen */}
+          <AnimatePresence>
+            {showWelcome && messages.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-8"
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center shadow-xl">
+                  <Sparkle size={40} weight="duotone" className="text-white" />
+                </div>
+                
+                <div className="space-y-3">
+                  <h2 className="font-serif text-3xl sm:text-4xl text-teal">
+                    Hoş Geldin
+                  </h2>
+                  <p className="text-lg text-text-muted max-w-md">
+                    Gecenin her vaktinde açık bir kapı. Sırrını ver, sükûneti al.
+                  </p>
+                </div>
+
+                {/* Mood Selection */}
+                <div className="w-full max-w-2xl">
+                  <p className="text-sm text-text-muted mb-4">Bugün nasıl hissediyorsun?</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                    {MOOD_OPTIONS.map((option) => {
+                      const Icon = moodIcons[option.id as keyof typeof moodIcons];
+                      return (
+                        <motion.button
+                          key={option.id}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => startConversation(option.id)}
+                          className="flex flex-col items-center gap-2 p-4 rounded-2xl border-2 border-teal/20 hover:border-gold hover:bg-gold/5 transition-all group"
+                        >
+                          <Icon size={32} weight="duotone" className="text-teal group-hover:text-gold transition-colors" />
+                          <span className="text-sm font-medium text-teal group-hover:text-gold transition-colors">
+                            {option.label}
+                          </span>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <p className="text-xs text-text-muted/60 max-w-md">
+                  Ya da hemen yazmaya başla. Burası senin için güvenli bir alan.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Messages */}
+          <div className="space-y-6">
+            <AnimatePresence initial={false}>
+              {messages.map((message, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-5 py-4 ${
+                      message.role === 'user'
+                        ? 'bg-gradient-to-br from-teal to-teal-light text-white'
+                        : message.crisisDetected
+                        ? 'bg-rose/10 border-2 border-rose text-text-dark'
+                        : 'bg-white border border-teal/10 text-text-dark shadow-sm'
+                    }`}
+                  >
+                    {message.role === 'assistant' && !message.crisisDetected && (
+                      <div className="flex items-center gap-2 mb-2 text-teal">
+                        <Sparkle size={16} weight="duotone" />
+                        <span className="text-xs font-medium">Sırdaş</span>
+                      </div>
+                    )}
+                    <p className="text-[15px] leading-relaxed whitespace-pre-wrap">
+                      {message.content}
+                    </p>
+                    {message.crisisDetected && (
+                      <div className="mt-4 pt-4 border-t border-rose/20">
+                        <p className="text-sm font-semibold mb-2 flex items-center gap-2">
+                          <Heart size={16} weight="fill" className="text-rose" />
+                          Acil Yardım Hatları
+                        </p>
+                        <div className="space-y-2 text-sm">
+                          {CRISIS_HOTLINES.map((hotline, i) => (
+                            <a
+                              key={i}
+                              href={`tel:${hotline.number}`}
+                              className="flex items-center gap-2 p-2 rounded-lg bg-white hover:bg-rose/5 transition"
+                            >
+                              <span className="font-medium">{hotline.name}:</span>
+                              <span className="text-rose font-mono">{hotline.number}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            {/* Loading */}
+            {isLoading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex justify-start"
+              >
+                <div className="bg-white border border-teal/10 rounded-2xl px-5 py-4 shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <Sparkle size={16} weight="duotone" className="text-teal animate-pulse" />
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-teal/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-2 h-2 bg-teal/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-2 h-2 bg-teal/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+          
+          <div ref={messagesEndRef} />
+        </div>
+      </div>
+
+      {/* Input Area - Sticky Bottom */}
+      <div className="border-t border-teal/10 bg-white/80 backdrop-blur-md sticky bottom-0">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
+          <form onSubmit={handleSubmit} className="relative">
+            <div className="flex items-end gap-2 bg-white rounded-2xl border-2 border-teal/20 focus-within:border-gold transition-colors shadow-sm">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => {
+                  setInput(e.target.value);
+                  // Auto-resize
+                  e.target.style.height = 'auto';
+                  e.target.style.height = Math.min(e.target.scrollHeight, 150) + 'px';
+                }}
+                onKeyDown={handleKeyDown}
+                placeholder={showWelcome ? "Sırrını ver, sükûneti al..." : "Mesajını yaz..."}
+                disabled={isLoading}
+                className="flex-1 px-5 py-4 bg-transparent border-none outline-none resize-none text-[15px] text-text-dark placeholder:text-text-muted/50 max-h-[150px]"
+                rows={1}
+              />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                disabled={!input.trim() || isLoading}
+                className="m-2 p-3 bg-gradient-to-br from-gold to-gold-dark text-white rounded-xl disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg transition-all"
+              >
+                <PaperPlaneTilt size={20} weight="bold" />
+              </motion.button>
+            </div>
+          </form>
+          
+          {/* Footer Info */}
+          <div className="mt-3 text-center">
+            <p className="text-xs text-text-muted/60">
+              Sırdaş bir AI asistanıdır. Acil durumlarda lütfen profesyonel yardım alın.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Crisis Warning Modal */}
       <AnimatePresence>
         {showCrisisWarning && (
@@ -158,183 +358,36 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setShowCrisisWarning(false)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-soft-cream rounded-3xl p-8 max-w-lg w-full shadow-2xl"
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-center mb-6">
-                <AlertCircle className="w-16 h-16 mx-auto text-red-500 mb-4" />
-                <h3 className="text-2xl font-serif text-deep-teal mb-4">Dur bir lahza.</h3>
-                <p className="text-text-dark leading-relaxed whitespace-pre-line">
-                  {CRISIS_MESSAGE}
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 mx-auto bg-rose/10 rounded-full flex items-center justify-center">
+                  <Heart size={32} weight="fill" className="text-rose" />
+                </div>
+                <h3 className="font-serif text-2xl text-teal">Yalnız Değilsin</h3>
+                <p className="text-text-muted">
+                  Acil yardım hatlarını mesajlarımda bulabilirsin. Lütfen profesyonel destek al.
                 </p>
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowCrisisWarning(false)}
+                  className="w-full py-3 bg-gradient-to-br from-gold to-gold-dark text-white rounded-xl font-medium"
+                >
+                  Anladım
+                </motion.button>
               </div>
-
-              <div className="space-y-3 mb-6">
-                {CRISIS_HOTLINES.map((hotline, i) => (
-                  <a
-                    key={i}
-                    href={`tel:${hotline.number}`}
-                    className="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-warm-gold/10 transition-all"
-                  >
-                    <Phone className="w-6 h-6 text-warm-gold" />
-                    <div>
-                      <div className="font-bold text-deep-teal">{hotline.name}</div>
-                      <div className="text-sm text-text-muted">{hotline.description}</div>
-                    </div>
-                  </a>
-                ))}
-              </div>
-
-              <p className="text-sm text-text-muted text-center italic">
-                {CRISIS_FOOTER}
-              </p>
-
-              <button
-                onClick={() => setShowCrisisWarning(false)}
-                className="mt-6 w-full btn-primary"
-              >
-                Anladım
-              </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Mood Selector */}
-      <div className="p-4 backdrop-blur-xl bg-white/10 border-b border-white/20">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-soft-cream/70 text-sm mb-3">Bugün nasılsın?</p>
-          <div className="flex gap-2 overflow-x-auto pb-2">
-            {MOOD_OPTIONS.map((option) => {
-              const iconMap: Record<string, any> = {
-                'Leaf': Leaf,
-                'WaveSine': WaveSine,
-                'Lightning': Lightning,
-                'Moon': Moon,
-                'SunHorizon': SunHorizon,
-              };
-              const IconComponent = iconMap[option.icon];
-              
-              return (
-                <motion.button
-                  key={option.id}
-                  onClick={() => setMood(option.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${
-                    mood === option.id
-                      ? 'bg-warm-gold text-white shadow-lg ring-2 ring-warm-gold/50 ring-offset-2 ring-offset-deep-teal'
-                      : 'bg-white/10 text-soft-cream hover:bg-white/20 hover:scale-105'
-                  }`}
-                  whileHover={{ scale: mood === option.id ? 1 : 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {IconComponent && (
-                    <IconComponent size={20} weight="duotone" color={mood === option.id ? '#fff' : option.color} />
-                  )}
-                  {option.label}
-                </motion.button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 mobile-scroll-fix">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {messages.length === 1 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center text-soft-cream/60 py-12"
-            >
-              {EMPTY_STATE}
-            </motion.div>
-          )}
-
-          <AnimatePresence mode="popLayout">
-            {messages.map((msg, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-2xl p-4 ${
-                    msg.role === 'user'
-                      ? 'bg-warm-gold text-white'
-                      : msg.crisisDetected
-                      ? 'bg-red-500/20 border border-red-500/50 text-soft-cream'
-                      : 'bg-white/15 backdrop-blur-xl border border-white/20 text-soft-cream'
-                  }`}
-                  style={{
-                    backdropFilter: 'blur(20px)',
-                  }}
-                >
-                  <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
-                  <p className="text-xs mt-2 opacity-60">
-                    {msg.timestamp.toLocaleTimeString('tr-TR', { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    })}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-
-          {isLoading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex items-center gap-3 text-soft-cream/70"
-            >
-              <motion.div
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-3 h-3 rounded-full bg-warm-gold"
-              />
-              <span className="text-sm italic">{LOADING_TEXT}</span>
-            </motion.div>
-          )}
-
-          <div ref={messagesEndRef} />
-        </div>
-      </div>
-
-      {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 backdrop-blur-xl bg-white/10 border-t border-white/20">
-        <div className="max-w-4xl mx-auto flex gap-3">
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={PLACEHOLDER_TEXT}
-            disabled={isLoading}
-            className="flex-1 px-6 py-4 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-soft-cream placeholder-soft-cream/50 focus:outline-none focus:ring-2 focus:ring-warm-gold transition-all"
-            style={{ backdropFilter: 'blur(20px)' }}
-          />
-          <motion.button
-            type="submit"
-            disabled={isLoading || !input.trim()}
-            className="px-8 py-4 rounded-full bg-warm-gold text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(201, 169, 98, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Send className="w-5 h-5" />
-          </motion.button>
-        </div>
-      </form>
     </div>
   );
 }
