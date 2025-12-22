@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DUYGUSAL Arınma | OLUK Spiritüel Dönüşüm",
+  description: "Duygusal arınma aşaması, duyguların farkındalığı ve temizliğiyle ruhsal dengeyi destekler. Duygusal yüklerden arın, kendini hafiflet.",
+  openGraph: {
+    title: "DUYGUSAL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Duygusal arınma aşaması, duyguların farkındalığı ve temizliğiyle ruhsal dengeyi destekler.",
+    url: "https://oluk.org/dersler/arinma/duygusal",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-duygusal.png",
+        width: 1200,
+        height: 630,
+        alt: "Duygusal Arınma - OLUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DUYGUSAL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Duygusal arınma aşaması, duyguların farkındalığı ve temizliğiyle ruhsal dengeyi destekler.",
+    images: ["https://oluk.org/og-duygusal.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma/duygusal",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma/duygusal",
+      en: "https://oluk.org/en/dersler/arinma/duygusal",
+      "x-default": "https://oluk.org/dersler/arinma/duygusal"
+    }
+  }
+};
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Link from "next/link";

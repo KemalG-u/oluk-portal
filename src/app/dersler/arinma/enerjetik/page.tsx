@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ENERJETİK Arınma | OLUK Spiritüel Dönüşüm",
+  description: "Enerjetik arınma aşaması, enerji alanını temizler ve korur. Çakralar, blokajlar ve enerji akışı ile ruhsal dengeyi güçlendir.",
+  openGraph: {
+    title: "ENERJETİK Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Enerjetik arınma aşaması, enerji alanını temizler ve korur.",
+    url: "https://oluk.org/dersler/arinma/enerjetik",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-enerjetik.png",
+        width: 1200,
+        height: 630,
+        alt: "Enerjetik Arınma - OLUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ENERJETİK Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Enerjetik arınma aşaması, enerji alanını temizler ve korur.",
+    images: ["https://oluk.org/og-enerjetik.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma/enerjetik",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma/enerjetik",
+      en: "https://oluk.org/en/dersler/arinma/enerjetik",
+      "x-default": "https://oluk.org/dersler/arinma/enerjetik"
+    }
+  }
+};
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Link from "next/link";

@@ -1,7 +1,49 @@
+
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import { homeMetadata, generateOrganizationSchema, generateWebSiteSchema, generateWebApplicationSchema } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "OLUK | Spiritüel Dönüşüm Platformu",
+  description: "Arınma, koruma ve aktivasyon ile içsel dönüşüm yolculuğun. Türkiye'nin en kapsamlı spiritüel gelişim platformu.",
+  keywords: [
+    "spiritüel gelişim",
+    "meditasyon",
+    "arınma",
+    "enerji çalışması",
+    "bilinçaltı",
+    "dönüşüm"
+  ],
+  openGraph: {
+    title: "OLUK | Spiritüel Dönüşüm Platformu",
+    description: "Arınma, koruma ve aktivasyon ile içsel dönüşüm yolculuğun. Türkiye'nin en kapsamlı spiritüel gelişim platformu.",
+    url: "https://oluk.org",
+    type: "website",
+    locale: "tr_TR",
+    images: [
+      {
+        url: "https://oluk.org/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "OLUK Spiritüel Dönüşüm Platformu"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OLUK | Spiritüel Dönüşüm Platformu",
+    description: "Arınma, koruma ve aktivasyon ile içsel dönüşüm yolculuğun. Türkiye'nin en kapsamlı spiritüel gelişim platformu.",
+    images: ["https://oluk.org/og-image.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org",
+    languages: {
+      tr: "https://oluk.org",
+      en: "https://oluk.org/en",
+      "x-default": "https://oluk.org"
+    }
+  }
+};
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"],
@@ -18,18 +60,32 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
-export const metadata: Metadata = homeMetadata;
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationSchema = generateOrganizationSchema();
-  const websiteSchema = generateWebSiteSchema();  const webApplicationSchema = generateWebApplicationSchema();
+  // JSON-LD Structured Data
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "OLUK",
+    "url": "https://oluk.org",
+    "logo": "https://oluk.org/logo.png",
+    "description": "Spiritüel dönüşüm ve kişisel gelişim platformu",
+    "sameAs": [
+      "https://instagram.com/oluk.org",
+      "https://youtube.com/@oluk"
+    ]
+  };
   return (
     <html lang="tr" className={`${cormorant.variable} ${sourceSans.variable}`}>
       <head>
+        {/* Hreflang tags */}
+        <link rel="alternate" hrefLang="tr" href="https://oluk.org" />
+        <link rel="alternate" hrefLang="en" href="https://oluk.org/en" />
+        <link rel="alternate" hrefLang="x-default" href="https://oluk.org" />
         {/* Font preload için critical fonts */}
         <link
           rel="preconnect"
@@ -56,15 +112,7 @@ export default function RootLayout({
         {/* JSON-LD Structured Data for SEO */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://res.cloudinary.com" />

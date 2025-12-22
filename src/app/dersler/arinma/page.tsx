@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ARINMA | OLUK Spiritüel Dönüşüm - 8 Aşama",
+  description: "Arınma fazı, 8 aşamalı spiritüel temizlik ve dönüşüm yolculuğunun başlangıcıdır. Her aşama, fizikselden bilinçaltına derin bir arınma sunar.",
+  openGraph: {
+    title: "ARINMA | OLUK Spiritüel Dönüşüm - 8 Aşama",
+    description: "Arınma fazı, 8 aşamalı spiritüel temizlik ve dönüşüm yolculuğunun başlangıcıdır.",
+    url: "https://oluk.org/dersler/arinma",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-arinma.png",
+        width: 1200,
+        height: 630,
+        alt: "ARINMA - OLUK Spiritüel Dönüşüm"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ARINMA | OLUK Spiritüel Dönüşüm - 8 Aşama",
+    description: "Arınma fazı, 8 aşamalı spiritüel temizlik ve dönüşüm yolculuğunun başlangıcıdır.",
+    images: ["https://oluk.org/og-arinma.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma",
+      en: "https://oluk.org/en/dersler/arinma",
+      "x-default": "https://oluk.org/dersler/arinma"
+    }
+  }
+};
 import React from "react";
 import Link from "next/link";
 

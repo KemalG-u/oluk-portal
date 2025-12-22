@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ZİHİNSEL Arınma | OLUK Spiritüel Dönüşüm",
+  description: "Zihinsel arınma aşaması, düşünce kalıplarını ve negatif inançları temizleyerek zihinsel berraklık sağlar. Odaklan, özgürleş.",
+  openGraph: {
+    title: "ZİHİNSEL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Zihinsel arınma aşaması, düşünce kalıplarını ve negatif inançları temizleyerek zihinsel berraklık sağlar.",
+    url: "https://oluk.org/dersler/arinma/zihinsel",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-zihinsel.png",
+        width: 1200,
+        height: 630,
+        alt: "Zihinsel Arınma - OLUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ZİHİNSEL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Zihinsel arınma aşaması, düşünce kalıplarını ve negatif inançları temizleyerek zihinsel berraklık sağlar.",
+    images: ["https://oluk.org/og-zihinsel.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma/zihinsel",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma/zihinsel",
+      en: "https://oluk.org/en/dersler/arinma/zihinsel",
+      "x-default": "https://oluk.org/dersler/arinma/zihinsel"
+    }
+  }
+};
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Link from "next/link";

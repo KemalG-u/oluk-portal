@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "İLİŞKİSEL Arınma | OLUK Spiritüel Dönüşüm",
+  description: "İlişkisel arınma aşaması, ilişkilerdeki bağları ve sınırları güçlendirir. Sağlıklı iletişim ve dönüşüm için adım at.",
+  openGraph: {
+    title: "İLİŞKİSEL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "İlişkisel arınma aşaması, ilişkilerdeki bağları ve sınırları güçlendirir.",
+    url: "https://oluk.org/dersler/arinma/iliskisel",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-iliskisel.png",
+        width: 1200,
+        height: 630,
+        alt: "İlişkisel Arınma - OLUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "İLİŞKİSEL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "İlişkisel arınma aşaması, ilişkilerdeki bağları ve sınırları güçlendirir.",
+    images: ["https://oluk.org/og-iliskisel.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma/iliskisel",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma/iliskisel",
+      en: "https://oluk.org/en/dersler/arinma/iliskisel",
+      "x-default": "https://oluk.org/dersler/arinma/iliskisel"
+    }
+  }
+};
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Link from "next/link";

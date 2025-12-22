@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FİZİKSEL Arınma | OLUK Spiritüel Dönüşüm",
+  description: "Fiziksel arınma aşaması, bedenin temizliği ve sağlığına odaklanır. Beden farkındalığı, hareket, beslenme ve dinlenme ile dönüşüm başlar.",
+  openGraph: {
+    title: "FİZİKSEL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Fiziksel arınma aşaması, bedenin temizliği ve sağlığına odaklanır.",
+    url: "https://oluk.org/dersler/arinma/fiziksel",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-fiziksel.png",
+        width: 1200,
+        height: 630,
+        alt: "Fiziksel Arınma - OLUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FİZİKSEL Arınma | OLUK Spiritüel Dönüşüm",
+    description: "Fiziksel arınma aşaması, bedenin temizliği ve sağlığına odaklanır.",
+    images: ["https://oluk.org/og-fiziksel.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma/fiziksel",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma/fiziksel",
+      en: "https://oluk.org/en/dersler/arinma/fiziksel",
+      "x-default": "https://oluk.org/dersler/arinma/fiziksel"
+    }
+  }
+};
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Link from "next/link";

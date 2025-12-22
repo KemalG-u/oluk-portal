@@ -1,3 +1,37 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "KAPI | Arınma Yolculuğu Başlangıcı - OLUK",
+  description: "KAPI aşaması, arınma yolculuğunun ilk adımıdır. Neden burada olduğunu keşfet, dönüşümün kapısından geç.",
+  openGraph: {
+    title: "KAPI | Arınma Yolculuğu Başlangıcı - OLUK",
+    description: "KAPI aşaması, arınma yolculuğunun ilk adımıdır. Neden burada olduğunu keşfet, dönüşümün kapısından geç.",
+    url: "https://oluk.org/dersler/arinma/kapi",
+    type: "article",
+    images: [
+      {
+        url: "https://oluk.org/og-kapi.png",
+        width: 1200,
+        height: 630,
+        alt: "KAPI - OLUK Arınma Başlangıcı"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KAPI | Arınma Yolculuğu Başlangıcı - OLUK",
+    description: "KAPI aşaması, arınma yolculuğunun ilk adımıdır. Neden burada olduğunu keşfet, dönüşümün kapısından geç.",
+    images: ["https://oluk.org/og-kapi.png"]
+  },
+  alternates: {
+    canonical: "https://oluk.org/dersler/arinma/kapi",
+    languages: {
+      tr: "https://oluk.org/dersler/arinma/kapi",
+      en: "https://oluk.org/en/dersler/arinma/kapi",
+      "x-default": "https://oluk.org/dersler/arinma/kapi"
+    }
+  }
+};
 /* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line react/no-unescaped-entities
 import React from "react";
