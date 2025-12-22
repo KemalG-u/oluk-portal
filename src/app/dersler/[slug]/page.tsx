@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import { dersler, type DersSlug } from '@/lib/dersler-data';
-import { ders1Visuals, ders1Animations } from '@/constants/ders1-assets';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { dersler, type DersSlug } from "@/lib/dersler-data";
+import { ders1Visuals, ders1Animations } from "@/constants/ders1-assets";
 
 // This is now a client component - SEO metadata is handled in page.server.tsx
 
@@ -17,7 +17,7 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
   }
 
   // Ders 1 (Kapı) için özel sayfa
-  if (params.slug === 'kapi') {
+  if (params.slug === "kapi") {
     return (
       <div className="min-h-screen bg-cream">
         {/* Hero Section */}
@@ -419,10 +419,10 @@ export default function DersDetayClient({ params }: { params: { slug: string } }
 
               {/* Placeholder cards for other seanslar */}
               {[
-                { no: 2, title: 'Nefes', desc: 'İlk emanet, hayat ritmi' },
-                { no: 3, title: 'Teni Ses', desc: 'Bedene dönüş yolculuğu' },
-                { no: 4, title: 'Merkez', desc: 'Ruhun durakları' },
-                { no: 5, title: 'Mühür', desc: 'Niyet ve sükût' },
+                { no: 2, title: "Nefes", desc: "İlk emanet, hayat ritmi" },
+                { no: 3, title: "Teni Ses", desc: "Bedene dönüş yolculuğu" },
+                { no: 4, title: "Merkez", desc: "Ruhun durakları" },
+                { no: 5, title: "Mühür", desc: "Niyet ve sükût" },
               ].map((seans, idx) => (
                 <motion.div
                   key={idx}

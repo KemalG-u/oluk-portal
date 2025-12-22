@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import React from "react";
 import Link from "next/link";
-import { Lock } from "@phosphor-icons/react";
+
 
 export const metadata: Metadata = {
   title: "İLERİ SEVİYE | OLUK Spiritüel Dönüşüm",
@@ -42,7 +41,12 @@ export default function IleriSeviyePage() {
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 flex flex-col items-center border-t-8" style={{ borderColor: "#4A2C6A" }}>
         <div className="flex items-center gap-2 mb-2">
           <span className="inline-block px-3 py-1 bg-yellow-200 text-yellow-800 text-xs font-bold rounded-full uppercase tracking-wider">Yakında</span>
-          <Lock size={28} color="#4A2C6A" weight="fill" />
+          <svg width="28" height="28" viewBox="0 0 256 256" fill="#4A2C6A" xmlns="http://www.w3.org/2000/svg" aria-label="Kilitli">
+            <rect width="256" height="256" fill="none"/>
+            <rect x="40" y="120" width="176" height="96" rx="16" stroke="none"/>
+            <path d="M92,120V88a36,36,0,0,1,72,0v32" fill="none" stroke="#4A2C6A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/>
+            <circle cx="128" cy="168" r="12" fill="#fff"/>
+          </svg>
         </div>
         <h1 className="text-3xl font-bold text-[#4A2C6A] mb-1">İLERİ SEVİYE</h1>
         <p className="text-[#4A2C6A] font-semibold mb-4">Derinleş, ustalaş, dönüştür</p>

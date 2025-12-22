@@ -17,7 +17,7 @@ export default function DersDetayPage() {
         {/* HEADER */}
         {/* eslint-disable react/no-unescaped-entities */}
         <Link href="/dersler/arinma/kapi" className="mb-4 inline-flex items-center text-[#0D4F4F] font-bold text-sm hover:underline">
-          <span className="mr-2">←</span> KAPI&apos;ya dön
+          <span className="mr-2">←</span> KAPI'ya dön
         </Link>
         <h1 className="text-2xl font-playfair font-bold mb-1 text-[#0D4F4F]">{ders.baslik}</h1>
         <div className="flex items-center gap-4 mb-4">
@@ -33,7 +33,7 @@ export default function DersDetayPage() {
             <span className="text-white text-lg">Video/Audio Player</span>
           </div>
           <div className="bg-white rounded-lg p-4 shadow mb-4">
-            <p className="text-gray-700 text-base leading-relaxed">{ders.icerik.replace("&apos;", "&apos;")}</p>
+            <p className="text-gray-700 text-base leading-relaxed">{ders.icerik.replace("'", "'")}</p>
           </div>
           <button className="w-full py-2 px-4 bg-[#C9A962] text-white font-bold rounded-lg shadow hover:bg-[#b89a4e] transition mb-2">
             Sonraki Ders

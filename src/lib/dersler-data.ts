@@ -13,13 +13,13 @@ export const dersler = {
     sure: '45 dakika',
     giris: `Eşiktesin.
 
-Bu "Kapı", sadece bir müfredatın başlangıcı değil; kendi içine doğru atılacak o ilk, ürkek ama vakur adımın adıdır.
+  Bu "Kapı", sadece bir müfredatın başlangıcı değil; kendi içine doğru atılacak o ilk, ürkek ama vakur adımın adıdır.
 
-Ruhun, tozlu raflar arasında unutulmuş eski bir yazma eser gibi, gün ışığına çıkmayı bekliyor.
+  Ruhun, tozlu raflar arasında unutulmuş eski bir yazma eser gibi, gün ışığına çıkmayı bekliyor.
 
-Burada öğreneceğin nefesten öte bir "can üfleyişi", bedenden öte bir "mülk tanıyışıdır."
+  Burada öğreneceğin nefesten öte bir "can üfleyişi", bedenden öte bir "mülk tanıyışıdır."
 
-Hazırsan, perdeler aralanıyor; içeride seni, yine sen bekliyorsun.`,
+  Hazırsan, perdeler aralanıyor; içeride seni, yine sen bekliyorsun.`,
     seanslar: [
       { id: 1, baslik: 'Menzil: Neden Buradayız?', sure: '8 dk' },
       { id: 2, baslik: 'Nefes: İlk Emanet', sure: '12 dk' },

@@ -1,23 +1,23 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
+import { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: '8 Kalkan - Enerji Koruma Sistemi | OLUK Ders 3',
-  description: 'Sekiz katmanlı enerji koruma sistemi. Dışarının gürültüsü içeriye sızmaz. 30 dakikalık orta seviye meditasyon.',
+  title: "8 Kalkan - Enerji Koruma Sistemi | OLUK Ders 3",
+  description: "Sekiz katmanlı enerji koruma sistemi. Dışarının gürültüsü içeriye sızmaz. 30 dakikalık orta seviye meditasyon.",
   openGraph: {
-    title: '8 Kalkan | OLUK Ders 3',
-    description: 'Sekiz katmanlı koruma. Dışarının gürültüsü içeriye sızmaz.',
-    type: 'article',
+    title: "8 Kalkan | OLUK Ders 3",
+    description: "Sekiz katmanlı koruma. Dışarının gürültüsü içeriye sızmaz.",
+    type: "article",
   },
 }
 
 const kalkanlar = [
-  { id: 1, ad: 'Tellurik', renk: 'Kahverengi', emoji: '🟤', anlam: 'Toprak bağlantısı. Kök.', telkin: 'Köklerim derin. Sarsılmam.' },
-  { id: 2, ad: 'Doradic', renk: 'Turuncu', emoji: '🟠', anlam: 'Yaratıcı enerji. Akış.', telkin: 'Akışım kesintisiz. Yaratırım.' },
-  { id: 3, ad: 'Teuric', renk: 'Sarı', emoji: '🟡', anlam: 'İrade gücü. Merkez.', telkin: 'İradem güçlü. Yönüm belli.' },
-  { id: 4, ad: 'Maharic', renk: 'Yeşil', emoji: '💚', anlam: 'Kalp alanı. Sevgi.', telkin: 'Kalbim açık. Ama korumalı.' },
-  { id: 5, ad: 'Rishic', renk: 'Mavi', emoji: '🔵', anlam: 'İfade. Hakikat.', telkin: 'Sözüm doğru. Sesim net.' },
-  { id: 6, ad: 'Triadic', renk: 'Mor', emoji: '🟣', anlam: 'Sezgi. Görüş.', telkin: 'Görürüm. Bilirim. Anlarım.' },
+  { id: 1, ad: "Tellurik", renk: "Kahverengi", emoji: "🟤", anlam: "Toprak bağlantısı. Kök.", telkin: "Köklerim derin. Sarsılmam." },
+  { id: 2, ad: "Doradic", renk: "Turuncu", emoji: "🟠", anlam: "Yaratıcı enerji. Akış.", telkin: "Akışım kesintisiz. Yaratırım." },
+  { id: 3, ad: "Teuric", renk: "Sarı", emoji: "🟡", anlam: "İrade gücü. Merkez.", telkin: "İradem güçlü. Yönüm belli." },
+  { id: 4, ad: "Maharic", renk: "Yeşil", emoji: "💚", anlam: "Kalp alanı. Sevgi.", telkin: "Kalbim açık. Ama korumalı." },
+  { id: 5, ad: "Rishic", renk: "Mavi", emoji: "🔵", anlam: "İfade. Hakikat.", telkin: "Sözüm doğru. Sesim net." },
+  { id: 6, ad: "Triadic", renk: "Mor", emoji: "🟣", anlam: "Sezgi. Görüş.", telkin: "Görürüm. Bilirim. Anlarım." },
   { id: 7, ad: 'Polaric', renk: 'Gümüş', emoji: '⚪', anlam: 'Bağlantı. Birlik.', telkin: 'Bağlıyım. Ama bağımlı değil.' },
   { id: 8, ad: 'Eckatic', renk: 'Altın', emoji: '🥇', anlam: 'Kaynak. Tanrısal.', telkin: 'Korunuyorum. Kaynak benimle.' },
 ]

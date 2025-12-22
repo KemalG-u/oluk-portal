@@ -76,7 +76,7 @@ export default function BilincaltiPage() {
     <main className="min-h-screen bg-[#F5F0E6] flex flex-col items-center py-10 px-4">
       <div className="w-full max-w-md">
         <Link href="/dersler/arinma" className="mb-4 inline-flex items-center text-[#0D4F4F] font-bold text-sm hover:underline">
-          <span className="mr-2">←</span> ARINNA&apos;ya dön
+          <span className="mr-2">←</span> ARINNA'ya dön
         </Link>
         <h1 className="text-2xl font-playfair font-bold mb-1 text-[#C0C0C0]">AŞAMA 7: BİLİNÇALTI</h1>
         <p className="mb-6 text-[#4A2C6A] text-sm">Entegre et</p>
