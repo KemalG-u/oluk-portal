@@ -14,6 +14,7 @@ export default function DersDetayPage() {
     <main className="min-h-screen bg-[#F5F0E6] flex flex-col items-center py-8 px-4">
       <div className="w-full max-w-md">
         {/* HEADER */}
+        {/* eslint-disable react/no-unescaped-entities */}
         <Link href="/dersler/arinma/kapi" className="mb-4 inline-flex items-center text-[#0D4F4F] font-bold text-sm hover:underline">
           <span className="mr-2">←</span> KAPI&apos;ya dön
         </Link>
