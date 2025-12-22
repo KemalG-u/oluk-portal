@@ -14,7 +14,7 @@ export default function DersDetayPage() {
       <div className="w-full max-w-md">
         {/* HEADER */}
         <Link href="/dersler/arinma/kapi" className="mb-4 inline-flex items-center text-[#0D4F4F] font-bold text-sm hover:underline">
-          <span className="mr-2">←</span> KAPI'ya dön
+          <span className="mr-2">←</span> KAPI&apos;ya dön
         </Link>
         <h1 className="text-2xl font-playfair font-bold mb-1 text-[#0D4F4F]">{ders.baslik}</h1>
         <div className="flex items-center gap-4 mb-4">
