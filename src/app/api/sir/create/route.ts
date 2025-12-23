@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
       .from('user_sir')
       .insert({
         user_id: userId,
-        element: element,
+        element_type: element,
         sir_name: sirName.trim(),
         color: sirData.color,
         energy: 50,
