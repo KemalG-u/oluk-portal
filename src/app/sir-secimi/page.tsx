@@ -204,7 +204,14 @@ export default function SirSecimiPage() {
               className="w-32 h-32 rounded-full bg-[#0D4F4F]/30 border-2 border-[#C9A962] mx-auto mb-8"
               animate={{ scale: [1, 1.5, 1] }}
               transition={{ duration: 6, ease: 'easeInOut' }}
-              onAnimationComplete={handleBreathComplete}
+              useEffect(() => {
+                if (stage === 'breathe') {
+                  const timer = setTimeout(() => {
+                    handleBreathComplete();
+                  }, 6000);
+                  return () => clearTimeout(timer);
+                }
+              }, [stage, breathCount]);
             />
             <p className="text-[#F5F0E6]/60 text-sm">Derin nefes al... ve bırak...</p>
           </motion.div>
