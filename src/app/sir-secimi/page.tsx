@@ -1,7 +1,4 @@
-"use client";
-import dynamic from "next/dynamic";
-
-const LottiePlayer = dynamic(() => import("@lottiefiles/react-lottie-player").then(mod => mod.Player), { ssr: false });
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -203,19 +200,12 @@ export default function SirSecimiPage() {
             className="text-center"
           >
             <p className="text-[#C9A962] text-lg mb-8">Nefes {breathCount + 1} / 3</p>
-            <div className="w-64 h-64 mx-auto mb-8">
-              <LottiePlayer
-                autoplay
-                loop={false}
-                src="https://assets-v2.lottiefiles.com/a/76f8d43c-1179-11ee-ab90-b71574440b1b/qH87oZ6Ln1.lottie"
-                style={{ width: '100%', height: '100%' }}
-                onEvent={(event: any) => {
-                  if (event === 'complete') {
-                    handleBreathComplete();
-                  }
-                }}
-              />
-            </div>
+            <motion.div
+              className="w-32 h-32 rounded-full bg-[#0D4F4F]/30 border-2 border-[#C9A962] mx-auto mb-8"
+              animate={{ scale: [1, 1.5, 1] }}
+              transition={{ duration: 6, ease: 'easeInOut' }}
+              onAnimationComplete={handleBreathComplete}
+            />
             <p className="text-[#F5F0E6]/60 text-sm">Derin nefes al... ve bırak...</p>
           </motion.div>
         )}
