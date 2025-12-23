@@ -3,7 +3,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import SirCompanion from "@/components/SirCompanion";
 
 export const metadata: Metadata = {
   title: "OLUK | Spiritüel Dönüşüm Platformu",
@@ -110,7 +109,6 @@ export default function RootLayout({
       </head>
       <body className="font-sans bg-cream text-text-dark antialiased">
         {children}
-        <SirCompanion />
       </body>
     </html>
   );

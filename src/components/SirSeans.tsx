@@ -276,7 +276,7 @@ export default function SirSeans({
       {/* İpucu */}
       {!isActive && (
         <p className="text-xs text-gray-600 mt-4 text-center max-w-xs">
-          Gözlerini kapa. Sadece {sirName}'ı takip et.
+          Gözlerini kapa. Sadece {sirName}&apos;ı takip et.
         </p>
       )}
     </div>

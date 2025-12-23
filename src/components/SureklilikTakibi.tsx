@@ -93,7 +93,6 @@ export default function SureklilikTakibi({
       
       // Basit kontrol: currentStreak'e göre
       const isActive = i < currentStreak || i === 0;
-      
       days.push({
         day: dayName,
         active: isActive,
@@ -178,7 +177,7 @@ export default function SureklilikTakibi({
           animate={{ opacity: 1 }}
           className="text-xs text-gray-500 mt-3 text-center italic"
         >
-          "Çeliğe şekil vermek için sıcak tutmalı..."
+          &quot;Çeliğe şekil vermek için sıcak tutmalı...&quot;
         </motion.p>
       )}
     </div>

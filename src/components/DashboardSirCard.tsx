@@ -108,7 +108,7 @@ export default function DashboardSirCard() {
         >
           <div className="text-center">
             <p className="text-4xl mb-3">✨</p>
-            <p className="text-gray-300 mb-1">Henüz bir Sır'ın yok</p>
+            <p className="text-gray-300 mb-1">Henüz bir Sır&apos;ın yok</p>
             <p className="text-sm text-gray-500">Dönüşüm yolculuğuna başla →</p>
           </div>
         </motion.div>
@@ -188,7 +188,7 @@ export default function DashboardSirCard() {
       </div>
 
       {/* Hoşgeldin mesajı */}
-      <p className="text-gray-400 text-sm mb-4 italic">"{getWelcomeMessage()}"</p>
+      <p className="text-gray-400 text-sm mb-4 italic">&quot;{getWelcomeMessage()}&quot;</p>
 
       {/* Enerji çubuğu */}
       <div className="mb-4">
