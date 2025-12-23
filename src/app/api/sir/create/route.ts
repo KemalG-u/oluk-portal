@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    const userId = 'demo-user-id';
+    const userId = crypto.randomUUID();
     const sirData = SIR_DATA[element as keyof typeof SIR_DATA];
 
     const { data: existingSir } = await supabase
