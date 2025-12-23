@@ -1,5 +1,5 @@
 # oluk.org - SEO Optimized robots.txt
-# Generated: 2025-12-23T17:55:40.525Z
+# Generated: 2025-12-23T18:22:39.891Z
 
 User-agent: *
 Allow: /
