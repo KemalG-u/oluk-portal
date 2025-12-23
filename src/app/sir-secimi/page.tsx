@@ -14,261 +14,480 @@ type Stage =
 	| 'intro-1' | 'intro-2' | 'intro-3' | 'name';
 
 const ELEMENTS = {
-	fire: {
-		name: 'Ateş Yolu',
-		emoji: '🔥',
-		color: '#E53935',
-		question: 'İçinde bazen kontrolsüz bir alev mi yanıyor?',
-		shortQuestion: 'Kontrolsüz alev',
-	},
-	water: {
-		name: 'Su Yolu',
-		emoji: '💧',
-		color: '#1976D2',
-		question: 'İçin bazen bulanık bir göle mi dönüyor?',
-		shortQuestion: 'Bulanık göl',
-	},
-	air: {
-		name: 'Hava Yolu',
-		emoji: '🌬️',
-		color: '#7E57C2',
-		question: 'Zihnin hiç durmayan bir rüzgar mı?',
-		shortQuestion: 'Savrulan rüzgar',
-	},
-	earth: {
-		name: 'Toprak Yolu',
-		emoji: '🌍',
-		color: '#5D4037',
-		question: 'Bazen yerinden kalkamayacak kadar mı ağır hissediyorsun?',
-		shortQuestion: 'Durgun toprak',
-	},
-};
 
-const COLORS = {
-	warmGold: '#C9A962',
-	deepTeal: '#0D4F4F',
-};
+	'use client';
 
-export default function SirSecimiPage() {
-	const router = useRouter();
-	const [stage, setStage] = useState<Stage>('prepare');
-	const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
-	const [sirName, setSirName] = useState('');
-	const [breathCount, setBreathCount] = useState(0);
-	const [breathPhase, setBreathPhase] = useState<'in' | 'out'>('in');
-	const [thinkCountdown, setThinkCountdown] = useState(15);
-	const [isBreathing, setIsBreathing] = useState(false);
+	import { useState, useEffect } from 'react';
+	import { motion, AnimatePresence } from 'framer-motion';
+	import { useRouter } from 'next/navigation';
 
-	useEffect(() => {
-		if (stage === 'breathe' && isBreathing && breathCount < 3) {
-			const breathCycle = async () => {
-				setBreathPhase('in');
-				await new Promise(resolve => setTimeout(resolve, 4000));
-				setBreathPhase('out');
-				await new Promise(resolve => setTimeout(resolve, 6000));
-				setBreathCount(prev => prev + 1);
+	type Stage =
+		| 'prepare'
+		| 'breathe'
+		| 'heart'
+		| 'explain'
+		| 'show-fire'
+		| 'show-water'
+		| 'show-air'
+		| 'show-earth'
+		| 'think'
+		| 'select'
+		| 'bonded'
+		| 'intro-1'
+		| 'intro-2'
+		| 'intro-3'
+		| 'name'
+		| 'complete';
+
+	type Element = 'fire' | 'water' | 'air' | 'earth';
+
+	interface ElementData {
+		id: Element;
+		name: string;
+		emoji: string;
+		color: string;
+		description: string;
+		traits: string[];
+	}
+
+	const ELEMENTS: ElementData[] = [
+		{
+			id: 'fire',
+			name: 'Ateş',
+			emoji: '🔥',
+			color: '#FF6B35',
+			description: 'Dönüşümün ateşi. Eskiyi yakar, yeniyi doğurur.',
+			traits: ['Tutku', 'Dönüşüm', 'Güç'],
+		},
+		{
+			id: 'water',
+			name: 'Su',
+			emoji: '💧',
+			color: '#4ECDC4',
+			description: 'Akışın bilgeliği. Engelleri aşar, yolunu bulur.',
+			traits: ['Akış', 'Uyum', 'Derinlik'],
+		},
+		{
+			id: 'air',
+			name: 'Hava',
+			emoji: '🌬️',
+			color: '#95E1D3',
+			description: 'Düşüncenin özgürlüğü. Sınır tanımaz, yükselir.',
+			traits: ['Özgürlük', 'Netlik', 'Hareket'],
+		},
+		{
+			id: 'earth',
+			name: 'Toprak',
+			emoji: '🌍',
+			color: '#8B7355',
+			description: 'Köklerin gücü. Sabırla bekler, sağlam durur.',
+			traits: ['Denge', 'Sabır', 'Kök'],
+		},
+	];
+
+	export default function SirSecimiPage() {
+		const router = useRouter();
+		const [stage, setStage] = useState<Stage>('prepare');
+		const [breathCount, setBreathCount] = useState(0);
+		const [selectedElement, setSelectedElement] = useState<Element | null>(null);
+		const [sirName, setSirName] = useState('');
+		const [isLoading, setIsLoading] = useState(false);
+		const [currentShowElement, setCurrentShowElement] = useState<ElementData | null>(null);
+
+		useEffect(() => {
+			const timers: Record<string, number> = {
+				prepare: 4000,
+				heart: 5000,
+				explain: 6000,
+				'show-fire': 8000,
+				'show-water': 8000,
+				'show-air': 8000,
+				'show-earth': 8000,
+				think: 15000,
+				bonded: 4000,
+				'intro-1': 6000,
+				'intro-2': 6000,
+				'intro-3': 6000,
 			};
-			breathCycle();
-		} else if (breathCount >= 3) {
-			setIsBreathing(false);
-			setTimeout(() => setStage('heart'), 1000);
-		}
-	}, [stage, breathCount, isBreathing]);
 
-	useEffect(() => {
-		if (stage === 'think' && thinkCountdown > 0) {
-			const timer = setTimeout(() => setThinkCountdown(prev => prev - 1), 1000);
-			return () => clearTimeout(timer);
-		} else if (stage === 'think' && thinkCountdown === 0) {
-			setStage('select');
-		}
-	}, [stage, thinkCountdown]);
-
-	useEffect(() => {
-		const autoStages: Stage[] = ['show-fire', 'show-water', 'show-air', 'show-earth'];
-		const nextMap: Record<string, Stage> = {
-			'show-fire': 'show-water',
-			'show-water': 'show-air',
-			'show-air': 'show-earth',
-			'show-earth': 'think',
-		};
-		if (autoStages.includes(stage)) {
-			const timer = setTimeout(() => setStage(nextMap[stage]), 8000);
-			return () => clearTimeout(timer);
-		}
-	}, [stage]);
-
-	const handleSelect = (element: ElementType) => {
-		setSelectedElement(element);
-		setStage('bonded');
-	};
-
-	const handleComplete = async () => {
-		if (!selectedElement || !sirName.trim()) return;
-		try {
-			const response = await fetch('/api/sir/create', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ elementType: selectedElement, sirName: sirName.trim() }),
-			});
-			if (response.ok) {
-				router.push('/');
+			if (timers[stage]) {
+				const timer = setTimeout(() => {
+					const nextStage: Record<string, Stage> = {
+						prepare: 'breathe',
+						heart: 'explain',
+						explain: 'show-fire',
+						'show-fire': 'show-water',
+						'show-water': 'show-air',
+						'show-air': 'show-earth',
+						'show-earth': 'think',
+						think: 'select',
+						bonded: 'intro-1',
+						'intro-1': 'intro-2',
+						'intro-2': 'intro-3',
+						'intro-3': 'name',
+					};
+					setStage(nextStage[stage]);
+				}, timers[stage]);
+				return () => clearTimeout(timer);
 			}
-		} catch (error) {
-			console.error('Sır kaydedilemedi:', error);
-		}
-	};
+		}, [stage]);
 
-	const nextStage = () => {
-		const order: Stage[] = ['prepare', 'breathe', 'heart', 'explain', 'show-fire', 'show-water', 'show-air', 'show-earth', 'think', 'select', 'bonded', 'intro-1', 'intro-2', 'intro-3', 'name'];
-		const idx = order.indexOf(stage);
-		if (idx < order.length - 1) {
-			if (stage === 'breathe') { setIsBreathing(true); return; }
-			setStage(order[idx + 1]);
-		}
-	};
+		useEffect(() => {
+			const elementMap: Record<string, Element> = {
+				'show-fire': 'fire',
+				'show-water': 'water',
+				'show-air': 'air',
+				'show-earth': 'earth',
+			};
+			if (elementMap[stage]) {
+				setCurrentShowElement(ELEMENTS.find((e) => e.id === elementMap[stage]) || null);
+			}
+		}, [stage]);
 
-	return (
-		<div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center p-4">
-			<AnimatePresence mode="wait">
-				{stage === 'prepare' && (
-					<StageBox key="prepare">
-						<p className="text-xl text-gray-300 mb-4">Şimdi bir an dur.</p>
-						<p className="text-lg text-gray-400 mb-8">Etrafındaki sesler uzaklaşsın.<br/>Sadece bu ekran ve sen kalsın.</p>
-						<Btn onClick={nextStage}>Hazırım</Btn>
-					</StageBox>
-				)}
+		const handleBreathComplete = () => {
+			if (breathCount < 2) {
+				setBreathCount(breathCount + 1);
+			} else {
+				setStage('heart');
+			}
+		};
 
-				{stage === 'breathe' && (
-					<StageBox key="breathe">
-						<motion.div animate={{ scale: breathPhase === 'in' ? 1.5 : 1 }} transition={{ duration: breathPhase === 'in' ? 4 : 6 }} className="w-32 h-32 rounded-full mx-auto mb-8" style={{ background: `radial-gradient(circle, ${COLORS.warmGold}40, transparent)` }} />
-						<p className="text-xl text-gray-300">{breathPhase === 'in' ? 'Derin bir nefes al...' : 'Yavaşça ver...'}</p>
-						<p className="text-sm text-gray-500 mt-4">{breathCount + 1} / 3</p>
-						{!isBreathing && <Btn onClick={nextStage} className="mt-8">Başla</Btn>}
-					</StageBox>
-				)}
+		const handleElementSelect = (element: Element) => {
+			setSelectedElement(element);
+			setStage('bonded');
+		};
 
-				{stage === 'heart' && (
-					<StageBox key="heart">
-						<p className="text-5xl mb-8">❤️</p>
-						<p className="text-xl text-gray-300 mb-4">Şimdi elini kalbinin üstüne koy.</p>
-						<p className="text-lg text-gray-400 mb-8">Atışını hisset. O senin en derin sesin.</p>
-						<Btn onClick={nextStage}>Hazırım</Btn>
-					</StageBox>
-				)}
+		const handleSaveSir = async () => {
+			if (!selectedElement || !sirName.trim()) return;
 
-				{stage === 'explain' && (
-					<StageBox key="explain">
-						<p className="text-xl text-gray-300 mb-6">İnsan, dört unsurdan yaratıldı:</p>
-						<p className="text-2xl mb-6" style={{ color: COLORS.warmGold }}>Ateş... Su... Hava... Toprak...</p>
-						<p className="text-lg text-gray-400 mb-8">Her birimizde biri daha baskın. Hangisi seni en çok anlattığını KALBİNLE hisset.</p>
-						<Btn onClick={nextStage}>Göster</Btn>
-					</StageBox>
-				)}
+			setIsLoading(true);
+			try {
+				const response = await fetch('/api/sir/create', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						element: selectedElement,
+						sirName: sirName.trim(),
+					}),
+				});
 
-				{['show-fire', 'show-water', 'show-air', 'show-earth'].includes(stage) && (
-					<StageBox key={stage}>
-						<p className="text-8xl mb-8">{ELEMENTS[stage.replace('show-', '') as ElementType].emoji}</p>
-						<p className="text-lg text-gray-400">{ELEMENTS[stage.replace('show-', '') as ElementType].question}</p>
-					</StageBox>
-				)}
+				if (response.ok) {
+					setStage('complete');
+					setTimeout(() => router.push('/'), 3000);
+				} else {
+					const data = await response.json();
+					alert(data.error || 'Bir hata oluştu');
+				}
+			} catch (error) {
+				alert('Bağlantı hatası');
+			} finally {
+				setIsLoading(false);
+			}
+		};
 
-				{stage === 'think' && (
-					<StageBox key="think">
-						<p className="text-xl text-gray-300 mb-4">Gözlerini kapa.</p>
-						<p className="text-lg text-gray-400 mb-8">Hangisi KALBİNDE yankılandı? Bekle. Hisset.</p>
-						<p className="text-4xl" style={{ color: COLORS.warmGold }}>{thinkCountdown}</p>
-					</StageBox>
-				)}
+		const selectedElementData = ELEMENTS.find((e) => e.id === selectedElement);
 
-				{stage === 'select' && (
-					<StageBox key="select">
-						<p className="text-xl text-gray-300 mb-8">Hangisi seni en çok anlattı?</p>
-						<div className="space-y-4">
-							{(Object.keys(ELEMENTS) as ElementType[]).map((el) => (
-								<motion.button key={el} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => handleSelect(el)} className="w-full p-4 rounded-xl border border-gray-700 hover:border-gray-500 flex items-center gap-4 text-left" style={{ background: 'rgba(255,255,255,0.03)' }}>
-									<span className="text-3xl">{ELEMENTS[el].emoji}</span>
-									<span className="text-gray-300">{ELEMENTS[el].shortQuestion}</span>
-								</motion.button>
-							))}
-						</div>
-					</StageBox>
-				)}
+		return (
+			<div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
+				<AnimatePresence mode="wait">
+					{stage === 'prepare' && (
+						<motion.div
+							key="prepare"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md"
+						>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed">
+								Şimdi bir an dur.
+								<br /><br />
+								Burada olduğunu hisset.
+								<br /><br />
+								Sana özel bir şey seçeceksin.
+							</p>
+						</motion.div>
+					)}
 
-				{stage === 'bonded' && selectedElement && (
-					<StageBox key="bonded">
-						<p className="text-7xl mb-8">{ELEMENTS[selectedElement].emoji}</p>
-						<p className="text-xl mb-2" style={{ color: COLORS.warmGold }}>{ELEMENTS[selectedElement].name}</p>
-						<p className="text-lg text-gray-400 mb-4">seninle bağlandı.</p>
-						<p className="text-xl text-gray-300 mb-8">Artık bir sırrın var.</p>
-						<Btn onClick={nextStage}>Devam</Btn>
-					</StageBox>
-				)}
+					{stage === 'breathe' && (
+						<motion.div
+							key="breathe"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center"
+						>
+							<p className="text-[#C9A962] text-lg mb-8">Nefes {breathCount + 1} / 3</p>
+							<motion.div
+								className="w-32 h-32 rounded-full bg-[#0D4F4F]/30 border-2 border-[#C9A962] mx-auto mb-8"
+								animate={{ scale: [1, 1.5, 1] }}
+								transition={{ duration: 6, ease: 'easeInOut' }}
+								onAnimationComplete={handleBreathComplete}
+							/>
+							<p className="text-[#F5F0E6]/60 text-sm">Derin nefes al... ve bırak...</p>
+						</motion.div>
+					)}
 
-				{stage === 'intro-1' && selectedElement && (
-					<StageBox key="intro-1">
-						<p className="text-5xl mb-6">{ELEMENTS[selectedElement].emoji}</p>
-						<p className="text-xl text-gray-300 mb-6">Sırın seni her yerde takip edecek.</p>
-						<div className="text-left space-y-3 mb-8 text-gray-400">
-							<p>📍 <span className="text-gray-300">Ana sayfada</span> - seninle selamlaşacak</p>
-							<p>📍 <span className="text-gray-300">Derslerde</span> - köşede sessizce bekleyecek</p>
-							<p>📍 <span className="text-gray-300">Seanslarda</span> - seninle nefes alacak</p>
-						</div>
-						<Btn onClick={nextStage}>Devam</Btn>
-					</StageBox>
-				)}
+					{stage === 'heart' && (
+						<motion.div
+							key="heart"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md"
+						>
+							<motion.div
+								className="text-6xl mb-8"
+								animate={{ scale: [1, 1.1, 1] }}
+								transition={{ duration: 1.5, repeat: Infinity }}
+							>
+								🫀
+							</motion.div>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed">
+								Elini kalbinin üstüne koy.
+								<br /><br />
+								Atışını dinle.
+							</p>
+						</motion.div>
+					)}
 
-				{stage === 'intro-2' && selectedElement && (
-					<StageBox key="intro-2">
-						<p className="text-xl text-gray-300 mb-6">Sırın seninle birlikte <span style={{ color: COLORS.warmGold }}>DÖNÜŞECEK</span>.</p>
-						<div className="space-y-4 mb-8 text-gray-400">
-							<p>🔴 Şimdi başlangıç halinde...</p>
-							<p>🟠 Dersler ilerledikçe değişecek...</p>
-							<p>🟡 Altın bir parıltıya dönüşecek...</p>
-							<p>⚪ Ve sonunda saf ışık olacak.</p>
-						</div>
-						<p className="text-lg text-gray-400 mb-8">Senin dönüşümün, onun dönüşümü.</p>
-						<Btn onClick={nextStage}>Devam</Btn>
-					</StageBox>
-				)}
+					{stage === 'explain' && (
+						<motion.div
+							key="explain"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-lg"
+						>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed mb-8">
+								Dört unsur var.
+								<br />
+								Her biri farklı bir güç taşıyor.
+							</p>
+							<p className="text-[#C9A962] text-lg">Hangisi sana çağrı yapıyor?</p>
+						</motion.div>
+					)}
 
-				{stage === 'intro-3' && selectedElement && (
-					<StageBox key="intro-3">
-						<p className="text-5xl mb-6">{ELEMENTS[selectedElement].emoji}</p>
-						<p className="text-xl text-gray-300 mb-4">Bir şeyi bil:</p>
-						<p className="text-lg text-gray-400 mb-4">Sırın ASLA sönmez, asla ölmez.</p>
-						<p className="text-lg text-gray-400 mb-4">Ama tıpkı demircinin ateşi gibi — birlikte sıcak kalmazsak, dönüşüm zorlaşır.</p>
-						<p className="text-lg text-gray-400 mb-8">Uzak kalsan da seni bekleyecek.</p>
-						<Btn onClick={nextStage}>Devam</Btn>
-					</StageBox>
-				)}
+					{(stage === 'show-fire' || stage === 'show-water' || stage === 'show-air' || stage === 'show-earth') && currentShowElement && (
+						<motion.div
+							key={stage}
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.8 }}
+							className="text-center max-w-md"
+						>
+							<motion.div
+								className="text-8xl mb-6"
+								animate={{
+									scale: [1, 1.2, 1],
+									rotate: currentShowElement.id === 'fire' ? [0, 5, -5, 0] : 0,
+								}}
+								transition={{ duration: 2, repeat: Infinity }}
+							>
+								{currentShowElement.emoji}
+							</motion.div>
+							<h2 className="text-3xl font-bold mb-4" style={{ color: currentShowElement.color }}>
+								{currentShowElement.name}
+							</h2>
+							<p className="text-[#F5F0E6] text-lg mb-4">{currentShowElement.description}</p>
+							<div className="flex justify-center gap-3">
+								{currentShowElement.traits.map((trait) => (
+									<span
+										key={trait}
+										className="px-3 py-1 rounded-full text-sm"
+										style={{ backgroundColor: `${currentShowElement.color}20`, color: currentShowElement.color }}
+									>
+										{trait}
+									</span>
+								))}
+							</div>
+						</motion.div>
+					)}
 
-				{stage === 'name' && selectedElement && (
-					<StageBox key="name">
-						<p className="text-6xl mb-6">{ELEMENTS[selectedElement].emoji}</p>
-						<p className="text-xl text-gray-300 mb-4">Şimdi Sırına bir isim ver.</p>
-						<p className="text-gray-400 mb-8">Bu isim sadece ikinizin arasında kalacak.</p>
-						<input type="text" value={sirName} onChange={(e) => setSirName(e.target.value)} placeholder="Sırının ismi..." className="w-full p-4 rounded-xl bg-white/5 border border-gray-700 text-center text-xl mb-8 focus:outline-none focus:border-gray-500" maxLength={20} />
-						<Btn onClick={handleComplete} disabled={!sirName.trim()}>Yolculuğa Başla</Btn>
-					</StageBox>
-				)}
-			</AnimatePresence>
-		</div>
-	);
-}
+					{stage === 'think' && (
+						<motion.div
+							key="think"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md"
+						>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed mb-8">
+								Şimdi düşün...
+								<br /><br />
+								Hangisi seni çağırıyor?
+							</p>
+							<motion.div
+								className="w-2 h-2 bg-[#C9A962] rounded-full mx-auto"
+								animate={{ opacity: [0.3, 1, 0.3] }}
+								transition={{ duration: 2, repeat: Infinity }}
+							/>
+						</motion.div>
+					)}
 
-function StageBox({ children }: { children: React.ReactNode }) {
-	return (
-		<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="w-full max-w-md mx-auto text-center">
-			{children}
-		</motion.div>
-	);
-}
+					{stage === 'select' && (
+						<motion.div
+							key="select"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center w-full max-w-2xl"
+						>
+							<p className="text-[#C9A962] text-lg mb-8">Sırrını seç</p>
+							<div className="grid grid-cols-2 gap-4">
+								{ELEMENTS.map((element) => (
+									<motion.button
+										key={element.id}
+										onClick={() => handleElementSelect(element.id)}
+										className="p-6 rounded-2xl border-2 border-[#F5F0E6]/20 bg-[#0D4F4F]/10 hover:border-[#C9A962] transition-all"
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										<div className="text-5xl mb-3">{element.emoji}</div>
+										<h3 className="text-xl font-bold text-[#F5F0E6] mb-2">{element.name}</h3>
+										<p className="text-[#F5F0E6]/60 text-sm">{element.description}</p>
+									</motion.button>
+								))}
+							</div>
+							<p className="text-[#F5F0E6]/40 text-xs mt-6">⚠️ Seçimin kalıcıdır. Geri dönüş yoktur.</p>
+						</motion.div>
+					)}
 
-function Btn({ children, onClick, disabled = false, className = '' }: { children: React.ReactNode; onClick: () => void; disabled?: boolean; className?: string }) {
-	return (
-		<motion.button whileHover={{ scale: disabled ? 1 : 1.02 }} whileTap={{ scale: disabled ? 1 : 0.98 }} onClick={onClick} disabled={disabled} className={`px-8 py-3 rounded-full ${className}`} style={{ background: disabled ? 'rgba(255,255,255,0.1)' : `linear-gradient(135deg, ${COLORS.warmGold}, ${COLORS.deepTeal})`, opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}>
-			{children} →
-		</motion.button>
-	);
-}
+					{stage === 'bonded' && selectedElementData && (
+						<motion.div
+							key="bonded"
+							initial={{ opacity: 0, scale: 0.5 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center"
+						>
+							<motion.div
+								className="text-8xl mb-6"
+								animate={{ scale: [1, 1.3, 1], filter: ['brightness(1)', 'brightness(1.5)', 'brightness(1)'] }}
+								transition={{ duration: 2 }}
+							>
+								{selectedElementData.emoji}
+							</motion.div>
+							<h2 className="text-3xl font-bold mb-4" style={{ color: selectedElementData.color }}>Bağ Kuruldu</h2>
+							<p className="text-[#F5F0E6] text-lg">Artık bir sırrın var.</p>
+						</motion.div>
+					)}
+
+					{stage === 'intro-1' && (
+						<motion.div
+							key="intro-1"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md"
+						>
+							<p className="text-[#C9A962] text-lg mb-4">Sırrın seninle olacak</p>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed">
+								Ana sayfada, derslerde, seanslarda...
+								<br /><br />
+								Her zaman köşede, yanında.
+							</p>
+						</motion.div>
+					)}
+
+					{stage === 'intro-2' && selectedElementData && (
+						<motion.div
+							key="intro-2"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md"
+						>
+							<p className="text-[#C9A962] text-lg mb-4">Sırrın değişecek</p>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed mb-6">
+								Ders tamamladıkça, seans yaptıkça...
+								<br /><br />
+								Enerjisi artacak, rengi derinleşecek.
+							</p>
+							<div className="flex justify-center gap-2">
+								{[0.3, 0.5, 0.7, 1].map((opacity, i) => (
+									<motion.div
+										key={i}
+										className="w-8 h-8 rounded-full"
+										style={{ backgroundColor: selectedElementData.color, opacity: opacity }}
+										initial={{ scale: 0 }}
+										animate={{ scale: 1 }}
+										transition={{ delay: i * 0.2 }}
+									/>
+								))}
+							</div>
+						</motion.div>
+					)}
+
+					{stage === 'intro-3' && (
+						<motion.div
+							key="intro-3"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md"
+						>
+							<p className="text-[#C9A962] text-lg mb-4">Sırrın bağlılık ister</p>
+							<p className="text-[#F5F0E6] text-xl leading-relaxed">
+								Her gün gelmezsen solmaya başlar.
+								<br /><br />
+								Ama endişelenme - çelik gibi.
+								<br />
+								Tekrar parlayabilir.
+							</p>
+						</motion.div>
+					)}
+
+					{stage === 'name' && selectedElementData && (
+						<motion.div
+							key="name"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="text-center max-w-md w-full"
+						>
+							<div className="text-6xl mb-6">{selectedElementData.emoji}</div>
+							<p className="text-[#F5F0E6] text-xl mb-6">Sırrına bir isim ver</p>
+							<input
+								type="text"
+								value={sirName}
+								onChange={(e) => setSirName(e.target.value)}
+								placeholder="Sırrının ismi..."
+								className="w-full px-6 py-4 rounded-xl bg-[#0D4F4F]/20 border-2 border-[#C9A962]/30 text-[#F5F0E6] text-center text-xl placeholder:text-[#F5F0E6]/30 focus:outline-none focus:border-[#C9A962] mb-6"
+								maxLength={20}
+								autoFocus
+							/>
+							<motion.button
+								onClick={handleSaveSir}
+								disabled={sirName.trim().length < 2 || isLoading}
+								className="px-8 py-4 rounded-xl font-bold text-lg disabled:opacity-30"
+								style={{ backgroundColor: selectedElementData.color, color: '#0a0a0a' }}
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+							>
+								{isLoading ? 'Kaydediliyor...' : 'Yolculuğa Başla'}
+							</motion.button>
+						</motion.div>
+					)}
+
+					{stage === 'complete' && selectedElementData && (
+						<motion.div
+							key="complete"
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={{ opacity: 1, scale: 1 }}
+							className="text-center"
+						>
+							<motion.div
+								className="text-8xl mb-6"
+								animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
+								transition={{ duration: 2 }}
+							>
+								{selectedElementData.emoji}
+							</motion.div>
+							<h2 className="text-3xl font-bold mb-4" style={{ color: selectedElementData.color }}>{sirName}</h2>
+							<p className="text-[#F5F0E6] text-lg">Yolculuğun başlıyor...</p>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</div>
+		);
+	}
