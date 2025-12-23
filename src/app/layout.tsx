@@ -1,7 +1,9 @@
 
+
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import SirCompanion from "@/components/SirCompanion";
 
 export const metadata: Metadata = {
   title: "OLUK | Spiritüel Dönüşüm Platformu",
@@ -61,12 +63,12 @@ const sourceSans = Source_Sans_3({
 });
 
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // JSON-LD Structured Data
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -79,24 +81,15 @@ export default function RootLayout({
       "https://youtube.com/@oluk"
     ]
   };
+
   return (
     <html lang="tr" className={`${cormorant.variable} ${sourceSans.variable}`}>
       <head>
-        {/* Hreflang tags */}
         <link rel="alternate" hrefLang="tr" href="https://oluk.org" />
         <link rel="alternate" hrefLang="en" href="https://oluk.org/en" />
         <link rel="alternate" hrefLang="x-default" href="https://oluk.org" />
-        {/* Font preload için critical fonts */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* Favicon and PWA Manifest */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -108,22 +101,16 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="OLUK" />
-        
-        {/* JSON-LD Structured Data for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className="font-sans bg-cream text-text-dark antialiased">
-        {/* Kopya koruma: sadece görsel ve özel içerik */}
-        {typeof window !== "undefined" && require("@/components/CopyProtection").default()}
-        {/* SirCompanion köşe asistanı */}
-        {require("@/components/SirCompanion").default && <div id="sir-companion-root"><(require("@/components/SirCompanion").default /></div>}
         {children}
+        <SirCompanion />
       </body>
     </html>
   );
