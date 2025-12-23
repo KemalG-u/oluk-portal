@@ -1,0 +1,77 @@
+/* Akan Partiküller */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, rgba(201, 169, 98, 0.8), transparent);
+    animation: flow 3s linear infinite;
+    opacity: 0;
+}
+
+@keyframes flow {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(500px); opacity: 0; }
+}
+
+/* Işık Halkası */
+.glow-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 169, 98, 0.3);
+    animation: pulse-ring 4s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+/* Yan Panel */
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -550px;
+    width: 550px;
+    max-width: 95vw;
+    height: 100vh;
+    background: linear-gradient(180deg, #0D4F4F 0%, #062828 100%);
+    z-index: 1000;
+    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+.side-panel.active {
+    right: 0;
+}
+
+.panel-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+}
+
+.panel-backdrop.active {
+    display: block;
+}
