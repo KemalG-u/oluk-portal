@@ -1,6 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { createClient } from '@supabase/supabase-js';
+import { NextRequest, NextResponse } from 'next/server';
+
 export async function GET(request: NextRequest) {
 	try {
 		const supabase = createClient(
@@ -60,7 +63,7 @@ export async function GET(request: NextRequest) {
 		}
 
 		return NextResponse.json({
-			sir: {
+		return NextResponse.json({
 				...sir,
 				energy: newEnergy,
 				last_visit: now.toISOString(),
@@ -73,4 +76,5 @@ export async function GET(request: NextRequest) {
 		return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 });
 	}
 }
+...existing code...
 ...existing code...
