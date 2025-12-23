@@ -40,12 +40,17 @@ export async function POST(request: NextRequest) {
   try {
     const { element, sirName } = await request.json();
 
+
     if (!element || !SIR_DATA[element as keyof typeof SIR_DATA]) {
-      return NextResponse.json({ error: 'Geçersiz element seçimi' }, { status: 400 });
+      const errMsg = 'Geçersiz element seçimi';
+      console.error('API error:', errMsg);
+      return NextResponse.json({ error: errMsg }, { status: 400 });
     }
 
     if (!sirName || sirName.trim().length < 2) {
-      return NextResponse.json({ error: 'Sır ismi en az 2 karakter olmalı' }, { status: 400 });
+      const errMsg = 'Sır ismi en az 2 karakter olmalı';
+      console.error('API error:', errMsg);
+      return NextResponse.json({ error: errMsg }, { status: 400 });
     }
 
     const supabase = createClient(
@@ -62,9 +67,13 @@ export async function POST(request: NextRequest) {
       .eq('user_id', userId)
       .single();
 
+
     if (existingSir) {
-      return NextResponse.json({ error: 'Zaten bir sırrın var. Sır değiştirilemez.' }, { status: 400 });
+      const errMsg = 'Zaten bir sırrın var. Sır değiştirilemez.';
+      console.error('API error:', errMsg);
+      return NextResponse.json({ error: errMsg }, { status: 400 });
     }
+
 
     const { data: newSir, error } = await supabase
       .from('user_sir')
@@ -85,17 +94,22 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Supabase error:', error);
-      return NextResponse.json({ error: 'Sır oluşturulamadı' }, { status: 500 });
+      console.error('Supabase insert error:', error);
+      return NextResponse.json({ error: error.message || 'Sır oluşturulamadı' }, { status: 500 });
     }
 
-    await supabase.from('sir_conversations').insert({
+
+    const { error: convError } = await supabase.from('sir_conversations').insert({
       user_id: userId,
       sir_id: newSir.id,
       message_type: 'welcome',
       message: sirData.initialMessage,
       created_at: new Date().toISOString(),
     });
+    if (convError) {
+      console.error('Supabase conversation insert error:', convError);
+      return NextResponse.json({ error: convError.message || 'Konuşma kaydı oluşturulamadı' }, { status: 500 });
+    }
 
     return NextResponse.json({
       success: true,
@@ -111,8 +125,8 @@ export async function POST(request: NextRequest) {
         level: 1,
       },
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('API error:', error);
-    return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 });
+    return NextResponse.json({ error: error?.message || 'Sunucu hatası' }, { status: 500 });
   }
 }
