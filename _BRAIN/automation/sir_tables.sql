@@ -1,0 +1,6 @@
+-- ============================================
+-- OLUK SIR SİSTEMİ - VERİTABANI TABLOLARI
+-- Kemal'in Vizyonu: "Kişinin manevi kalbine giden yolda bir parça olmak"
+-- ============================================
+-- ...dosyanın tamamı workspace kökünden alınacak...
+...existing code...

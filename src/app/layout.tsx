@@ -119,6 +119,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className="font-sans bg-cream text-text-dark antialiased">
+        {/* Kopya koruma: sadece görsel ve özel içerik */}
+        {typeof window !== "undefined" && require("@/components/CopyProtection").default()}
+        {/* SirCompanion köşe asistanı */}
+        {require("@/components/SirCompanion").default && <div id="sir-companion-root"><(require("@/components/SirCompanion").default /></div>}
         {children}
       </body>
     </html>
