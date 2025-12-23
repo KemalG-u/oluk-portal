@@ -1,1 +1,3 @@
-export default function SirCompanion() { return null; }
+export default function SirCompanion() {
+	return null;
+}
