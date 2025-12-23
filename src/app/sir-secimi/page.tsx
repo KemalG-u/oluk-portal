@@ -32,12 +32,15 @@ export default function SirSecimiPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ element: selected, sirName: sirName.trim() }),
       });
+      const data = await res.json();
       if (res.ok) {
         setStep(3);
         setTimeout(() => router.push('/'), 2000);
+      } else {
+        alert('Hata: ' + (data.error || 'Bilinmeyen hata'));
       }
     } catch (e) {
-      alert('Hata oluştu');
+      alert('Bağlantı hatası: ' + e);
     }
     setLoading(false);
   };
