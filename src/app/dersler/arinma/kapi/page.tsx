@@ -18,9 +18,9 @@ const DERSLER = [
   },
   {
     id: 2,
-    slug: 'ferrari-metaforu',
-    baslik: 'Ferrari Metaforu',
-    aciklama: 'Yük taşıyan Ferrari neden hareket edemez? Sistemini anla.',
+    slug: 'soz',
+    baslik: 'Söz',
+    aciklama: 'Ruhun imzası. Niyet ve yazılı taahhüdün gücü.',
     sure: '12 dk',
     tur: 'Okuma',
     icon: Target,
