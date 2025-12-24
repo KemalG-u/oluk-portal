@@ -1,76 +1,193 @@
+'use client';
 
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { AsamaCard } from '@/components/AsamaCard';
-import '@/styles/modern-cards.css';
+import Link from 'next/link';
+import { ArrowLeft, Lock, ChevronRight, Sparkles, Heart, Brain, Zap, Users, Infinity, Eye, DoorOpen } from 'lucide-react';
 
-const asamalar = [
-  { numara: 0, slug: "kapi", isim: "KAPI", slogan: "Neden buradayım?", renk: "#C9A962", aktif: true },
-  { numara: 1, slug: "fiziksel", isim: "FİZİKSEL", slogan: "Bedenini hazırla", renk: "#2D5A27", aktif: false },
-  { numara: 2, slug: "duygusal", isim: "DUYGUSAL", slogan: "Duyguları çöz", renk: "#1E3A5F", aktif: false },
-  { numara: 3, slug: "zihinsel", isim: "ZİHİNSEL", slogan: "Mental çöpü at", renk: "#4A2C6A", aktif: false },
-  { numara: 4, slug: "enerjetik", isim: "ENERJETİK", slogan: "Kanalları aç", renk: "#0D4F4F", aktif: false },
-  { numara: 5, slug: "iliskisel", isim: "İLİŞKİSEL", slogan: "Bağları kes", renk: "#8B4513", aktif: false },
-  { numara: 6, slug: "karmik", isim: "KARMİK", slogan: "Köklere in", renk: "#722F37", aktif: false },
-  { numara: 7, slug: "bilincalti", isim: "BİLİNÇALTI", slogan: "Entegre et", renk: "#C0C0C0", aktif: false },
+const ASAMALAR = [
+  {
+    id: 0,
+    slug: 'kapi',
+    icon: DoorOpen,
+    renk: '#0D4F4F',
+    ders: 3,
+  },
+  {
+    id: 1,
+    slug: 'beden-temizligi',
+    icon: Sparkles,
+    renk: '#2D7D7D',
+    ders: 5,
+  },
+  {
+    id: 2,
+    slug: 'kalp-temizligi',
+    icon: Heart,
+    renk: '#E07A5F',
+    ders: 6,
+  },
+  {
+    id: 3,
+    slug: 'zihin-temizligi',
+    icon: Brain,
+    renk: '#6B5B95',
+    ders: 5,
+  },
+  {
+    id: 4,
+    slug: 'enerji-temizligi',
+    icon: Zap,
+    renk: '#F4A261',
+    ders: 7,
+  },
+  {
+    id: 5,
+    slug: 'sosyal-temizlik',
+    icon: Users,
+    renk: '#81B29A',
+    ders: 4,
+  },
+  {
+    id: 6,
+    slug: 'sonsuzluk',
+    icon: Infinity,
+    renk: '#9C6644',
+    ders: 5,
+  },
+  {
+    id: 7,
+    slug: 'goz-temizligi',
+    icon: Eye,
+    renk: '#4A2C6A',
+    ders: 4,
+  },
 ];
 
 export default function ArinmaPage() {
-  const [openAsama, setOpenAsama] = useState<number | null>(null);
-
+  const toplamDers = ASAMALAR.reduce((acc, a) => acc + a.ders, 0);
   return (
-    <main
-      className="min-h-screen flex flex-col items-center py-6 px-2"
-      style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #0D4F4F 100%)', minHeight: '100vh' }}
-    >
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-      {/* Header */}
-      <div style={{ width: '100%', maxWidth: 480, margin: '0 auto', position: 'relative', marginBottom: 32 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
-          <Link href="/dersler" style={{ color: '#C9A962', fontWeight: 500, fontSize: 18, textDecoration: 'none', padding: '8px 16px', borderRadius: 8, background: 'rgba(201,169,98,0.08)', transition: 'background 0.2s' }}>&larr; Dersler</Link>
-          <div style={{ flex: 1, textAlign: 'center' }}>
-            <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 8 }}>
-              <svg viewBox="0 0 60 80" width="36" height="48">
-                <defs>
-                  <linearGradient id="dropGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#C9A962" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#0D4F4F" stopOpacity="1" />
-                  </linearGradient>
-                </defs>
-                <path className="drop-fill" fill="url(#dropGradient)" d="M30 0 C30 0 60 40 60 55 C60 70 47 80 30 80 C13 80 0 70 0 55 C0 40 30 0 30 0 Z" />
-              </svg>
-            </span>
-            <span style={{ fontFamily: 'Playfair Display, serif', fontSize: 32, fontWeight: 700, letterSpacing: 4, color: '#C9A962' }}>ARINMA</span>
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F0E6] to-white pt-24 pb-16">
+      <div className="max-w-4xl mx-auto px-4">
+        <Link
+          href="/dersler"
+          className="inline-flex items-center gap-2 text-[#0D4F4F] hover:text-[#0D4F4F]/70 transition-colors mb-8"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Tüm Fazlar</span>
+        </Link>
+        <div className="text-center mb-12">
+          <span className="text-sm font-medium text-[#0D4F4F]/60 mb-2 block">FAZ 1</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#0D4F4F] mb-4">
+            ARINMA
+          </h1>
+          <p className="text-xl text-gray-600 italic mb-4">
+            "Önce yükü at, sonra motora bak"
+          </p>
+          <p className="text-gray-500 max-w-2xl mx-auto">
+            Dıştan içe, katman katman temizlik. Fiziksel bedenden başlayıp bilinçaltına kadar 
+            tüm sistemlerini arındır. Bu faz olmadan diğerleri anlamsız.
+          </p>
+          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-gray-500">
+            <span>{ASAMALAR.length} Aşama</span>
+            <span>•</span>
+            <span>{toplamDers} Ders</span>
+            <span>•</span>
+            <span>~12 Hafta</span>
           </div>
         </div>
-        <div style={{ textAlign: 'center', color: '#F5F0E6', fontSize: 18, fontWeight: 500, marginBottom: 8 }}>8 Aşamalı Derin Temizlik Yolculuğu</div>
-        <div style={{ height: 2, background: 'linear-gradient(90deg, #C9A962 0%, #0D4F4F 100%)', borderRadius: 2, margin: '12px 0' }} />
-      </div>
-      {/* Progress Line ve Kartlar */}
-      <div style={{ width: '100%', maxWidth: 480, margin: '0 auto', position: 'relative', display: 'flex', flexDirection: 'column', gap: 0 }}>
-        {/* Progress Line */}
-        <div style={{ position: 'absolute', left: 32, top: 0, bottom: 0, width: 4, background: 'linear-gradient(180deg, #C9A962 0%, #0D4F4F 100%)', borderRadius: 2, zIndex: 1 }} />
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          {asamalar.map((asama, idx) => (
-            <div key={asama.slug} style={{ position: 'relative' }}>
-              <AsamaCard
-                numara={asama.numara}
-                isim={asama.isim}
-                slogan={asama.slogan}
-                renk={asama.renk}
-                aktif={asama.aktif}
-                onClick={() => asama.aktif ? setOpenAsama(asama.numara) : undefined}
-                tamamlandi={false}
-              />
-              {/* Progress connector çizgisi */}
-              {idx < asamalar.length - 1 && (
-                <div style={{ position: 'absolute', left: 48, top: 'calc(100% - 8px)', width: 2, height: 32, background: 'linear-gradient(180deg, #C9A962 0%, #0D4F4F 100%)', borderRadius: 1, zIndex: 0 }} />
-              )}
-            </div>
-          ))}
+
+        <div className="space-y-4">
+          {ASAMALAR.map((asama, index) => {
+            const Icon = asama.icon;
+            
+            return (
+              <div key={asama.id}>
+                {/* Bağlantı Çizgisi */}
+                {index > 0 && (
+                  <div className="flex justify-center -mt-2 mb-2">
+                    <div className="w-0.5 h-4 bg-gray-300" />
+                  </div>
+                )}
+                
+                {/* Aşama Kartı */}
+                <div
+                  className={`relative rounded-xl border overflow-hidden transition-all duration-300 ${
+                    asama.kilitli 
+            ? 'border-gray-200 bg-white/50 opacity-60' 
+            : 'border-gray-200 bg-white shadow-md hover:shadow-lg'
+          }`}
+                >
+                  <div className="p-5">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          asama.kilitli ? 'bg-gray-100' : ''
+                        }`}
+                        style={{ backgroundColor: asama.kilitli ? undefined : `${asama.renk}15` }}
+                      >
+                        {asama.kilitli ? (
+                          <Lock className="w-5 h-5 text-gray-400" />
+                        ) : (
+                          <Icon className="w-6 h-6" style={{ color: asama.renk }} />
+                        )}
+                      </div>
+                      {/* İçerik */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-medium text-gray-400">
+                            AŞAMA {asama.id}
+                          </span>
+                          <span className="text-xs text-gray-300">•</span>
+                          <span className="text-xs text-gray-400">{asama.ders} Ders</span>
+                        </div>
+                        <h3
+                          className={`font-bold text-lg ${asama.kilitli ? 'text-gray-400' : ''}`}
+                          style={{ color: asama.kilitli ? undefined : asama.renk }}
+                        >
+                          {asama.baslik}
+                        </h3>
+                        <p className={`text-sm ${asama.kilitli ? 'text-gray-400' : 'text-gray-500'}`}>
+                          {asama.altbaslik}
+                        </p>
+                      </div>
+
+                      {/* Aksiyon */}
+                      {asama.kilitli ? (
+                        <Lock className="w-5 h-5 text-gray-300 flex-shrink-0" />
+                      ) : (
+                        <Link
+                          href={`/dersler/arinma/${asama.slug}`}
+                          className="flex items-center justify-center w-10 h-10 rounded-lg transition-all hover:scale-105"
+                          style={{ backgroundColor: asama.renk }}
+                        >
+                          <ChevronRight className="w-5 h-5 text-white" />
+                        </Link>
+                      )}
+                    </div>
+                    
+                    {/* Açıklama - Sadece açık aşamalarda */}
+                    {!asama.kilitli && (
+                      <p className="mt-3 text-sm text-gray-500 pl-16">
+                        {asama.aciklama}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        {/* Alt Bilgi */}
+        <div className="mt-12 bg-[#0D4F4F]/5 rounded-xl p-6 text-center">
+          <p className="text-gray-600 text-sm">
+            Her aşama bir öncekinin üzerine inşa edilir. Sırayla ilerle, acele etme.
+            <br />
+            <strong>Bir aşamayı tamamlamadan sonrakine geçemezsin.</strong>
+          </p>
+        </div>
+
       </div>
-    </main>
+    </div>
   );
 }
+
