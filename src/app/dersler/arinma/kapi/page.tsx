@@ -49,6 +49,17 @@ const DERSLER = [
     tamamlandi: false,
     kilitli: false,
   },
+  {
+    id: 5,
+    slug: 'tuzak',
+    baslik: 'Tuzak',
+    aciklama: 'Mükemmel olana kadar bekle yalanı. Ya hep ya hiç düşüncesinin panzehiri.',
+    sure: '14 dk',
+    tur: 'Okuma',
+    icon: BookOpen,
+    tamamlandi: false,
+    kilitli: false,
+  },
 ];
 
 export default function KapiPage() {
