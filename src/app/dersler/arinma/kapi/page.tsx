@@ -60,6 +60,17 @@ const DERSLER = [
     tamamlandi: false,
     kilitli: false,
   },
+  {
+    id: 6,
+    slug: 'ic-dusman',
+    baslik: 'İç Düşman',
+    aciklama: 'Değişime neden bu kadar direniyorsun? Beynin sırları ve nefsin tuzakları.',
+    sure: '16 dk',
+    tur: 'Okuma',
+    icon: BookOpen,
+    tamamlandi: false,
+    kilitli: false,
+  },
 ];
 
 export default function KapiPage() {

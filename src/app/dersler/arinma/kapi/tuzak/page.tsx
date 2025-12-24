@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Clock, BookOpen, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Clock, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Tuzak | OLUK',
@@ -313,9 +313,18 @@ export default function TuzakPage() {
           Dersi Tamamladım
         </button>
 
-        <div className="bg-[#0D4F4F]/5 rounded-xl border border-[#0D4F4F]/20 p-6 text-center">
-          <p className="text-[#0D4F4F] font-semibold mb-2">🎉 KAPI Bölümünü Tamamladın!</p>
-          <p className="text-gray-600 text-sm">Artık Arınma yolculuğuna hazırsın. Bir sonraki aşama: Beden Temizliği</p>
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <p className="text-sm text-gray-500 mb-2">Sıradaki Ders</p>
+          <div className="flex items-center justify-between">
+            <span className="font-semibold text-[#0D4F4F]">İç Düşman</span>
+            <Link 
+              href="/dersler/arinma/kapi/ic-dusman"
+              className="flex items-center gap-1 text-[#0D4F4F] hover:text-[#0D4F4F]/70 transition-colors"
+            >
+              Devam Et
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
 
       </div>
