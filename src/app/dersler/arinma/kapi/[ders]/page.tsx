@@ -2,6 +2,7 @@
 "use client";
 
 import React from 'react';
+import { NedenArinma, FerrariMetaforu, YolculugaHazirlik } from './icerikler';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Clock, BookOpen, CheckCircle2 } from 'lucide-react';
@@ -9,38 +10,28 @@ import { ArrowLeft, ArrowRight, Clock, BookOpen, CheckCircle2 } from 'lucide-rea
 const DERS_ICERIKLERI: Record<string, {
   baslik: string;
   sure: string;
-  icerik: React.ReactNode;
+  Icerik: React.ComponentType;
   sonrakiDers: string | null;
   sonrakiBaslik: string | null;
 }> = {
   'neden-arinma': {
     baslik: 'Neden Arınma?',
     sure: '20 dk',
-    icerik: (
-      <>
-        <h2 className="text-2xl font-bold text-[#0D4F4F] mb-6">Eşiği Geçerken</h2>
-        {/* ...tüm içerik buraya eklendi... */}
-        <p className="text-xl font-semibold text-[#0D4F4F]">Hazırsan, kapı açık.</p>
-      </>
-    ),
+    Icerik: NedenArinma,
     sonrakiDers: 'ferrari-metaforu',
     sonrakiBaslik: 'Ferrari Metaforu',
   },
   'ferrari-metaforu': {
     baslik: 'Ferrari Metaforu',
     sure: '12 dk',
-    icerik: (
-      <p className="text-gray-600">Bu ders için içerik hazırlanıyor...</p>
-    ),
+    Icerik: FerrariMetaforu,
     sonrakiDers: 'yolculuga-hazirlik',
     sonrakiBaslik: 'Yolculuğa Hazırlık',
   },
   'yolculuga-hazirlik': {
     baslik: 'Yolculuğa Hazırlık',
     sure: '20 dk',
-    icerik: (
-      <p className="text-gray-600">Bu ders için içerik hazırlanıyor...</p>
-    ),
+    Icerik: YolculugaHazirlik,
     sonrakiDers: null,
     sonrakiBaslik: null,
   },
@@ -104,7 +95,10 @@ export default function DersPage() {
         {/* İçerik */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
           <div className="prose prose-lg max-w-none prose-headings:text-[#0D4F4F] prose-a:text-[#0D4F4F] prose-strong:text-gray-800">
-            {ders.icerik}
+            {(() => {
+              const { Icerik } = ders;
+              return <Icerik />;
+            })()}
           </div>
         </div>
 
