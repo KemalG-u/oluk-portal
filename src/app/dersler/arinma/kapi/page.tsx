@@ -25,7 +25,7 @@ const DERSLER = [
     tur: 'Okuma',
     icon: Target,
     tamamlandi: false,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const DERSLER = [
     tur: 'Okuma + Video',
     icon: Play,
     tamamlandi: false,
-    kilitli: true,
+    kilitli: false,
   },
 ];
 
