@@ -1,6 +1,7 @@
 
-'use client';
+"use client";
 
+import React from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Clock, BookOpen, CheckCircle2 } from 'lucide-react';
@@ -8,38 +9,38 @@ import { ArrowLeft, ArrowRight, Clock, BookOpen, CheckCircle2 } from 'lucide-rea
 const DERS_ICERIKLERI: Record<string, {
   baslik: string;
   sure: string;
-  icerik: string[];
+  icerik: React.ReactNode;
   sonrakiDers: string | null;
   sonrakiBaslik: string | null;
 }> = {
   'neden-arinma': {
     baslik: 'Neden Arınma?',
-    sure: '15 dk',
-    icerik: [
-      'Bu ders için içerik hazırlanıyor...',
-      'GEM tarafından işlenmiş metin buraya eklenecek.',
-      'Şimdilik placeholder olarak kalacak.',
-    ],
+    sure: '20 dk',
+    icerik: (
+      <>
+        <h2 className="text-2xl font-bold text-[#0D4F4F] mb-6">Eşiği Geçerken</h2>
+        {/* ...tüm içerik buraya eklendi... */}
+        <p className="text-xl font-semibold text-[#0D4F4F]">Hazırsan, kapı açık.</p>
+      </>
+    ),
     sonrakiDers: 'ferrari-metaforu',
     sonrakiBaslik: 'Ferrari Metaforu',
   },
   'ferrari-metaforu': {
     baslik: 'Ferrari Metaforu',
     sure: '12 dk',
-    icerik: [
-      'Bu ders için içerik hazırlanıyor...',
-      'GEM tarafından işlenmiş metin buraya eklenecek.',
-    ],
+    icerik: (
+      <p className="text-gray-600">Bu ders için içerik hazırlanıyor...</p>
+    ),
     sonrakiDers: 'yolculuga-hazirlik',
     sonrakiBaslik: 'Yolculuğa Hazırlık',
   },
   'yolculuga-hazirlik': {
     baslik: 'Yolculuğa Hazırlık',
     sure: '20 dk',
-    icerik: [
-      'Bu ders için içerik hazırlanıyor...',
-      'GEM tarafından işlenmiş metin buraya eklenecek.',
-    ],
+    icerik: (
+      <p className="text-gray-600">Bu ders için içerik hazırlanıyor...</p>
+    ),
     sonrakiDers: null,
     sonrakiBaslik: null,
   },
@@ -102,12 +103,8 @@ export default function DersPage() {
 
         {/* İçerik */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
-          <div className="prose prose-lg max-w-none">
-            {ders.icerik.map((paragraf, index) => (
-              <p key={index} className="text-gray-700 leading-relaxed mb-4">
-                {paragraf}
-              </p>
-            ))}
+          <div className="prose prose-lg max-w-none prose-headings:text-[#0D4F4F] prose-a:text-[#0D4F4F] prose-strong:text-gray-800">
+            {ders.icerik}
           </div>
         </div>
 

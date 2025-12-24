@@ -3,62 +3,107 @@
 import Link from 'next/link';
 import { ArrowLeft, Lock, ChevronRight, Sparkles, Heart, Brain, Zap, Users, Infinity, Eye, DoorOpen } from 'lucide-react';
 
-const ASAMALAR = [
+
+interface Asama {
+  id: number;
+  slug: string;
+  baslik: string;
+  altbaslik: string;
+  aciklama: string;
+  icon: any;
+  renk: string;
+  ders: number;
+  kilitli: boolean;
+}
+
+const ASAMALAR: Asama[] = [
   {
     id: 0,
     slug: 'kapi',
+    baslik: 'KAPI',
+    altbaslik: 'Başlangıç eşiği',
+    aciklama: 'Arınma yolculuğunun ilk adımı. Temel kavramlar ve hazırlık.',
     icon: DoorOpen,
     renk: '#0D4F4F',
     ders: 3,
+    kilitli: false,
   },
   {
     id: 1,
     slug: 'beden-temizligi',
+    baslik: 'BEDEN TEMİZLİĞİ',
+    altbaslik: 'Fiziksel arınma',
+    aciklama: 'Bedenin toksinlerden ve yüklerden arındırılması.',
     icon: Sparkles,
     renk: '#2D7D7D',
     ders: 5,
+    kilitli: true,
   },
   {
     id: 2,
     slug: 'kalp-temizligi',
+    baslik: 'KALP TEMİZLİĞİ',
+    altbaslik: 'Duygusal arınma',
+    aciklama: 'Kalpteki olumsuz duyguların ve blokajların temizlenmesi.',
     icon: Heart,
     renk: '#E07A5F',
     ders: 6,
+    kilitli: true,
   },
   {
     id: 3,
     slug: 'zihin-temizligi',
+    baslik: 'ZİHİN TEMİZLİĞİ',
+    altbaslik: 'Zihinsel arınma',
+    aciklama: 'Zihni meşgul eden düşüncelerden ve kalıplardan kurtulma.',
     icon: Brain,
     renk: '#6B5B95',
     ders: 5,
+    kilitli: true,
   },
   {
     id: 4,
     slug: 'enerji-temizligi',
+    baslik: 'ENERJİ TEMİZLİĞİ',
+    altbaslik: 'Enerjetik arınma',
+    aciklama: 'Enerji akışını tıkayan unsurların temizlenmesi.',
     icon: Zap,
     renk: '#F4A261',
     ders: 7,
+    kilitli: true,
   },
   {
     id: 5,
     slug: 'sosyal-temizlik',
+    baslik: 'SOSYAL TEMİZLİK',
+    altbaslik: 'İlişkisel arınma',
+    aciklama: 'Çevre ve ilişkilerdeki negatif etkilerden arınma.',
     icon: Users,
     renk: '#81B29A',
     ders: 4,
+    kilitli: true,
   },
   {
     id: 6,
     slug: 'sonsuzluk',
+    baslik: 'SONSUZLUK',
+    altbaslik: 'Sonsuz potansiyel',
+    aciklama: 'Arınmanın ötesinde yeni bir başlangıç.',
     icon: Infinity,
     renk: '#9C6644',
     ders: 5,
+    kilitli: true,
   },
   {
     id: 7,
     slug: 'goz-temizligi',
+    baslik: 'GÖZ TEMİZLİĞİ',
+    altbaslik: 'Algı arınması',
+    aciklama: 'Dış dünyayı algılayış biçimini berraklaştırma.',
     icon: Eye,
     renk: '#4A2C6A',
     ders: 4,
+    kilitli: true,
   },
 ];
 
