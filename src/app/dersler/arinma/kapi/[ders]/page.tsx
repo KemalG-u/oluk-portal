@@ -1,55 +1,162 @@
-/* eslint-disable react/no-unescaped-entities */
-// eslint-disable-next-line react/no-unescaped-entities
-import React from "react";
-import Link from "next/link";
 
-export default function DersDetayPage() {
-  // Statik test dersi
-  const ders = {
-    baslik: "Arınma Nedir ve Neden Şart?",
-    sure: 15,
-    icerik:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi euismod nisi, euismod euismod nisi nisi euismod nisi.",
-  };
-  return (
-    <main className="min-h-screen bg-[#F5F0E6] flex flex-col items-center py-8 px-4">
-      <div className="w-full max-w-md">
-        {/* HEADER */}
-        {/* eslint-disable react/no-unescaped-entities */}
-        <Link href="/dersler/arinma/kapi" className="mb-4 inline-flex items-center text-[#0D4F4F] font-bold text-sm hover:underline">
-          <span className="mr-2">←</span> KAPI'ya dön
-        </Link>
-        <h1 className="text-2xl font-playfair font-bold mb-1 text-[#0D4F4F]">{ders.baslik}</h1>
-        <div className="flex items-center gap-4 mb-4">
-          <span className="text-xs text-[#C9A962]">Süre: {ders.sure} dk</span>
-          <div className="w-24 h-2 bg-gray-200 rounded-full">
-            <div className="h-2 rounded-full bg-[#C9A962]" style={{ width: "100%" }} />
-          </div>
-        </div>
+'use client';
 
-        {/* İÇERİK ALANI */}
-        <div className="mb-6">
-          <div className="w-full aspect-video bg-[#0D4F4F] rounded-lg flex items-center justify-center mb-4">
-            <span className="text-white text-lg">Video/Audio Player</span>
-          </div>
-          <div className="bg-white rounded-lg p-4 shadow mb-4">
-            <p className="text-gray-700 text-base leading-relaxed">{ders.icerik.replace("'", "'")}</p>
-          </div>
-          <button className="w-full py-2 px-4 bg-[#C9A962] text-white font-bold rounded-lg shadow hover:bg-[#b89a4e] transition mb-2">
-            Sonraki Ders
-          </button>
-        </div>
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, Clock, BookOpen, CheckCircle2 } from 'lucide-react';
 
-        {/* QUIZ ALANI */}
-        <div className="bg-white rounded-lg p-4 shadow flex flex-col items-center">
-          <button className="w-full py-2 px-4 bg-[#0D4F4F] text-white font-bold rounded-lg shadow hover:bg-[#093a3a] transition mb-2">
-            Dersi Tamamla
-          </button>
-          <div className="w-full text-center text-gray-400 text-sm py-2 border-t mt-2">
-            Quiz alanı (yakında)
-          </div>
+const DERS_ICERIKLERI: Record<string, {
+  baslik: string;
+  sure: string;
+  icerik: string[];
+  sonrakiDers: string | null;
+  sonrakiBaslik: string | null;
+}> = {
+  'neden-arinma': {
+    baslik: 'Neden Arınma?',
+    sure: '15 dk',
+    icerik: [
+      'Bu ders için içerik hazırlanıyor...',
+      'GEM tarafından işlenmiş metin buraya eklenecek.',
+      'Şimdilik placeholder olarak kalacak.',
+    ],
+    sonrakiDers: 'ferrari-metaforu',
+    sonrakiBaslik: 'Ferrari Metaforu',
+  },
+  'ferrari-metaforu': {
+    baslik: 'Ferrari Metaforu',
+    sure: '12 dk',
+    icerik: [
+      'Bu ders için içerik hazırlanıyor...',
+      'GEM tarafından işlenmiş metin buraya eklenecek.',
+    ],
+    sonrakiDers: 'yolculuga-hazirlik',
+    sonrakiBaslik: 'Yolculuğa Hazırlık',
+  },
+  'yolculuga-hazirlik': {
+    baslik: 'Yolculuğa Hazırlık',
+    sure: '20 dk',
+    icerik: [
+      'Bu ders için içerik hazırlanıyor...',
+      'GEM tarafından işlenmiş metin buraya eklenecek.',
+    ],
+    sonrakiDers: null,
+    sonrakiBaslik: null,
+  },
+};
+
+export default function DersPage() {
+  const params = useParams();
+  const dersSlug = params.ders as string;
+  const ders = DERS_ICERIKLERI[dersSlug];
+
+  if (!ders) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-[#F5F0E6] to-white pt-24 pb-16">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">Ders Bulunamadı</h1>
+          <Link href="/dersler/arinma/kapi" className="text-[#0D4F4F] hover:underline">
+            ← Geri Dön
+          </Link>
         </div>
       </div>
-    </main>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F0E6] to-white pt-24 pb-16">
+      <div className="max-w-3xl mx-auto px-4">
+        
+        {/* Geri Butonu */}
+        <Link
+          href="/dersler/arinma/kapi"
+          className="inline-flex items-center gap-2 text-[#0D4F4F] hover:text-[#0D4F4F]/70 transition-colors mb-8"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>KAPI Dersleri</span>
+        </Link>
+
+        {/* Header */}
+        <div className="mb-10">
+          <div className="flex items-center gap-2 text-sm text-[#0D4F4F]/60 mb-3">
+            <span>ARINMA</span>
+            <span>→</span>
+            <span>KAPI</span>
+            <span>→</span>
+            <span className="text-[#0D4F4F] font-medium">DERS</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#0D4F4F] mb-4">
+            {ders.baslik}
+          </h1>
+          <div className="flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-1">
+              <Clock className="w-4 h-4" />
+              <span>{ders.sure}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <BookOpen className="w-4 h-4" />
+              <span>Okuma</span>
+            </div>
+          </div>
+        </div>
+
+        {/* İçerik */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+          <div className="prose prose-lg max-w-none">
+            {ders.icerik.map((paragraf, index) => (
+              <p key={index} className="text-gray-700 leading-relaxed mb-4">
+                {paragraf}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* Tamamla Butonu */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+          <button
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[#0D4F4F] text-white font-semibold hover:bg-[#0D4F4F]/90 transition-all"
+          >
+            <CheckCircle2 className="w-5 h-5" />
+            Dersi Tamamladım
+          </button>
+        </div>
+
+        {/* Sonraki Ders */}
+        {ders.sonrakiDers && (
+          <div className="bg-[#0D4F4F]/5 rounded-xl p-6">
+            <p className="text-sm text-gray-500 mb-2">Sıradaki Ders</p>
+            <div className="flex items-center justify-between">
+              <span className="font-semibold text-[#0D4F4F]">{ders.sonrakiBaslik}</span>
+              <Link
+                href={`/dersler/arinma/kapi/${ders.sonrakiDers}`}
+                className="flex items-center gap-2 text-[#0D4F4F] hover:underline text-sm"
+              >
+                Devam Et
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Son Ders Mesajı */}
+        {!ders.sonrakiDers && (
+          <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+            <CheckCircle2 className="w-10 h-10 text-green-600 mx-auto mb-3" />
+            <h3 className="font-semibold text-green-800 mb-2">KAPI Aşaması Tamamlandı!</h3>
+            <p className="text-sm text-green-700 mb-4">
+              Tebrikler! Bir sonraki aşamaya geçebilirsin.
+            </p>
+            <Link
+              href="/dersler/arinma"
+              className="inline-flex items-center gap-2 text-green-700 hover:underline"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Aşamalara Dön
+            </Link>
+          </div>
+        )}
+
+      </div>
+    </div>
   );
 }
