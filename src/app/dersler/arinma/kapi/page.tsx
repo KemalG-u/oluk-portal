@@ -38,6 +38,17 @@ const DERSLER = [
     tamamlandi: false,
     kilitli: false,
   },
+  {
+    id: 4,
+    slug: 'sir',
+    baslik: 'Sır',
+    aciklama: 'Senin ve Rabbin arasında. Gizlilik prensibi ve ameli koruma.',
+    sure: '12 dk',
+    tur: 'Okuma',
+    icon: BookOpen,
+    tamamlandi: false,
+    kilitli: false,
+  },
 ];
 
 export default function KapiPage() {
