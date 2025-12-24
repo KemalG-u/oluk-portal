@@ -1,6 +1,7 @@
 
 
 import type { Metadata } from "next";
+import Header from '@/components/Header';
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
@@ -108,6 +109,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className="font-sans bg-cream text-text-dark antialiased">
+        <Header />
         {children}
       </body>
     </html>
