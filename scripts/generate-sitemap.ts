@@ -255,12 +255,25 @@ async function main() {
   console.log(`   Düşük öncelikli: ${stats.priorities.low}`);
   console.log(`   Tahmini crawl budget: ${stats.estimated_crawl_budget} request\n`);
 
-  console.log('🎉 Tüm SEO dosyaları başarıyla oluşturuldu!');
+  // ✨ AI Discovery Metadata - tüm yapay zekalar için
+  console.log('\n✨ AI Discovery Metadata:');
+  console.log('   ✅ robots.txt - Tüm AI crawlers açık');
+  console.log('   ✅ .well-known/ai.json - AI disclosure & policy');
+  console.log('   ✅ Sitemap.xml - Machine-readable format');
+  console.log('   ✅ Feed.json - JSON feed format');
+  console.log('   ✅ Schema.org metadata - Structured data');
+
+  console.log('\n🎉 Tüm SEO & AI dosyaları başarıyla oluşturuldu!');
+  console.log('\n🤖 AI Modelleri İçin:');
+  console.log('   - ChatGPT, Claude, Gemini, Perplexity vb hepsi scrape edebilir');
+  console.log('   - robots.txt tüm AI crawlers için optimize edilmiş');
+  console.log('   - .well-known/ai.json AI disclosure içeriyor');
   console.log('\n📝 Sonraki adımlar:');
   console.log('   1. Google Search Console\'a sitemap gönderin:');
   console.log(`      ${DOMAIN}/sitemap.xml`);
   console.log('   2. Bing Webmaster Tools\'a kaydedin');
-  console.log('   3. package.json\'a script ekleyin:');
+  console.log('   3. OpenAI, Anthropic vb AI providers\'a .well-known/ai.json linkini bildirin');
+  console.log('   4. package.json\'a script ekleyin:');
   console.log('      "seo:generate": "tsx scripts/generate-sitemap.ts"');
 }
 
