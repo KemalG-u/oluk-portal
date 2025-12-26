@@ -25,7 +25,7 @@ const ASAMALAR: Asama[] = [
     aciklama: 'Arınma yolculuğunun ilk adımı. Temel kavramlar ve hazırlık.',
     icon: DoorOpen,
     renk: '#0D4F4F',
-    ders: 3,
+    ders: 7,
     kilitli: false,
   },
   {
@@ -37,7 +37,7 @@ const ASAMALAR: Asama[] = [
     icon: Sparkles,
     renk: '#2D7D7D',
     ders: 5,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const ASAMALAR: Asama[] = [
     icon: Heart,
     renk: '#E07A5F',
     ders: 6,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const ASAMALAR: Asama[] = [
     icon: Brain,
     renk: '#6B5B95',
     ders: 5,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 4,
@@ -70,7 +70,7 @@ const ASAMALAR: Asama[] = [
     icon: Zap,
     renk: '#F4A261',
     ders: 7,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 5,
@@ -81,7 +81,7 @@ const ASAMALAR: Asama[] = [
     icon: Users,
     renk: '#81B29A',
     ders: 4,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 6,
@@ -92,7 +92,7 @@ const ASAMALAR: Asama[] = [
     icon: Infinity,
     renk: '#9C6644',
     ders: 5,
-    kilitli: true,
+    kilitli: false,
   },
   {
     id: 7,
@@ -103,7 +103,7 @@ const ASAMALAR: Asama[] = [
     icon: Eye,
     renk: '#4A2C6A',
     ders: 4,
-    kilitli: true,
+    kilitli: false,
   },
 ];
 
