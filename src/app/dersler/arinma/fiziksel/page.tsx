@@ -38,11 +38,12 @@ import Link from "next/link";
 
 const dersler = [
   { numara: 1, baslik: "Bedenin Gizli Haritası", sure: 18, kilitli: false, link: "/dersler/arinma/fiziksel/bedenin-gizli-haritasi" },
-  { numara: 2, baslik: "Fiziksel Temizlik Nedir?", sure: 15, kilitli: false },
-  { numara: 3, baslik: "Beden Farkındalığı", sure: 10, kilitli: true },
-  { numara: 4, baslik: "Hareket ve Enerji", sure: 20, kilitli: true },
-  { numara: 5, baslik: "Beslenme ve Su", sure: 15, kilitli: true },
-  { numara: 6, baslik: "Dinlenme ve Uyku", sure: 25, kilitli: true },
+  { numara: 2, baslik: "Abdest", sure: 20, kilitli: false, link: "/dersler/arinma/fiziksel/abdest" },
+  { numara: 3, baslik: "Fiziksel Temizlik Nedir?", sure: 15, kilitli: false },
+  { numara: 4, baslik: "Beden Farkındalığı", sure: 10, kilitli: true },
+  { numara: 5, baslik: "Hareket ve Enerji", sure: 20, kilitli: true },
+  { numara: 6, baslik: "Beslenme ve Su", sure: 15, kilitli: true },
+  { numara: 7, baslik: "Dinlenme ve Uyku", sure: 25, kilitli: true },
 ];
 
 function DersKart({ ders }: { ders: typeof dersler[0] }) {
