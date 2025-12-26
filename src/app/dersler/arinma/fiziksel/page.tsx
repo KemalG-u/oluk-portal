@@ -37,16 +37,18 @@ import React from "react";
 import Link from "next/link";
 
 const dersler = [
-  { numara: 1, baslik: "Fiziksel Temizlik Nedir?", sure: 15, kilitli: false },
-  { numara: 2, baslik: "Beden Farkındalığı", sure: 10, kilitli: true },
-  { numara: 3, baslik: "Hareket ve Enerji", sure: 20, kilitli: true },
-  { numara: 4, baslik: "Beslenme ve Su", sure: 15, kilitli: true },
-  { numara: 5, baslik: "Dinlenme ve Uyku", sure: 25, kilitli: true },
+  { numara: 1, baslik: "Bedenin Gizli Haritası", sure: 18, kilitli: false, link: "/dersler/arinma/fiziksel/bedenin-gizli-haritasi" },
+  { numara: 2, baslik: "Fiziksel Temizlik Nedir?", sure: 15, kilitli: false },
+  { numara: 3, baslik: "Beden Farkındalığı", sure: 10, kilitli: true },
+  { numara: 4, baslik: "Hareket ve Enerji", sure: 20, kilitli: true },
+  { numara: 5, baslik: "Beslenme ve Su", sure: 15, kilitli: true },
+  { numara: 6, baslik: "Dinlenme ve Uyku", sure: 25, kilitli: true },
 ];
 
 function DersKart({ ders }: { ders: typeof dersler[0] }) {
+  const href = ders.link || `/dersler/arinma/fiziksel/${ders.numara}`;
   return (
-    <Link href={ders.kilitli ? "#" : `/dersler/arinma/fiziksel/${ders.numara}`}
+    <Link href={ders.kilitli ? "#" : href}
       className={`w-full mb-4 block`}
       tabIndex={ders.kilitli ? -1 : 0}
       aria-disabled={ders.kilitli}

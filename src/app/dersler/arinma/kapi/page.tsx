@@ -71,6 +71,17 @@ const DERSLER = [
     tamamlandi: false,
     kilitli: false,
   },
+  {
+    id: 7,
+    slug: 'beklenti',
+    baslik: 'Beklenti',
+    aciklama: 'Belki de sorun sende değil, beklentilerinde. Dönüşüm yolunda gerçekçi beklentiler.',
+    sure: '14 dk',
+    tur: 'Okuma',
+    icon: BookOpen,
+    tamamlandi: false,
+    kilitli: false,
+  },
 ];
 
 export default function KapiPage() {
