@@ -331,7 +331,7 @@ export default function BeklentiPage() {
           <div className="flex items-center justify-between">
             <span className="font-semibold text-[#0D4F4F]">Beden Temizliği</span>
             <Link 
-              href="/dersler/arinma/beden"
+              href="/dersler/arinma/fiziksel"
               className="flex items-center gap-1 text-[#0D4F4F] hover:text-[#0D4F4F]/70 transition-colors"
             >
               Devam Et
