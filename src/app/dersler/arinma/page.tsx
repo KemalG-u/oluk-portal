@@ -30,7 +30,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 1,
-    slug: 'beden-temizligi',
+    slug: 'fiziksel',
     baslik: 'BEDEN TEMİZLİĞİ',
     altbaslik: 'Fiziksel arınma',
     aciklama: 'Bedenin toksinlerden ve yüklerden arındırılması.',
@@ -41,7 +41,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 2,
-    slug: 'kalp-temizligi',
+    slug: 'duygusal',
     baslik: 'KALP TEMİZLİĞİ',
     altbaslik: 'Duygusal arınma',
     aciklama: 'Kalpteki olumsuz duyguların ve blokajların temizlenmesi.',
@@ -52,7 +52,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 3,
-    slug: 'zihin-temizligi',
+    slug: 'zihinsel',
     baslik: 'ZİHİN TEMİZLİĞİ',
     altbaslik: 'Zihinsel arınma',
     aciklama: 'Zihni meşgul eden düşüncelerden ve kalıplardan kurtulma.',
@@ -63,7 +63,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 4,
-    slug: 'enerji-temizligi',
+    slug: 'enerjetik',
     baslik: 'ENERJİ TEMİZLİĞİ',
     altbaslik: 'Enerjetik arınma',
     aciklama: 'Enerji akışını tıkayan unsurların temizlenmesi.',
@@ -74,7 +74,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 5,
-    slug: 'sosyal-temizlik',
+    slug: 'iliskisel',
     baslik: 'SOSYAL TEMİZLİK',
     altbaslik: 'İlişkisel arınma',
     aciklama: 'Çevre ve ilişkilerdeki negatif etkilerden arınma.',
@@ -85,7 +85,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 6,
-    slug: 'sonsuzluk',
+    slug: 'bilincalti',
     baslik: 'SONSUZLUK',
     altbaslik: 'Sonsuz potansiyel',
     aciklama: 'Arınmanın ötesinde yeni bir başlangıç.',
@@ -96,7 +96,7 @@ const ASAMALAR: Asama[] = [
   },
   {
     id: 7,
-    slug: 'goz-temizligi',
+    slug: 'karmik',
     baslik: 'GÖZ TEMİZLİĞİ',
     altbaslik: 'Algı arınması',
     aciklama: 'Dış dünyayı algılayış biçimini berraklaştırma.',
