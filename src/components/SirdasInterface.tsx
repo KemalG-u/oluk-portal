@@ -154,9 +154,14 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
   };
 
   return (
-    <div className="flex flex-col h-screen max-h-screen">
+    <motion.div
+      className="flex flex-col h-screen max-h-screen"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       {/* Header */}
-      <header className="border-b border-teal/10 bg-white/80 backdrop-blur-md sticky top-0 z-10">
+      <header className="border-b border-teal/10 bg-white/80 backdrop-blur-md sticky top-16 md:top-20 z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2 hover:opacity-70 transition">
@@ -176,7 +181,7 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
       </header>
 
       {/* Main Chat Area */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto scroll-smooth">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
           {/* Welcome Screen */}
           <AnimatePresence>
@@ -212,7 +217,17 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => startConversation(option.id)}
-                          className="flex flex-col items-center gap-2 p-4 rounded-2xl border-2 border-teal/20 hover:border-gold hover:bg-gold/5 transition-all group"
+                          className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all group ${
+                            mood === option.id
+                              ? 'border-gold bg-gold/5 shadow-lg'
+                              : 'border-teal/20 hover:border-gold hover:bg-gold/5'
+                          }`}
+                          animate={
+                            mood === option.id
+                              ? { scale: [1, 1.05, 1], boxShadow: '0 0 20px rgba(201,169,98,0.35)' }
+                              : { scale: 1, boxShadow: '0 0 0 rgba(0,0,0,0)' }
+                          }
+                          transition={{ duration: 1.2, repeat: mood === option.id ? Infinity : 0, repeatType: 'mirror' }}
                         >
                           <Icon size={32} weight="duotone" className="text-teal group-hover:text-gold transition-colors" />
                           <span className="text-sm font-medium text-teal group-hover:text-gold transition-colors">
@@ -239,16 +254,16 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
                   key={index}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
                     className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-5 py-4 ${
                       message.role === 'user'
-                        ? 'bg-gradient-to-br from-teal to-teal-light text-white'
+                        ? 'bg-gradient-to-br from-teal to-teal-light text-white shadow-lg'
                         : message.crisisDetected
                         ? 'bg-rose/10 border-2 border-rose text-text-dark'
-                        : 'bg-white border border-teal/10 text-text-dark shadow-sm'
+                          : 'bg-gradient-to-br from-white to-cream/80 border border-teal/10 text-text-dark shadow-md'
                     }`}
                   >
                     {message.role === 'assistant' && !message.crisisDetected && (
@@ -257,7 +272,7 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
                         <span className="text-xs font-medium">Sırdaş</span>
                       </div>
                     )}
-                    <p className="text-[15px] leading-relaxed whitespace-pre-wrap">
+                    <p className="text-base leading-relaxed whitespace-pre-wrap">
                       {message.content}
                     </p>
                     {message.crisisDetected && (
@@ -287,18 +302,14 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
 
             {/* Loading */}
             {isLoading && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex justify-start"
-              >
-                <div className="bg-white border border-teal/10 rounded-2xl px-5 py-4 shadow-sm">
-                  <div className="flex items-center gap-2">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
+                <div className="bg-gradient-to-br from-white to-cream/80 border border-teal/10 rounded-2xl px-5 py-4 shadow-md">
+                  <div className="flex items-center gap-3">
                     <Sparkle size={16} weight="duotone" className="text-teal animate-pulse" />
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-teal/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <span className="w-2 h-2 bg-teal/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <span className="w-2 h-2 bg-teal/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <div className="flex gap-2 items-center">
+                      <motion.span className="w-2 h-2 bg-teal/40 rounded-full" animate={{ opacity: [0.2, 1, 0.2], scale: [1, 1.2, 1] }} transition={{ duration: 0.8, repeat: Infinity }} />
+                      <motion.span className="w-2 h-2 bg-teal/40 rounded-full" animate={{ opacity: [0.2, 1, 0.2], scale: [1, 1.2, 1] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.15 }} />
+                      <motion.span className="w-2 h-2 bg-teal/40 rounded-full" animate={{ opacity: [0.2, 1, 0.2], scale: [1, 1.2, 1] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.3 }} />
                     </div>
                   </div>
                 </div>
@@ -311,10 +322,10 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
       </div>
 
       {/* Input Area - Sticky Bottom */}
-      <div className="border-t border-teal/10 bg-white/80 backdrop-blur-md sticky bottom-0">
+      <div className="border-t border-teal/10 bg-white/70 backdrop-blur-lg sticky bottom-0">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
           <form onSubmit={handleSubmit} className="relative">
-            <div className="flex items-end gap-2 bg-white rounded-2xl border-2 border-teal/20 focus-within:border-gold transition-colors shadow-sm">
+            <div className="flex items-end gap-2 bg-white/80 backdrop-blur-lg rounded-2xl border-2 border-teal/20 focus-within:border-gold transition-colors shadow-md focus-within:shadow-[0_0_0_4px_rgba(201,169,98,0.25)]">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -327,7 +338,7 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
                 onKeyDown={handleKeyDown}
                 placeholder={showWelcome ? "Sırrını ver, sükûneti al..." : "Mesajını yaz..."}
                 disabled={isLoading}
-                className="flex-1 px-5 py-4 bg-transparent border-none outline-none resize-none text-[15px] text-text-dark placeholder:text-text-muted/50 max-h-[150px]"
+                className="flex-1 px-5 py-4 bg-transparent border-none outline-none resize-none text-base text-text-dark placeholder:text-text-muted/50 max-h-[150px]"
                 rows={1}
               />
               <motion.button
@@ -388,6 +399,6 @@ export default function SirdasInterface({ initialMood = 'wavy', lessons = [] }: 
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

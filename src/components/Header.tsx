@@ -57,8 +57,9 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-[#0D4F4F] p-2"
+          className="md:hidden text-[#0D4F4F] h-11 w-11 flex items-center justify-center rounded-md"
           aria-label="Menü"
+          aria-expanded={isOpen}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
@@ -79,7 +80,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`block text-lg font-medium transition-colors ${
+                className={`block text-lg font-medium transition-colors py-3 ${
                   pathname === item.href ? 'text-[#C9A962]' : 'text-[#0D4F4F]/80'
                 }`}
               >

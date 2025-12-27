@@ -13,6 +13,8 @@ export const metadata: Metadata = generateSEOMetadata({
     'manevi dönüşüm platformu',
   ],
   canonical: '/hakkinda',
+  ogImage:
+    'https://res.cloudinary.com/dzegofdgp/image/upload/w_1200,h_630,c_fill,b_rgb:0D4F4F,q_auto,f_auto/l_text:Arial_96_bold:Hakkında,co_rgb:C9A962,g_center,y_-80/l_text:Arial_36:OLUK%20\u2013%20Akışın%20Kanalı%2C%20Dönüşümün%20Yolu,co_rgb:F5F0E6,g_center,y_40/l_text:Arial_28:oluk.org,co_rgb:F5F0E680,g_south,y_80/oluk-placeholder.png',
 });
 
 export default function HakkindaSayfasi() {

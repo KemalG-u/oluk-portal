@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import Header from '@/components/Header';
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
+import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -69,18 +70,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "OLUK",
-    "url": "https://oluk.org",
-    "logo": "https://oluk.org/logo.png",
-    "description": "Spiritüel dönüşüm ve kişisel gelişim platformu",
-    "sameAs": [
-      "https://instagram.com/oluk.org",
-      "https://youtube.com/@oluk"
-    ]
-  };
+  const organizationJsonLd = generateOrganizationSchema();
+  const webSiteJsonLd = generateWebSiteSchema();
 
   return (
     <html lang="tr" className={`${cormorant.variable} ${sourceSans.variable}`}>
@@ -101,16 +92,16 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="OLUK" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
-      <body className="font-sans bg-cream text-text-dark antialiased">
+      <body className="font-sans bg-cream text-text-dark antialiased overflow-x-hidden">
         <Header />
-        {children}
+        <div className="pt-16 md:pt-20">
+          {children}
+        </div>
       </body>
     </html>
   );

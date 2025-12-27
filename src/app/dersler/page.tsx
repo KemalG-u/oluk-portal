@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { generateBreadcrumbSchema } from '@/lib/seo';
 import { Droplets, Shield, Zap, Sparkles, Lock, ChevronRight } from 'lucide-react';
 
 const FAZLAR = [
@@ -58,9 +59,14 @@ const FAZLAR = [
 ];
 
 export default function DerslerPage() {
+  const breadcrumb = generateBreadcrumbSchema([
+    { name: 'Ana Sayfa', url: 'https://oluk.org' },
+    { name: 'Dersler', url: 'https://oluk.org/dersler' },
+  ]);
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F5F0E6] to-white pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
         
         {/* Header */}
         <div className="text-center mb-16">
@@ -143,12 +149,12 @@ export default function DerslerPage() {
                     </p>
 
                     {/* Açıklama */}
-                    <p className={`text-sm mb-4 ${faz.kilitli ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-base mb-4 ${faz.kilitli ? 'text-gray-400' : 'text-gray-500'}`}>
                       {faz.aciklama}
                     </p>
 
                     {/* Meta Bilgiler */}
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                    <div className="flex items-center gap-4 text-base text-gray-500 mb-4">
                       <span>{faz.asama ? `${faz.asama} Aşama` : '? Aşama'}</span>
                       <span>•</span>
                       <span>{faz.sure}</span>
@@ -156,14 +162,14 @@ export default function DerslerPage() {
 
                     {/* Aksiyon */}
                     {faz.kilitli ? (
-                      <div className="bg-gray-100 rounded-lg p-3 text-center text-gray-500 text-sm">
+                      <div className="bg-gray-100 rounded-lg p-3 text-center text-gray-500 text-base">
                         <Lock className="w-4 h-4 inline mr-2" />
                         {faz.onkosul} tamamlandığında açılır
                       </div>
                     ) : (
                       <Link
                         href={`/dersler/${faz.slug}`}
-                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-white transition-all hover:opacity-90"
+                        className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90"
                         style={{ backgroundColor: faz.renk }}
                       >
                         Başla

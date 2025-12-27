@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { generateBreadcrumbSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -68,6 +69,16 @@ export default function Home() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbSchema([
+              { name: 'Ana Sayfa', url: 'https://oluk.org' },
+            ])
+          ),
+        }}
+      />
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-8 py-8 bg-gradient-to-b from-cream-light to-cream overflow-hidden">
         {/* Background Pattern */}
@@ -355,7 +366,7 @@ export default function Home() {
                   className="mx-auto mb-4 relative z-10 transition-transform duration-300 group-hover:scale-110" 
                 />
                 <h3 className="text-2xl text-gold-muted mb-4 relative z-10">{card.title}</h3>
-                <p className="text-[15px] leading-[1.9] text-cream/85 whitespace-pre-line relative z-10">{card.text}</p>
+                <p className="text-base leading-[1.9] text-cream/85 whitespace-pre-line relative z-10">{card.text}</p>
               </div>
             ))}
           </div>
@@ -422,7 +433,7 @@ export default function Home() {
             ].map((testimonial, i) => (
               <div key={i} className="reveal bg-cream p-10 rounded-xl relative border-b-4 border-gold shadow-[0_10px_40px_rgba(0,0,0,0.05)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] before:absolute before:top-6 before:left-6 before:w-10 before:h-[30px] before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2740%27%20height=%2730%27%20viewBox=%270%200%2040%2030%27%20fill=%27none%27%20xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath%20d=%27M0%2030V18C0%2012%201.5%207.5%204.5%204.5C7.5%201.5%2012%200%2018%200V6C14%206%2011%207%209%209C7%2011%206%2014%206%2018H16V30H0ZM24%2030V18C24%2012%2025.5%207.5%2028.5%204.5C31.5%201.5%2036%200%2042%200V6C38%206%2035%207%2033%209C31%2011%2030%2014%2030%2018H40V30H24Z%27%20fill=%27%23C9A962%27%20opacity=%270.2%27/%3E%3C/svg%3E')] before:bg-no-repeat">
                 <p className="text-lg italic text-text-dark leading-[1.9] mb-6 pt-4 relative z-10">{testimonial.quote}</p>
-                <cite className="not-italic text-teal font-medium text-[15px] flex items-center gap-2">
+                <cite className="not-italic text-teal font-medium text-base flex items-center gap-2">
                   <span className="w-5 h-0.5 bg-gold" />
                   {testimonial.author}
                 </cite>
@@ -479,7 +490,7 @@ export default function Home() {
         <div className="relative z-10">
           <div className="font-serif text-5xl text-gold mb-3 tracking-[0.3em]">OLUK</div>
           <div className="text-lg text-cream/60 mb-6 italic">Akışın Yatağı. Ruhun Ocağı.</div>
-          <p className="text-[15px] text-cream/40 max-w-md mx-auto leading-[1.8]">
+          <p className="text-base text-cream/40 max-w-md mx-auto leading-[1.8]">
             Şehrin gürültüsünde bir sığınak. Dijital bir mağara.
           </p>
           <div className="flex justify-center gap-2 mt-8">

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { generateSEOMetadata } from '@/lib/seo';
+import { generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 import SirdasInterface from '@/components/SirdasInterface';
 
 // Force dynamic rendering
@@ -27,6 +27,10 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function SirdasPage() {
+  const breadcrumb = generateBreadcrumbSchema([
+    { name: 'Ana Sayfa', url: 'https://oluk.org' },
+    { name: 'Sırdaş', url: 'https://oluk.org/sirdas' },
+  ]);
   return (
     <main className="min-h-screen bg-gradient-to-br from-cream via-cream-light to-white">
       <SirdasInterface initialMood="wavy" />
@@ -59,6 +63,10 @@ export default function SirdasPage() {
             },
           }),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
     </main>
   );
