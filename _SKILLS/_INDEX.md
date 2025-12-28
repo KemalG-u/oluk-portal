@@ -1,63 +1,29 @@
-# 🤖 OLUK MİKRO ÇALIŞANLAR (SKILLS) v2
+# OLUK SKİLL İNDEKSİ
 
-**Son Güncelleme:** 28 Aralık 2025
+**Son Güncelleme:** 28 Aralık 2025  
+**Toplam Skill:** 10 (eklenecek: 117)
 
-## İÇERİK ÜRETİM HATTI
+## DURUM
 
-```
-HAM MATERYAL (PDF/Transkript)
-         ↓
-    [1. DERİN ARAŞTIRMACI]
-    Her konuyu gerçekten araştır, açıkla
-         ↓
-    [2. KAYNAK DOĞRULAYICI]
-    Hadis/ayet/kaynak kontrol et
-         ↓
-    [3. İÇERİK ANALİZCİSİ]
-    Yapıyı çıkar, eksikleri bul
-         ↓
-    [4. DİL USTASI + GÖRSEL]
-    OLUK stiline dönüştür
-         ↓
-    OLUK İÇERİĞİ (Hazır)
-```
+Dosyalar tek tek ekleniyor...
 
 ## SKILL LİSTESİ
 
-| # | Skill | Dosya | Görev |
-|---|-------|-------|-------|
-| 1 | Derin Araştırmacı | `01-DERIN-ARASTIRMACI.md` | Konu araştırma, açıklama |
-| 2 | Kaynak Doğrulayıcı | `02-KAYNAK-DOGRULAYICI.md` | Hadis/ayet/kaynak kontrol |
-| 3 | İçerik Analizcisi | `03-ICERIK-ANALIZCISI.md` | PDF/transkript analiz |
-| 4 | Dil Ustası + Görsel | `04-DIL-USTASI.md` | Stil dönüşümü + görsel plan |
+| No | Skill Adı | Departman | Versiyon | Durum |
+|----|-----------|-----------|----------|-------|
+| 00 | Kültür Muhafızı | Yönetim | 1.0 | ✅ Aktif |
+| 01 | Derin Araştırmacı | İçerik | 3.0 | ✅ Aktif |
+| 02 | İçerik Denetçisi | Kalite | 1.0 | ✅ Aktif |
+| 03 | NLP Danışmanı | UX-Psikoloji | 1.0 | ✅ Aktif |
+| 04 | Kaynak Doğrulayıcı | İçerik | 1.0 | ✅ Aktif |
+| 05 | Acil Durum Koordinatörü | Yönetim | 1.0 | ✅ Aktif |
+| 06 | Master Prompt Mühendisi | AI-Ops | 1.0 | ✅ Aktif |
+| 07 | Tasavvuf Uzmanı | İçerik | 1.0 | ✅ Aktif |
+| 08 | Müfredat Planlayıcı | İçerik | 1.0 | ✅ Aktif |
+| 09 | Ders Tasarımcısı | İçerik | 1.0 | ✅ Aktif |
 
-## ORTAK İLKELER
+## FAZ 2 GRUP 1
 
-Tüm skill'lerde geçerli:
-1. **Sadece liste yapma, AÇIKLA**
-2. **Senli yaz** ("siz" değil "sen")
-3. **Teknik terim kullanma** (veya hemen açıkla)
-4. **Somut örnekler ver**
-5. **Aksiyon çıkar**
-
-## KULLANIM
-
-Her skill için çağırma komutu:
-
-```
-"[SKILL ADI] olarak çalış. [GÖREV]"
-```
-
-Örnekler:
-```
-"Derin Araştırmacı olarak çalış. Çakra sistemi hakkında araştırma yap."
-"Kaynak Doğrulayıcı olarak çalış. Şu içerikteki kaynakları kontrol et: [İÇERİK]"
-"İçerik Analizcisi olarak çalış. Şu transkripti analiz et: [TRANSKRİPT]"
-"Dil Ustası olarak çalış. Şu metni OLUK stiline dönüştür: [METİN]"
-```
-
-## YENİ SOHBET BAŞINDA
-
-```
-"GitHub'daki _SKILLS/_INDEX.md dosyasını oku ve skill'leri öğren."
-```
+- 07-Tasavvuf Uzmanı ✅
+- 08-Müfredat Planlayıcı ✅
+- 09-Ders Tasarımcısı ✅
