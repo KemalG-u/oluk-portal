@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 28 Aralık 2025  
-**Toplam Skill:** 22 (eklenecek: 108)
+**Toplam Skill:** 25 (eklenecek: 105)
 
 ## DURUM
 
@@ -33,6 +33,9 @@ Dosyalar tek tek ekleniyor...
 | 19 | Supabase Mimarı | AI-Ops | 1.0 | ✅ Aktif |
 | 20 | API Entegrasyon Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
 | 21 | Performans Optimizasyoncusu | AI-Ops | 1.0 | ✅ Aktif |
+| 22 | Onboarding Tasarımcısı | UX-Psikoloji | 1.0 | ✅ Aktif |
+| 23 | Retention Stratejisti | UX-Psikoloji | 1.0 | ✅ Aktif |
+| 24 | Gamification Uzmanı | UX-Psikoloji | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
@@ -65,3 +68,9 @@ Dosyalar tek tek ekleniyor...
 - 19-Supabase Mimarı ✅
 - 20-API Entegrasyon Uzmanı ✅
 - 21-Performans Optimizasyoncusu ✅
+
+## FAZ 2 GRUP 6 - KULLANICI DENEYİMİ
+
+- 22-Onboarding Tasarımcısı ✅
+- 23-Retention Stratejisti ✅
+- 24-Gamification Uzmanı ✅
