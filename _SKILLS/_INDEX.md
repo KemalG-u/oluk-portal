@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 28 Aralık 2025  
-**Toplam Skill:** 10 (eklenecek: 117)
+**Toplam Skill:** 13 (eklenecek: 117)
 
 ## DURUM
 
@@ -21,9 +21,18 @@ Dosyalar tek tek ekleniyor...
 | 07 | Tasavvuf Uzmanı | İçerik | 1.0 | ✅ Aktif |
 | 08 | Müfredat Planlayıcı | İçerik | 1.0 | ✅ Aktif |
 | 09 | Ders Tasarımcısı | İçerik | 1.0 | ✅ Aktif |
+| 10 | Seans Tasarımcısı | İçerik | 1.0 | ✅ Aktif |
+| 11 | Egzersiz Tasarımcısı | İçerik | 1.0 | ✅ Aktif |
+| 12 | Dil Ustası | İçerik | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
 - 07-Tasavvuf Uzmanı ✅
 - 08-Müfredat Planlayıcı ✅
 - 09-Ders Tasarımcısı ✅
+
+## FAZ 2 GRUP 2
+
+- 10-Seans Tasarımcısı ✅
+- 11-Egzersiz Tasarımcısı ✅
+- 12-Dil Ustası ✅
