@@ -1,193 +1,346 @@
-import { createClient } from '@supabase/supabase-js';
+// src/app/api/sirdash/chat/route.ts
+// SIRDAŞ Chat API - Arif Sistemi Entegrasyonu
+
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
-import { 
-  buildSirdashPrompt, 
-  detectCrisis, 
-  getCrisisResponse,
-  type SirContext,
-  type UserContext,
-  type ConversationContext 
-} from '@/lib/sirdash-sir-prompt';
-
-// ============================================
-// OLUK SIRDAŞ CHAT API - SIR ENTEGRELİ
-// ============================================
+import { createClient } from '@supabase/supabase-js';
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: process.env.ANTHROPIC_API_KEY!,
 });
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+// ===========================================
+// KRİZ TESPİT SİSTEMİ
+// ===========================================
+const CRISIS_KEYWORDS = {
+  critical: [
+    'intihar', 'ölmek istiyorum', 'kendimi öldür', 'yaşamak istemiyorum',
+    'hayatıma son', 'kendime zarar', 'jilet', 'hap içmek'
+  ],
+  high: [
+    'umutsuz', 'çıkış yok', 'dayanamıyorum', 'her şey boş',
+    'kimse anlamıyor', 'yalnızım', 'değersiz', 'işe yaramaz'
+  ],
+  medium: [
+    'depresyon', 'anksiyete', 'panik atak', 'uyuyamıyorum',
+    'iştahım yok', 'ağlıyorum', 'mutsuz', 'gergin'
+  ]
+};
+
+function detectCrisis(message: string): { level: string; keywords: string[] } {
+  const lowerMsg = message.toLowerCase();
+  const detected: string[] = [];
+  
+  for (const keyword of CRISIS_KEYWORDS.critical) {
+    if (lowerMsg.includes(keyword)) {
+      detected.push(keyword);
+      return { level: 'critical', keywords: detected };
+    }
+  }
+  
+  for (const keyword of CRISIS_KEYWORDS.high) {
+    if (lowerMsg.includes(keyword)) detected.push(keyword);
+  }
+  if (detected.length > 0) return { level: 'high', keywords: detected };
+  
+  for (const keyword of CRISIS_KEYWORDS.medium) {
+    if (lowerMsg.includes(keyword)) detected.push(keyword);
+  }
+  if (detected.length > 0) return { level: 'medium', keywords: detected };
+  
+  return { level: 'low', keywords: [] };
+}
+
+// ===========================================
+// POLYVAGAL STATE TESPİT
+// ===========================================
+const POLYVAGAL_INDICATORS = {
+  ventral: [
+    'merak', 'ilginç', 'güzel', 'mutlu', 'huzur', 'rahat', 'enerjik',
+    'neşeli', 'umutlu', 'bağlantı', 'sevgi', 'minnet', 'şükür'
+  ],
+  sympathetic: [
+    'stres', 'gergin', 'endişe', 'kaygı', 'korku', 'panik', 'sinir',
+    'öfke', 'kızgın', 'tedirgin', 'huzursuz', 'ya olursa', 'acele'
+  ],
+  dorsal: [
+    'boş', 'hiçbir şey', 'umurumda değil', 'yorgun', 'tükendim', 'uyuşuk',
+    'donuk', 'kopuk', 'uzak', 'anlamsız', 'neden', 'ne anlamı var'
+  ]
+};
+
+function detectPolyvagalState(message: string): { state: string; confidence: number; indicators: string[] } {
+  const lowerMsg = message.toLowerCase();
+  const scores = { ventral: 0, sympathetic: 0, dorsal: 0 };
+  const foundIndicators: string[] = [];
+  
+  for (const [state, keywords] of Object.entries(POLYVAGAL_INDICATORS)) {
+    for (const keyword of keywords) {
+      if (lowerMsg.includes(keyword)) {
+        scores[state as keyof typeof scores]++;
+        foundIndicators.push(keyword);
+      }
+    }
+  }
+  
+  const total = scores.ventral + scores.sympathetic + scores.dorsal;
+  if (total === 0) return { state: 'ventral', confidence: 0.5, indicators: [] };
+  
+  const maxState = Object.entries(scores).reduce((a, b) => a[1] > b[1] ? a : b);
+  return {
+    state: maxState[0],
+    confidence: maxState[1] / total,
+    indicators: foundIndicators
+  };
+}
+
+// ===========================================
+// BİLİŞSEL ÇARPITMA TESPİT
+// ===========================================
+const COGNITIVE_DISTORTIONS = {
+  catastrophizing: ['en kötüsü', 'felaket', 'berbat', 'korkunç', 'mahvoldu'],
+  black_white: ['her zaman', 'asla', 'hiçbir zaman', 'tamamen', 'kesinlikle'],
+  mind_reading: ['benden nefret', 'düşünüyorlar', 'biliyorum ne düşündüğünü'],
+  overgeneralization: ['hep böyle', 'her seferinde', 'sürekli'],
+  personalization: ['benim yüzümden', 'benim hatam', 'ben olmasam'],
+  should_statements: ['yapmalıydım', 'etmeliydim', 'olmalı', '-meli', '-malı'],
+  emotional_reasoning: ['hissediyorum yani', 'öyle hissediyorsam'],
+  labeling: ['ben bir', 'aptalım', 'başarısızım', 'kötüyüm', 'yetersizim']
+};
+
+function detectCognitiveDistortions(message: string): string[] {
+  const lowerMsg = message.toLowerCase();
+  const found: string[] = [];
+  
+  for (const [distortion, keywords] of Object.entries(COGNITIVE_DISTORTIONS)) {
+    for (const keyword of keywords) {
+      if (lowerMsg.includes(keyword)) {
+        found.push(distortion);
+        break;
+      }
+    }
+  }
+  
+  return [...new Set(found)];
+}
+
+// ===========================================
+// INSIGHT TESPİT
+// ===========================================
+const INSIGHT_KEYWORDS = [
+  'vaay', 'vay', 'hiç düşünmemiştim', 'şimdi anladım', 'aslında',
+  'fark ettim', 'anlıyorum artık', 'mantıklı', 'gözlerim açıldı',
+  'ilk defa fark ediyorum', 'demek ki', 'hep öyle yapmışım'
+];
+
+function detectInsight(message: string): boolean {
+  const lowerMsg = message.toLowerCase();
+  return INSIGHT_KEYWORDS.some(keyword => lowerMsg.includes(keyword));
+}
+
+// ===========================================
+// SIRDAŞ SYSTEM PROMPT
+// ===========================================
+function getSirdasPrompt(polyvagalState: string, crisisLevel: string, distortions: string[]): string {
+  let approachGuide = '';
+  
+  if (crisisLevel === 'critical') {
+    approachGuide = `
+## ACİL KRİZ DURUMU
+- Sakin, destekleyici ve güvenli bir alan oluştur
+- Profesyonel yardım kaynaklarını öner (182 İntihar Önleme Hattı)
+- Kişiyi yalnız bırakma, yanında ol
+- Yargılama, sadece dinle`;
+  } else if (polyvagalState === 'sympathetic') {
+    approachGuide = `
+## YAKLAŞIM (Sympathetic - Stres/Kaygı)
+- Sakinleştirici, yavaş bir ton kullan
+- Nefes egzersizi öner
+- "Şu an güvendesin" mesajı ver
+- Duyguları normalize et`;
+  } else if (polyvagalState === 'dorsal') {
+    approachGuide = `
+## YAKLAŞIM (Dorsal - Donukluk/Kopukluk)
+- Nazik aktivasyon, çok baskı yapma
+- Küçük, somut adımlar öner
+- Beden farkındalığı soruları sor
+- Sabırlı ol, acele ettirme`;
+  } else {
+    approachGuide = `
+## YAKLAŞIM (Ventral - Açık/Meraklı)
+- Normal derinlikte sohbet
+- Keşif ve içgörü sorularına açık
+- Mizah kullanılabilir
+- Daha derin konulara geçilebilir`;
+  }
+
+  let distortionGuide = '';
+  if (distortions.length > 0) {
+    distortionGuide = `
+## TESPİT EDİLEN BİLİŞSEL ÇARPITMALAR
+${distortions.join(', ')}
+- Bu çarpıtmalara nazikçe ayna tut
+- Sokratik sorular sor
+- Alternatif bakış açıları sun`;
+  }
+
+  return `Sen SIRDAŞ'sın - OLUK platformunun ruhani rehberi ve dost.
+
+## KİMLİĞİN
+- Samimi ama profesyonel
+- Dinleyen, anlayan, yargılamayan
+- Bilge ama ukala değil
+- Türk kültürüne ve maneviyatına hakim
+- Tasavvuf bilgisi var ama dayatmıyor
+
+${approachGuide}
+${distortionGuide}
+
+## YAPMAYACAKLARIN
+- Tanı koymak (depresyonun var gibi)
+- Tıbbi tavsiye vermek
+- Uzun, akademik cevaplar
+- Klişe teselli cümleleri ("Her şey güzel olacak")
+- "Anlıyorum" demek (bunun yerine gerçekten anladığını göster)
+
+## CEVAP FORMATI
+- Kısa ve öz (2-4 cümle)
+- Doğal, samimi Türkçe
+- Gerekirse tek bir güçlü soru sor
+- Emoji kullanma
+
+## ÖNEMLİ
+OLUK bir terapi platformu DEĞİLDİR. Kriz durumunda profesyonel yardım öner.
+Kriz Hattı: 182 (7/24 ücretsiz)`;
+}
+
+// ===========================================
+// ANA API HANDLER
+// ===========================================
 export async function POST(request: NextRequest) {
   try {
-    const { message, currentPage } = await request.json();
+    const body = await request.json();
+    const { message, user_id, conversation_id, odaSir } = body;
 
-    if (!message || typeof message !== 'string') {
-      return NextResponse.json(
-        { error: 'Mesaj gerekli' },
-        { status: 400 }
-      );
+    if (!message) {
+      return NextResponse.json({ error: 'message gerekli' }, { status: 400 });
     }
 
-    // Supabase client
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
-
-    // TODO: Auth'dan user_id al
-    const userId = 'demo-user-id';
-
-    // Kriz tespiti
+    // 1. ANALİZ
     const crisis = detectCrisis(message);
+    const polyvagal = detectPolyvagalState(message);
+    const distortions = detectCognitiveDistortions(message);
+    const isInsight = detectInsight(message);
 
-    // Kullanıcının Sır'ını getir
-    const { data: sir } = await supabase
-      .from('user_sir')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
+    // 2. KRİTİK KRİZ - ÖZEL YANIT
+    if (crisis.level === 'critical') {
+      const crisisResponse = `Seni duyuyorum ve bu an çok zor olduğunu anlıyorum. Yalnız değilsin.
 
-    // Kriz durumunda özel yanıt
-    if (crisis.isCrisis && crisis.type && crisis.severity === 'high') {
-      const crisisResponse = getCrisisResponse(
-        crisis.type, 
-        sir?.sir_name || 'Sır'
-      );
+Şu an profesyonel destek almak önemli. Lütfen şu numarayı ara:
+📞 182 - İntihar Önleme Hattı (7/24 ücretsiz)
 
-      // Krizi logla
-      await supabase
-        .from('sir_conversations')
-        .insert({
-          user_id: userId,
-          message_type: 'emotion',
-          user_message: message,
-          sir_response: crisisResponse,
-          context: JSON.stringify({
-            crisis: true,
-            crisisType: crisis.type,
-            severity: crisis.severity,
-          }),
-        });
+Ben buradayım, seninleyim. Ama şu an sana en iyi yardımı profesyoneller verebilir.`;
+
+      // Kriz kaydı
+      if (user_id) {
+        await supabase.from('risk_events').insert({
+          user_id,
+          risk_type: 'crisis',
+          severity: 'critical',
+          trigger_content: message,
+          detected_keywords: crisis.keywords
+        }).catch(console.error);
+      }
 
       return NextResponse.json({
+        success: true,
         response: crisisResponse,
-        crisis: true,
-        crisisType: crisis.type,
+        analysis: {
+          crisis_level: crisis.level,
+          polyvagal_state: polyvagal.state,
+          show_hotline: true
+        }
       });
     }
 
-    // Son konuşmaları getir
-    const { data: recentConversations } = await supabase
-      .from('sir_conversations')
-      .select('user_message, sir_response')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false })
-      .limit(5);
+    // 3. SIRDAŞ YANITI OLUŞTUR
+    const systemPrompt = getSirdasPrompt(polyvagal.state, crisis.level, distortions);
 
-    // Zaman bilgisi
-    const now = new Date();
-    const hour = now.getHours();
-    const isLateNight = hour >= 23 || hour < 5;
-    const isWeekend = now.getDay() === 0 || now.getDay() === 6;
-
-    // Son ziyaretten kaç gün
-    const daysSinceVisit = sir 
-      ? Math.floor((now.getTime() - new Date(sir.last_visit).getTime()) / (1000 * 60 * 60 * 24))
-      : 0;
-
-    // Context oluştur
-    const sirContext: SirContext = sir ? {
-      elementType: sir.element_type,
-      sirName: sir.sir_name,
-      level: sir.level,
-      energy: sir.energy,
-      colorStage: sir.color_stage,
-      totalLessons: sir.total_lessons,
-      totalPractices: sir.total_practices,
-      lastVisit: sir.last_visit,
-      daysSinceVisit,
-    } : {
-      elementType: 'fire',
-      sirName: 'Sır',
-      level: 1,
-      energy: 50,
-      colorStage: 1,
-      totalLessons: 0,
-      totalPractices: 0,
-      lastVisit: now.toISOString(),
-      daysSinceVisit: 0,
-    };
-
-    const userContext: UserContext = {
-      currentPage: currentPage || 'Ana Sayfa',
-      currentTime: now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }),
-      isLateNight,
-      isWeekend,
-      recentLessons: [], // TODO: Gerçek ders geçmişi
-      recentJournalTopics: [],
-    };
-
-    const conversationContext: ConversationContext = {
-      sir: sirContext,
-      user: userContext,
-      messageHistory: (recentConversations || [])
-        .reverse()
-        .flatMap(c => [
-          ...(c.user_message ? [{ role: 'user' as const, content: c.user_message }] : []),
-          { role: 'sir' as const, content: c.sir_response },
-        ]),
-    };
-
-    // Sistem prompt'u oluştur
-    const systemPrompt = buildSirdashPrompt(conversationContext);
-
-    // Claude'a gönder
-    const response = await anthropic.messages.create({
+    const aiResponse = await anthropic.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 500,
       system: systemPrompt,
-      messages: [
-        { role: 'user', content: message }
-      ],
+      messages: [{ role: 'user', content: message }]
     });
 
-    const assistantMessage = response.content[0].type === 'text' 
-      ? response.content[0].text 
+    const responseText = aiResponse.content[0].type === 'text' 
+      ? aiResponse.content[0].text 
       : '';
 
-    // Konuşmayı kaydet
-    await supabase
-      .from('sir_conversations')
-      .insert({
-        user_id: userId,
-        message_type: crisis.isCrisis ? 'emotion' : 'chat',
-        user_message: message,
-        sir_response: assistantMessage,
-        context: JSON.stringify({
-          page: currentPage,
-          time: now.toISOString(),
-          sirLevel: sirContext.level,
-          sirEnergy: sirContext.energy,
-          crisis: crisis.isCrisis,
-          crisisType: crisis.type,
-        }),
-      });
+    // 4. KAYITLAR (opsiyonel - user_id varsa)
+    if (user_id) {
+      // Konuşma kaydı
+      const convId = conversation_id || `conv-${Date.now()}`;
+      
+      await supabase.from('sirdas_messages').insert({
+        user_id,
+        conversation_id: convId,
+        role: 'user',
+        content: message,
+        polyvagal_state: polyvagal.state,
+        polyvagal_confidence: polyvagal.confidence,
+        risk_level: crisis.level,
+        is_insight_moment: isInsight
+      }).catch(console.error);
 
+      await supabase.from('sirdas_messages').insert({
+        user_id,
+        conversation_id: convId,
+        role: 'assistant',
+        content: responseText
+      }).catch(console.error);
+
+      // Polyvagal state logu
+      await supabase.from('polyvagal_states').insert({
+        user_id,
+        state: polyvagal.state,
+        confidence: polyvagal.confidence,
+        indicators: polyvagal.indicators,
+        source: 'sirdas_chat'
+      }).catch(console.error);
+
+      // Insight kaydı
+      if (isInsight) {
+        await supabase.from('insight_moments').insert({
+          user_id,
+          source_type: 'sirdas',
+          insight_content: message
+        }).catch(console.error);
+      }
+    }
+
+    // 5. YANIT
     return NextResponse.json({
-      response: assistantMessage,
-      sir: {
-        name: sirContext.sirName,
-        element: sirContext.elementType,
-        energy: sirContext.energy,
-        level: sirContext.level,
-      },
+      success: true,
+      response: responseText,
+      analysis: {
+        polyvagal_state: polyvagal.state,
+        polyvagal_confidence: polyvagal.confidence,
+        crisis_level: crisis.level,
+        cognitive_distortions: distortions,
+        is_insight: isInsight
+      }
     });
 
   } catch (error) {
-    console.error('Sırdaş API error:', error);
+    console.error('SIRDAŞ API Error:', error);
     return NextResponse.json(
-      { error: 'Bir hata oluştu. Lütfen tekrar dene.' },
+      { error: 'Bir hata oluştu', details: String(error) },
       { status: 500 }
     );
   }
