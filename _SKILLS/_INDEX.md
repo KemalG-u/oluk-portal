@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 28 Aralık 2025  
-**Toplam Skill:** 16 (eklenecek: 114)
+**Toplam Skill:** 19 (eklenecek: 111)
 
 ## DURUM
 
@@ -27,6 +27,9 @@ Dosyalar tek tek ekleniyor...
 | 13 | Editör | İçerik | 1.0 | ✅ Aktif |
 | 14 | Düzeltmen | İçerik | 1.0 | ✅ Aktif |
 | 15 | Stil Dönüştürücü | İçerik | 1.0 | ✅ Aktif |
+| 16 | QA Test Uzmanı | Kalite | 1.0 | ✅ Aktif |
+| 17 | Versiyon Kontrol Uzmanı | Kalite | 1.0 | ✅ Aktif |
+| 18 | Yayın Koordinatörü | Kalite | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
@@ -47,3 +50,9 @@ Dosyalar tek tek ekleniyor...
 - 15-Stil Dönüştürücü ✅ (GEM'in yerini aldı)
 
 **ÖNEMLİ:** 15-Stil Dönüştürücü, daha önce Gemini GEM'in yaptığı 8 usta sentezi işini üstlenir. Artık Claude bu dönüşümü yapar.
+
+## FAZ 2 GRUP 4 - KALİTE KONTROL
+
+- 16-QA Test Uzmanı ✅
+- 17-Versiyon Kontrol Uzmanı ✅
+- 18-Yayın Koordinatörü ✅
