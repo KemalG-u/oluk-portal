@@ -248,13 +248,17 @@ Ben buradayım, seninleyim. Ama şu an sana en iyi yardımı profesyoneller vere
 
       // Kriz kaydı
       if (user_id) {
-        await supabase.from('risk_events').insert({
-          user_id,
-          risk_type: 'crisis',
-          severity: 'critical',
-          trigger_content: message,
-          detected_keywords: crisis.keywords
-        }).catch(console.error);
+        try {
+          await supabase.from('risk_events').insert({
+            user_id,
+            risk_type: 'crisis',
+            severity: 'critical',
+            trigger_content: message,
+            detected_keywords: crisis.keywords
+          });
+        } catch (error) {
+          console.error('Kriz kaydı hatası:', error);
+        }
       }
 
       return NextResponse.json({
@@ -287,40 +291,56 @@ Ben buradayım, seninleyim. Ama şu an sana en iyi yardımı profesyoneller vere
       // Konuşma kaydı
       const convId = conversation_id || `conv-${Date.now()}`;
       
-      await supabase.from('sirdas_messages').insert({
-        user_id,
-        conversation_id: convId,
-        role: 'user',
-        content: message,
-        polyvagal_state: polyvagal.state,
-        polyvagal_confidence: polyvagal.confidence,
-        risk_level: crisis.level,
-        is_insight_moment: isInsight
-      }).catch(console.error);
+      try {
+        await supabase.from('sirdas_insights').insert({
+          user_id,
+          conversation_id: convId,
+          role: 'user',
+          content: message,
+          polyvagal_state: polyvagal.state,
+          polyvagal_confidence: polyvagal.confidence,
+          risk_level: crisis.level,
+          is_insight_moment: isInsight
+        });
+      } catch (error) {
+        console.error('Insight insert hatası:', error);
+      }
 
-      await supabase.from('sirdas_messages').insert({
-        user_id,
-        conversation_id: convId,
-        role: 'assistant',
-        content: responseText
-      }).catch(console.error);
+      try {
+        await supabase.from('sirdas_messages').insert({
+          user_id,
+          conversation_id: convId,
+          role: 'assistant',
+          content: responseText
+        });
+      } catch (error) {
+        console.error('Sirdas messages insert hatası:', error);
+      }
 
       // Polyvagal state logu
-      await supabase.from('polyvagal_states').insert({
-        user_id,
-        state: polyvagal.state,
-        confidence: polyvagal.confidence,
-        indicators: polyvagal.indicators,
-        source: 'sirdas_chat'
-      }).catch(console.error);
+      try {
+        await supabase.from('polyvagal_states').insert({
+          user_id,
+          state: polyvagal.state,
+          confidence: polyvagal.confidence,
+          indicators: polyvagal.indicators,
+          source: 'sirdas_chat'
+        });
+      } catch (error) {
+        console.error('Polyvagal states insert hatası:', error);
+      }
 
       // Insight kaydı
       if (isInsight) {
-        await supabase.from('insight_moments').insert({
-          user_id,
-          source_type: 'sirdas',
-          insight_content: message
-        }).catch(console.error);
+        try {
+          await supabase.from('insight_moments').insert({
+            user_id,
+            source_type: 'sirdas',
+            insight_content: message
+          });
+        } catch (error) {
+          console.error('Insight moments insert hatası:', error);
+        }
       }
     }
 
