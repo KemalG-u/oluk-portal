@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 28 Aralık 2025  
-**Toplam Skill:** 13 (eklenecek: 117)
+**Toplam Skill:** 16 (eklenecek: 114)
 
 ## DURUM
 
@@ -24,6 +24,9 @@ Dosyalar tek tek ekleniyor...
 | 10 | Seans Tasarımcısı | İçerik | 1.0 | ✅ Aktif |
 | 11 | Egzersiz Tasarımcısı | İçerik | 1.0 | ✅ Aktif |
 | 12 | Dil Ustası | İçerik | 1.0 | ✅ Aktif |
+| 13 | Editör | İçerik | 1.0 | ✅ Aktif |
+| 14 | Düzeltmen | İçerik | 1.0 | ✅ Aktif |
+| 15 | Stil Dönüştürücü | İçerik | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
@@ -36,3 +39,11 @@ Dosyalar tek tek ekleniyor...
 - 10-Seans Tasarımcısı ✅
 - 11-Egzersiz Tasarımcısı ✅
 - 12-Dil Ustası ✅
+
+## FAZ 2 GRUP 3 - EDİTÖRYAL BİRİM
+
+- 13-Editör ✅
+- 14-Düzeltmen ✅
+- 15-Stil Dönüştürücü ✅ (GEM'in yerini aldı)
+
+**ÖNEMLİ:** 15-Stil Dönüştürücü, daha önce Gemini GEM'in yaptığı 8 usta sentezi işini üstlenir. Artık Claude bu dönüşümü yapar.
