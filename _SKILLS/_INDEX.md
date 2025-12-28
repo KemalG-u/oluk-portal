@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 28 Aralık 2025  
-**Toplam Skill:** 19 (eklenecek: 111)
+**Toplam Skill:** 22 (eklenecek: 108)
 
 ## DURUM
 
@@ -30,6 +30,9 @@ Dosyalar tek tek ekleniyor...
 | 16 | QA Test Uzmanı | Kalite | 1.0 | ✅ Aktif |
 | 17 | Versiyon Kontrol Uzmanı | Kalite | 1.0 | ✅ Aktif |
 | 18 | Yayın Koordinatörü | Kalite | 1.0 | ✅ Aktif |
+| 19 | Supabase Mimarı | AI-Ops | 1.0 | ✅ Aktif |
+| 20 | API Entegrasyon Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
+| 21 | Performans Optimizasyoncusu | AI-Ops | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
@@ -56,3 +59,9 @@ Dosyalar tek tek ekleniyor...
 - 16-QA Test Uzmanı ✅
 - 17-Versiyon Kontrol Uzmanı ✅
 - 18-Yayın Koordinatörü ✅
+
+## FAZ 2 GRUP 5 - TEKNİK ALTYAPI
+
+- 19-Supabase Mimarı ✅
+- 20-API Entegrasyon Uzmanı ✅
+- 21-Performans Optimizasyoncusu ✅
