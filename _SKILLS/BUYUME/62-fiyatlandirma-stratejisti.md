@@ -72,10 +72,10 @@ KARŞILAŞTIRMA:
 ### Özel Fiyatlandırmalar
 ```
 ÖĞRENCİ:
-- %50 indirim
+- %30 indirim
 - Öğrenci belgesi gerekli
-- Aylık: ₺74,99
-- Yıllık: ₺449,99
+- Aylık: ₺104,99
+- Yıllık: ₺629,99
 
 AİLE PAKETİ (Gelecek):
 - 5 hesap

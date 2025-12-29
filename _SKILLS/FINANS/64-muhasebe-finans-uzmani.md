@@ -27,7 +27,40 @@ CAC = Pazarlama Harcaması / Yeni Müşteri
 LTV:CAC Hedef: >3:1
 ```
 
-## BÜTÇE YÖNETİMİ
+## METRİK STANDARDIZASYONU
+
+### Tüm Skill'ler İçin Geçerli Tanımlar
+```
+LTV (Lifetime Value):
+= ARPU × (1 / Monthly Churn Rate)
+= ARPU × Ortalama Müşteri Ömrü (ay)
+NOT: Tüm skill'ler bu formülü kullanmalı
+
+CAC (Customer Acquisition Cost):
+= Toplam Pazarlama Harcaması / Yeni Ödeme Yapan Müşteri
+NOT: Sadece paid acquisition dahil, organic hariç
+
+ARPU (Average Revenue Per User):
+= MRR / Toplam Aktif Ödeme Yapan Kullanıcı
+NOT: Free kullanıcılar DAHİL DEĞİL
+
+MRR (Monthly Recurring Revenue):
+= Σ (Her müşterinin aylık ödemesi)
+NOT: Yıllık aboneler için: Yıllık Fiyat / 12
+
+CHURN RATE:
+= Dönem içi iptal eden / Dönem başı aktif
+NOT: Aylık bazda hesaplanır
+```
+
+### Referans Skill'ler
+Bu metrikleri kullanan skill'ler 64-FINANCE tanımlarını referans almalı:
+- 62-PRICING: LTV/CAC ratio
+- 50-ANALYTICS: Tüm metrikler
+- 30-GROWTH: Büyüme metrikleri
+- 63-PAYMENTS: Revenue metrikleri
+
+## BÜTÇE TEMPLATE'LERİ
 
 ### Aylık Bütçe Yapısı
 ```yaml
