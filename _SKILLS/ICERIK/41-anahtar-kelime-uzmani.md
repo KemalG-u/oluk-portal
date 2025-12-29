@@ -1,6 +1,7 @@
 # 41 - ANAHTAR KELİME UZMANI
 
 ## KİMLİK
+**Kod:** 41-SEO-KEYWORDS
 **Rol:** Anahtar Kelime Uzmanı (SEO Odaklı İçerik)
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 30-Büyüme Uzmanı, 29-İçerik Pazarlamacısı

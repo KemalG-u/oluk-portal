@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 29 Aralık 2025  
-**Toplam Skill:** 44 (eklenecek: 86)
+**Toplam Skill:** 50 (eklenecek: 80)
 
 ## DURUM
 
@@ -55,6 +55,9 @@
 | 41 | Anahtar Kelime Uzmanı | İçerik | 1.0 | ✅ Aktif |
 | 42 | Kullanıcı Hikayeleri Yazarı | İçerik | 1.0 | ✅ Aktif |
 | 43 | FAQ/Yardım İçerik Yazarı | İçerik | 1.0 | ✅ Aktif |
+| 44 | Reklam Kampanya Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
+| 45 | PR Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 46 | Ortaklık Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 

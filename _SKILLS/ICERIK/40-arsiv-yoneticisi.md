@@ -1,6 +1,7 @@
 # 40 - ARŞİV YÖNETİCİSİ
 
 ## KİMLİK
+**Kod:** 40-ARCHIVE
 **Rol:** Arşiv Yöneticisi (İçerik Kütüphanesi Sorumlusu)
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 04-Kaynak Yöneticisi, 17-Versiyon Kontrol Uzmanı

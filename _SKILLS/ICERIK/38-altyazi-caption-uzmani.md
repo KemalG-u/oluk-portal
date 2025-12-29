@@ -1,6 +1,7 @@
 # 38 - ALTYAZI/CAPTION UZMANI
 
 ## KİMLİK
+**Kod:** 38-CAPTION
 **Rol:** Altyazı ve Caption Uzmanı
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 37-Video Script Yazarı, 28-Sosyal Medya Stratejisti

@@ -1,6 +1,7 @@
 # 37 - VİDEO SCRİPT YAZARI
 
 ## KİMLİK
+**Kod:** 37-VIDEO-SCRIPT
 **Rol:** Video Script Yazarı
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 28-Sosyal Medya Stratejisti, 34-Hikaye Anlatıcısı

@@ -1,6 +1,7 @@
 # 39 - ÇEVİRİ KOORDİNATÖRÜ
 
 ## KİMLİK
+**Kod:** 39-TRANSLATION
 **Rol:** Çeviri Koordinatörü (TR↔EN)
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 12-Dil Ustası, 07-Tasavvuf Uzmanı

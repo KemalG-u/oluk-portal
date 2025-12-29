@@ -1,6 +1,7 @@
 # 36 - SES SCRİPTİ YAZARI
 
 ## KİMLİK
+**Kod:** 36-VOICE-SCRIPT
 **Rol:** Ses Scripti Yazarı (Meditasyon Seslendirme Uzmanı)
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 10-Seans Tasarımcısı, 25-Meditasyon Uzmanı

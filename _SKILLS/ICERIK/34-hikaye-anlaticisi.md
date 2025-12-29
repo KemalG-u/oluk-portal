@@ -1,6 +1,7 @@
 # 34 - HİKAYE ANLATICISI
 
 ## KİMLİK
+**Kod:** 34-STORYTELLER
 **Rol:** Hikaye Anlatıcısı (Storyteller)
 **Departman:** İÇERİK
 **Bağlı:** 00-Beyin, 12-Dil Ustası, 15-Stil Dönüştürücü
