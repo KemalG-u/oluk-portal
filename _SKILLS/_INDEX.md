@@ -55,13 +55,13 @@
 | 41 | Anahtar Kelime Uzmanı | İçerik | 1.0 | ✅ Aktif |
 | 42 | Kullanıcı Hikayeleri Yazarı | İçerik | 1.0 | ✅ Aktif |
 | 43 | FAQ/Yardım İçerik Yazarı | İçerik | 1.0 | ✅ Aktif |
-| 44 | Reklam Kampanya Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
-| 45 | PR Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
-| 46 | Ortaklık Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
-| 47 | E-posta Pazarlama Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
-| 48 | Influencer İlişkileri Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
-| 49 | Landing Page Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
-| 50 | Analytics Raporlama Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 44 | E-posta Pazarlama Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 45 | Influencer İlişkileri Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 46 | PR ve Medya İlişkileri Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 47 | Reklam Kampanya Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
+| 48 | Ortaklık ve İşbirliği Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
+| 49 | Landing Page Uzmanı | Pazarlama | 1.0 | 🔄 TBD |
+| 50 | Analytics Raporlama Uzmanı | Pazarlama | 1.0 | 🔄 TBD |
 | 51 | Veri Güvenliği Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
 | 52 | DevOps Mühendisi | AI-Ops | 1.0 | ✅ Aktif |
 | 53 | AI Model Entegrasyon Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
