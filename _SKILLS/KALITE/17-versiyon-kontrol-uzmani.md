@@ -140,7 +140,7 @@ PATCH (0.0.X) = Küçük düzeltme
 │     └─ Sebep belirtilmeli                              │
 │                                                         │
 │  2. ETKİ ANALİZİ                                        │
-│     └─ Hangi bağlı lılıklar etkilenecek?                │
+│     └─ Hangi bağımlılıklar etkilenecek?                │
 │                                                         │
 │  3. YEDEK OLUŞTURMA                                     │
 │     └─ Mevcut versiyon kaydedilir                      │
