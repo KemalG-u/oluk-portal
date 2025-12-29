@@ -69,6 +69,16 @@
 | 55 | Erişilebilirlik Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
 | 56 | Kriz Müdahale Uzmanı | Destek | 1.0 | ✅ Aktif |
 | 57 | Kullanıcı Eğitim Uzmanı | Destek | 1.0 | ✅ Aktif |
+| 58 | Topluluk Yöneticisi (Growth) | Büyüme | 1.0 | ✅ Aktif |
+| 59 | Referral Program Uzmanı | Büyüme | 1.0 | ✅ Aktif |
+| 60 | Lokalizasyon Uzmanı | Büyüme | 1.0 | ✅ Aktif |
+| 61 | ASO Uzmanı | Büyüme | 1.0 | ✅ Aktif |
+| 62 | Fiyatlandırma Stratejisti | Büyüme | 1.0 | ✅ Aktif |
+| 63 | Ödeme Sistemleri Uzmanı | Finans | 1.0 | ✅ Aktif |
+| 64 | Muhasebe ve Finans Uzmanı | Finans | 1.0 | ✅ Aktif |
+| 65 | Yasal ve Uyumluluk Uzmanı | Finans | 1.0 | ✅ Aktif |
+| 66 | Ses Mühendisi | Prodüksiyon | 1.0 | ✅ Aktif |
+| 67 | Görsel Tasarımcı | Prodüksiyon | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
