@@ -1,11 +1,11 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 29 Aralık 2025  
-**Toplam Skill:** 34 (eklenecek: 96)
+**Toplam Skill:** 44 (eklenecek: 86)
 
 ## DURUM
 
-✅ FAZ 2 Tamamlandı - 34 Skill aktif
+✅ FAZ 2 Tamamlandı - 44 Skill aktif
 
 ## SKILL LİSTESİ
 
@@ -45,6 +45,16 @@
 | 31 | Topluluk Yöneticisi | Destek | 1.0 | ✅ Aktif |
 | 32 | Müşteri Destek Uzmanı | Destek | 1.0 | ✅ Aktif |
 | 33 | Geri Bildirim Analisti | Destek | 1.0 | ✅ Aktif |
+| 34 | Hikaye Anlatıcısı | İçerik | 1.0 | ✅ Aktif |
+| 35 | Metafor Ustası | İçerik | 1.0 | ✅ Aktif |
+| 36 | Ses Scripti Yazarı | İçerik | 1.0 | ✅ Aktif |
+| 37 | Video Script Yazarı | İçerik | 1.0 | ✅ Aktif |
+| 38 | Altyazı/Caption Uzmanı | İçerik | 1.0 | ✅ Aktif |
+| 39 | Çeviri Koordinatörü | İçerik | 1.0 | ✅ Aktif |
+| 40 | Arşiv Yöneticisi | İçerik | 1.0 | ✅ Aktif |
+| 41 | Anahtar Kelime Uzmanı | İçerik | 1.0 | ✅ Aktif |
+| 42 | Kullanıcı Hikayeleri Yazarı | İçerik | 1.0 | ✅ Aktif |
+| 43 | FAQ/Yardım İçerik Yazarı | İçerik | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
@@ -101,3 +111,22 @@
 - 31-Topluluk Yöneticisi ✅
 - 32-Müşteri Destek Uzmanı ✅
 - 33-Geri Bildirim Analisti ✅
+
+## FAZ 2 GRUP 10 - İÇERİK YARATIM ARAÇLARI (Part 1)
+
+- 34-Hikaye Anlatıcısı ✅
+- 35-Metafor Ustası ✅
+- 36-Ses Scripti Yazarı ✅
+
+## FAZ 2 GRUP 11 - İÇERİK YARATIM ARAÇLARI (Part 2)
+
+- 37-Video Script Yazarı ✅
+- 38-Altyazı/Caption Uzmanı ✅
+- 39-Çeviri Koordinatörü ✅
+
+## FAZ 2 GRUP 12 - İÇERİK YÖNETİMİ
+
+- 40-Arşiv Yöneticisi ✅
+- 41-Anahtar Kelime Uzmanı ✅
+- 42-Kullanıcı Hikayeleri Yazarı ✅
+- 43-FAQ/Yardım İçerik Yazarı ✅
