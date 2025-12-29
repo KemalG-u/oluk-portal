@@ -1,11 +1,11 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 29 Aralık 2025  
-**Toplam Skill:** 50 (eklenecek: 80)
+**Toplam Skill:** 57 (eklenecek: 73)
 
 ## DURUM
 
-✅ FAZ 2 Tamamlandı - 44 Skill aktif
+✅ FAZ 2 Genişletildi - 57 Skill aktif
 
 ## SKILL LİSTESİ
 
@@ -58,6 +58,17 @@
 | 44 | Reklam Kampanya Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
 | 45 | PR Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
 | 46 | Ortaklık Yöneticisi | Pazarlama | 1.0 | ✅ Aktif |
+| 47 | E-posta Pazarlama Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 48 | Influencer İlişkileri Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 49 | Landing Page Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 50 | Analytics Raporlama Uzmanı | Pazarlama | 1.0 | ✅ Aktif |
+| 51 | Veri Güvenliği Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
+| 52 | DevOps Mühendisi | AI-Ops | 1.0 | ✅ Aktif |
+| 53 | AI Model Entegrasyon Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
+| 54 | Mobil Uygulama Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
+| 55 | Erişilebilirlik Uzmanı | AI-Ops | 1.0 | ✅ Aktif |
+| 56 | Kriz Müdahale Uzmanı | Destek | 1.0 | ✅ Aktif |
+| 57 | Kullanıcı Eğitim Uzmanı | Destek | 1.0 | ✅ Aktif |
 
 ## FAZ 2 GRUP 1
 
