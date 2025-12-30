@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { ExperiencesSection } from '@/components/ExperiencesSection';
 import { generateBreadcrumbSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -287,6 +288,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 12 DENEYİM */}
+      <ExperiencesSection />
 
       {/* HOW IT WORKS */}
       <section className="relative py-32 px-8 bg-cream">
