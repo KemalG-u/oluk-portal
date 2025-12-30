@@ -1,14 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
+import { ExperiencesSection } from '@/components/ExperiencesSection';
+import { generateBreadcrumbSchema } from '@/lib/seo';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
   DoorOpen, 
   Sparkle, 
   ArrowRight,
-  MirrorSimple,
-  HeartPulse,
+  Circle,
+  Heart,
   UsersThree,
   Hourglass,
   Compass,
@@ -17,8 +19,7 @@ import {
   Stairs,
   Clock,
   Key,
-  BookOpen,
-  Quotes
+  BookOpen
 } from '@phosphor-icons/react';
 
 export default function Home() {
@@ -68,7 +69,17 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbSchema([
+              { name: 'Ana Sayfa', url: 'https://oluk.org' },
+            ])
+          ),
+        }}
+      />
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-8 py-8 bg-gradient-to-b from-cream-light to-cream overflow-hidden">
         {/* Background Pattern */}
@@ -84,73 +95,115 @@ export default function Home() {
         <div data-parallax className="absolute bottom-[15%] left-[8%] w-[60px] h-[60px] border border-sage opacity-20 animate-float" style={{ animationDuration: '12s' }} />
         <div data-parallax className="absolute bottom-[25%] right-[5%] w-[100px] h-[100px] rounded-full border border-gold opacity-15 animate-float-slow" style={{ animationDuration: '9s' }} />
 
-        <div className="relative z-10 max-w-[800px]">
-          {/* Door Icon */}
+        <div className="relative z-10 max-w-[900px]">
+          {/* Hook */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-12"
           >
-            <div className="w-20 h-[120px] mx-auto relative">
-              <div className="w-full h-full border-2 border-gold rounded-t-[40px] relative overflow-hidden bg-gradient-to-br from-gold/10 to-transparent">
-                <div className="absolute right-[-2px] top-0 bottom-0 w-5 bg-gradient-to-l from-gold/40 to-transparent animate-pulse-glow" />
-                <div className="absolute right-[15px] top-1/2 w-2 h-2 bg-gold rounded-full" />
-              </div>
-            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl text-teal mb-6 tracking-tight leading-[1.2]">
+              Sana da mı oldu?
+            </h1>
           </motion.div>
 
-          {/* Badge */}
-          <motion.div 
+          {/* Short → Long → Short + Inner Voice */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-3 text-sm tracking-[0.15em] text-teal mb-8 px-6 py-3 border border-gold-muted rounded-full bg-white/60 backdrop-blur-sm"
+            className="mb-12 space-y-6"
+          >
+            <p className="text-xl md:text-2xl text-text-dark leading-[1.8]">
+              Bir an. Açıklayamadığın.
+            </p>
+            <p className="text-lg md:text-xl text-text-muted leading-[1.9] max-w-[700px] mx-auto">
+              O sabah - belki aynada bakarken, belki bir sessizlikte kalırken,
+              belki de hiçbir sebep yokken - içinden bir şey geçti. Tanıdık ama ismi yok.
+              Gerçek ama kanıtı yok.
+            </p>
+            <p className="text-xl md:text-2xl text-teal font-medium">
+              Kimseye anlatamadın.
+            </p>
+            <p className="text-base md:text-lg text-text-muted/80 italic max-w-[600px] mx-auto">
+              (Ya "hayal görüyorsun" derlerse? Ya "sen biraz garip" desinler?)
+            </p>
+          </motion.div>
+
+          {/* Paradox / Truth */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-12"
+          >
+            <p className="text-2xl md:text-3xl text-teal leading-[1.6] max-w-[650px] mx-auto">
+              Ne olduğunu bilmiyordun.<br />
+              <span className="text-gold">Ama gerçek olduğunu biliyordun.</span>
+            </p>
+          </motion.div>
+
+          {/* Badge / Normalization */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="inline-flex items-center gap-3 text-sm tracking-[0.15em] text-teal mb-10 px-6 py-3 border border-gold-muted rounded-full bg-white/60 backdrop-blur-sm"
           >
             <div className="flex gap-1">
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-heartbeat" />
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-heartbeat" style={{ animationDelay: '0.2s' }} />
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-heartbeat" style={{ animationDelay: '0.4s' }} />
             </div>
-            Beş bin kalp. Tek bir ritim.
+            Beş bin kalp. Aynı ritim. Yalnız değilsin.
           </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-6xl md:text-7xl lg:text-8xl text-teal mb-2 tracking-tight"
-            style={{ textShadow: '0 4px 30px rgba(13, 79, 79, 0.1)' }}
+
+          {/* Silence */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mb-10"
           >
-            Dur.
-            <span className="block text-[0.5em] text-gold italic mt-2">Ve Hatırla.</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-text-muted max-w-[500px] mx-auto my-8 leading-[1.9]"
-          >
-            On konaklık bir yolculuk.<br />
-            Malumat yığını değil, <strong className="text-teal font-medium">halden hale geçiş</strong>.<br />
-            Bilmek için değil, <strong className="text-teal font-medium">olmak</strong> için.
-          </motion.p>
-          
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-1 h-1 bg-gold rounded-full opacity-40" />
+              <div className="w-1 h-1 bg-gold rounded-full opacity-40" />
+              <div className="w-1 h-1 bg-gold rounded-full opacity-40" />
+            </div>
+          </motion.div>
+
+          {/* Invitation */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mb-8"
+          >
+            <p className="text-lg text-text-muted max-w-[550px] mx-auto leading-[1.9] mb-10">
+              Burası o anları yaşayanlar için.<br />
+              Anlatmaktan korkanlar.<br />
+              Yalnız hissedenler.<br />
+              <strong className="text-teal font-medium">Artık yalnız değiller.</strong>
+            </p>
+          </motion.div>
+          
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >{/* Kapıyı Arala Butonu */}
+          >
+            {/* Kapıyı Arala Butonu */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="relative"
+              className="relative group"
             >
               <Link 
                 href="/dersler" 
-                className="group inline-flex items-center gap-3 px-10 py-[1.1rem] bg-teal text-cream font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-teal transition-all duration-300 hover:bg-teal-light hover:shadow-[0_10px_30px_rgba(13,79,79,0.3)] relative overflow-hidden"
+                className="inline-flex items-center gap-3 px-10 py-[1.1rem] bg-teal text-cream font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-teal transition-all duration-300 hover:bg-teal-light hover:shadow-[0_10px_30px_rgba(13,79,79,0.3)] relative overflow-hidden"
               >
                 <DoorOpen size={24} weight="duotone" className="relative z-10" />
                 <span className="relative z-10">Kapıyı Arala</span>
@@ -158,13 +211,11 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
               </Link>
               
-              {/* Tooltip */}
-              <span className="absolute -bottom-24 left-1/2 -translate-x-1/2 
-                             bg-gray-900/95 text-white text-sm px-4 py-3 rounded-xl
-                             opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                             w-80 text-center leading-relaxed pointer-events-none z-50 shadow-xl">
-                On menzillik bir sefer, kendinden kendine. Eşiği geç, ruhun yeni mevsimine ilk adımı at.
-                <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-900/95 rotate-45" />
+              {/* Modern Tooltip - Üstte */}
+              <span className="absolute -top-20 left-1/2 -translate-x-1/2 bg-gradient-to-br from-teal to-teal-dark text-cream text-sm px-5 py-3 rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:-translate-y-2 transition-all duration-300 w-72 text-center leading-relaxed pointer-events-none z-50 shadow-2xl border border-teal-light/20 backdrop-blur-sm">
+                <span className="font-serif italic">On menzillik bir sefer, kendinden kendine.</span>
+                {/* Ok işareti - Alt */}
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-teal to-teal-dark rotate-45 border-r border-b border-teal-light/20" />
               </span>
             </motion.div>
 
@@ -172,27 +223,25 @@ export default function Home() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="relative"
+              className="relative group"
             >
               <Link 
                 href="/sirdas" 
-                className="group inline-flex items-center gap-3 px-10 py-[1.1rem] bg-gradient-to-br from-gold to-gold/90 text-white font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-gold transition-all duration-300 hover:shadow-[0_10px_30px_rgba(201,169,98,0.4)] relative overflow-hidden"
+                className="inline-flex items-center gap-3 px-10 py-[1.1rem] bg-gradient-to-br from-gold to-gold/90 text-white font-serif text-xl font-medium tracking-[0.05em] rounded border-2 border-gold transition-all duration-300 hover:shadow-[0_10px_30px_rgba(201,169,98,0.4)] relative overflow-hidden"
               >
                 <Sparkle size={24} weight="duotone" className="relative z-10" />
                 <span className="relative z-10">Sırdaş</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
               </Link>
               
-              {/* Tooltip */}
-              <span className="absolute -bottom-24 left-1/2 -translate-x-1/2 
-                             bg-gray-900/95 text-white text-sm px-4 py-3 rounded-xl
-                             opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                             w-80 text-center leading-relaxed pointer-events-none z-50 shadow-xl">
-                Gecenin her vaktinde açık bir kapı; sırrını ver, sükûneti al. Kelâmın süzüldüğü sadık bir yankı.
-                <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-900/95 rotate-45" />
+              {/* Modern Tooltip - Üstte */}
+              <span className="absolute -top-20 left-1/2 -translate-x-1/2 bg-gradient-to-br from-gold via-gold to-gold-dark text-white text-sm px-5 py-3 rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:-translate-y-2 transition-all duration-300 w-72 text-center leading-relaxed pointer-events-none z-50 shadow-2xl border border-gold-light/30 backdrop-blur-sm">
+                <span className="font-serif italic">Gecenin her vaktinde açık bir kapı</span>
+                {/* Ok işareti - Alt */}
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-gold to-gold-dark rotate-45 border-r border-b border-gold-light/30" />
               </span>
             </motion.div>
-          </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -200,7 +249,6 @@ export default function Home() {
       <section className="relative py-32 px-8 bg-teal text-cream overflow-hidden">
         {/* Wave transition */}
         <div className="absolute top-[-50px] left-0 right-0 h-[100px] bg-cream" style={{ clipPath: 'ellipse(70% 100% at 50% 0%)' }} />
-        
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16">
             {/* Listen Icon */}
@@ -215,7 +263,7 @@ export default function Home() {
               </div>
             </div>
 
-            <h2 className="text-5xl md:text-6xl text-gold mb-4">Bu Ses Tanıdık mı?</h2>
+            <h2 className="text-5xl md:text-6xl text-gold mb-4">Anlatamadın mı?</h2>
             <div className="flex items-center justify-center gap-4 my-8">
               <div className="w-[60px] h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
               <div className="w-2 h-2 bg-gold rotate-45" />
@@ -225,10 +273,10 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { text: "Gecen uykusuz.\nGündüzün ruhsuz.\nTakvim yaprakları anlamsız." },
-              { text: "Çok okudun. Çok dinledin. Çok aradın.\nAma o boşluk dolmadı." },
-              { text: "Bir sızı.\nTam şurada.\nAdı yok. Yeri belli." },
-              { text: "Bir hevesle başla.\nBir hüsranla bırak.\nBu kısır döngü kaderin değil." }
+              { text: "O gece oldu.\nBir şey gördün. Hissettin.\nSabah kimseye söylemedin." },
+              { text: "\"Hayal görüyorsun\" derlerdi.\n(Biliyorsun ki hayal değildi.)\nAma nereden anlatsın?" },
+              { text: "İçinde kaldı.\nYıllar geçti.\nHâlâ unutamadın." },
+              { text: "\"Bende bir tuhaflık var\" diye düşündün.\nBelki de öyleydi.\nBelki de değildi." }
             ].map((pain, i) => (
               <div key={i} className="reveal text-center p-10 rounded-xl bg-white/[0.03] border border-gold/20 transition-all duration-400 hover:bg-white/[0.06] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] relative overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-gradient-to-r before:from-transparent before:via-gold-muted before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300">
                 <p className="text-lg leading-[1.9] text-cream/90 whitespace-pre-line">{pain.text}</p>
@@ -261,8 +309,8 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: MirrorSimple, title: "Kırık ayna değil, tam suret.", text: "Tesadüf yok. Tertip var. Başı belli, sonu aydınlık." },
-              { icon: HeartPulse, title: "Seyretmek yok. Yaşamak var.", text: "Satırda kalmaz, sadra şifa olur." },
+              { icon: Circle, title: "Kırık ayna değil, tam suret.", text: "Tesadüf yok. Tertip var. Başı belli, sonu aydınlık." },
+              { icon: Heart, title: "Seyretmek yok. Yaşamak var.", text: "Satırda kalmaz, sadra şifa olur." },
               { icon: UsersThree, title: "Yol uzun. Ama tenhada yürümüyorsun.", text: "Binlerce nefes, tek bir niyet. Omuz omuza." },
               { icon: Hourglass, title: "Otuz yılın imbiğinden süzüldü.", text: "Posası atıldı. Özü kaldı. Sana uzanan bir el." }
             ].map((feature, i) => (
@@ -280,6 +328,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 12 DENEYİM */}
+      <ExperiencesSection />
 
       {/* HOW IT WORKS */}
       <section className="relative py-32 px-8 bg-cream">
@@ -303,20 +354,20 @@ export default function Home() {
               <div className="w-[60px] h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
             </div>
           </div>
-          icon: Compass, num: "I", title: "Niyet", text: "Kapı açık. Kilit yok. Bedel yok.\nSadece gir ve gör." },
+          
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-[35px] top-20 bottom-20 w-[3px] bg-gradient-to-b from-gold via-sage to-teal rounded-full" />
+            
+            {[
+              { icon: Compass, num: "I", title: "Niyet", text: "Kapı açık. Kilit yok. Bedel yok.\nSadece gir ve gör." },
               { icon: Path, num: "II", title: "Sebat", text: "Acele etme. Her gün bir damla.\nKendi ritminde. Sindire sindire." },
               { icon: Star, num: "III", title: "Vuslat", text: "On adımın sonunda.\nEski sen geride. Yeni bir yüz aynada." }
             ].map((step, i) => (
               <div key={i} className="reveal flex gap-10 py-10">
-                <div className="w-[70px] h-[70px] bg-cream border-[3px] border-gold rounded-full flex items-center justify-center font-serif text-3xl text-teal shrink-0 relative z-10 shadow-[0_5px_20px_rgba(201,169,98,0.2)] transition-all duration-300 hover:bg-gold hover:text-cream hover:scale-110 group">
+                <div className="group w-[70px] h-[70px] bg-cream border-[3px] border-gold rounded-full flex items-center justify-center font-serif text-3xl text-teal shrink-0 relative z-10 shadow-[0_5px_20px_rgba(201,169,98,0.2)] transition-all duration-300 hover:bg-gold hover:text-cream hover:scale-110">
                   <step.icon size={32} weight="duotone" className="absolute opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="group-hover:opacity-0 transition-opacity">{step.num}</span>tle: "Niyet", text: "Kapı açık. Kilit yok. Bedel yok.\nSadece gir ve gör." },
-              { num: "II", title: "Sebat", text: "Acele etme. Her gün bir damla.\nKendi ritminde. Sindire sindire." },
-              { num: "III", title: "Vuslat", text: "On adımın sonunda.\nEski sen geride. Yeni bir yüz aynada." }
-            ].map((step, i) => (
-              <div key={i} className="reveal flex gap-10 py-10">
-                <div className="w-[70px] h-[70px] bg-cream border-[3px] border-gold rounded-full flex items-center justify-center font-serif text-3xl text-teal shrink-0 relative z-10 shadow-[0_5px_20px_rgba(201,169,98,0.2)] transition-all duration-300 hover:bg-gold hover:text-cream hover:scale-110">
-                  {step.num}
+                  <span className="group-hover:opacity-0 transition-opacity">{step.num}</span>
                 </div>
                 <div className="pt-2">
                   <h3 className="text-2xl text-gold mb-3 uppercase tracking-[0.15em]">{step.title}</h3>
@@ -339,7 +390,14 @@ export default function Home() {
             <h2 className="text-5xl md:text-6xl text-cream mb-4">Heybende Ne Var?</h2>
             <div className="flex items-center justify-center gap-4 my-8">
               <div className="w-[60px] h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-              <dicon: Stairs, title: "On Basamak", text: "Temelden çatıya.\nTaş taş üstüne.\nSağlam bir inşâ." },
+              <div className="w-2 h-2 bg-gold rotate-45" />
+              <div className="w-[60px] h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Stairs, title: "On Basamak", text: "Temelden çatıya.\nTaş taş üstüne.\nSağlam bir inşâ." },
               { icon: Clock, title: "Vakitler", text: "Seherde uyanış. Gecede duruluş.\nGünün her saati için bir sığınak." },
               { icon: Key, title: "Anahtarlar", text: "Nefes. Ses. Söz. Ve sükûnet.\nTabiatın kendi lisanı." },
               { icon: BookOpen, title: "İrfan Hazinesi", text: "Kelimelerin kökü.\nSembollerin sırrı.\nMerakın şifası." }
@@ -350,16 +408,9 @@ export default function Home() {
                   weight="duotone" 
                   color="#C9A962" 
                   className="mx-auto mb-4 relative z-10 transition-transform duration-300 group-hover:scale-110" 
-                /
-            {[
-              { title: "On Basamak", text: "Temelden çatıya.\nTaş taş üstüne.\nSağlam bir inşâ." },
-              { title: "Vakitler", text: "Seherde uyanış. Gecede duruluş.\nGünün her saati için bir sığınak." },
-              { title: "Anahtarlar", text: "Nefes. Ses. Söz. Ve sükûnet.\nTabiatın kendi lisanı." },
-              { title: "İrfan Hazinesi", text: "Kelimelerin kökü.\nSembollerin sırrı.\nMerakın şifası." }
-            ].map((card, i) => (
-              <div key={i} className="reveal bg-white/[0.08] backdrop-blur-md p-10 rounded-2xl text-center border border-white/15 transition-all duration-400 hover:bg-white/[0.12] hover:-translate-y-2 hover:shadow-[0_25px_50px_rgba(0,0,0,0.2)] relative overflow-hidden before:absolute before:top-[-50%] before:left-[-50%] before:w-[200%] before:h-[200%] before:bg-[radial-gradient(circle,_rgba(255,255,255,0.1)_0%,_transparent_50%)] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-400">
+                />
                 <h3 className="text-2xl text-gold-muted mb-4 relative z-10">{card.title}</h3>
-                <p className="text-[15px] leading-[1.9] text-cream/85 whitespace-pre-line relative z-10">{card.text}</p>
+                <p className="text-base leading-[1.9] text-cream/85 whitespace-pre-line relative z-10">{card.text}</p>
               </div>
             ))}
           </div>
@@ -426,7 +477,7 @@ export default function Home() {
             ].map((testimonial, i) => (
               <div key={i} className="reveal bg-cream p-10 rounded-xl relative border-b-4 border-gold shadow-[0_10px_40px_rgba(0,0,0,0.05)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] before:absolute before:top-6 before:left-6 before:w-10 before:h-[30px] before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2740%27%20height=%2730%27%20viewBox=%270%200%2040%2030%27%20fill=%27none%27%20xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath%20d=%27M0%2030V18C0%2012%201.5%207.5%204.5%204.5C7.5%201.5%2012%200%2018%200V6C14%206%2011%207%209%209C7%2011%206%2014%206%2018H16V30H0ZM24%2030V18C24%2012%2025.5%207.5%2028.5%204.5C31.5%201.5%2036%200%2042%200V6C38%206%2035%207%2033%209C31%2011%2030%2014%2030%2018H40V30H24Z%27%20fill=%27%23C9A962%27%20opacity=%270.2%27/%3E%3C/svg%3E')] before:bg-no-repeat">
                 <p className="text-lg italic text-text-dark leading-[1.9] mb-6 pt-4 relative z-10">{testimonial.quote}</p>
-                <cite className="not-italic text-teal font-medium text-[15px] flex items-center gap-2">
+                <cite className="not-italic text-teal font-medium text-base flex items-center gap-2">
                   <span className="w-5 h-0.5 bg-gold" />
                   {testimonial.author}
                 </cite>
@@ -483,7 +534,7 @@ export default function Home() {
         <div className="relative z-10">
           <div className="font-serif text-5xl text-gold mb-3 tracking-[0.3em]">OLUK</div>
           <div className="text-lg text-cream/60 mb-6 italic">Akışın Yatağı. Ruhun Ocağı.</div>
-          <p className="text-[15px] text-cream/40 max-w-md mx-auto leading-[1.8]">
+          <p className="text-base text-cream/40 max-w-md mx-auto leading-[1.8]">
             Şehrin gürültüsünde bir sığınak. Dijital bir mağara.
           </p>
           <div className="flex justify-center gap-2 mt-8">
@@ -493,6 +544,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </>
+    </main>
   );
 }
