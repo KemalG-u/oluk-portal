@@ -95,63 +95,104 @@ export default function Home() {
         <div data-parallax className="absolute bottom-[15%] left-[8%] w-[60px] h-[60px] border border-sage opacity-20 animate-float" style={{ animationDuration: '12s' }} />
         <div data-parallax className="absolute bottom-[25%] right-[5%] w-[100px] h-[100px] rounded-full border border-gold opacity-15 animate-float-slow" style={{ animationDuration: '9s' }} />
 
-        <div className="relative z-10 max-w-[800px]">
-          {/* Door Icon */}
+        <div className="relative z-10 max-w-[900px]">
+          {/* Hook */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-12"
           >
-            <div className="w-20 h-[120px] mx-auto relative">
-              <div className="w-full h-full border-2 border-gold rounded-t-[40px] relative overflow-hidden bg-gradient-to-br from-gold/10 to-transparent">
-                <div className="absolute right-[-2px] top-0 bottom-0 w-5 bg-gradient-to-l from-gold/40 to-transparent animate-pulse-glow" />
-                <div className="absolute right-[15px] top-1/2 w-2 h-2 bg-gold rounded-full" />
-              </div>
-            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl text-teal mb-6 tracking-tight leading-[1.2]">
+              Sana da mı oldu?
+            </h1>
           </motion.div>
 
-          {/* Badge */}
-          <motion.div 
+          {/* Short → Long → Short + Inner Voice */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-3 text-sm tracking-[0.15em] text-teal mb-8 px-6 py-3 border border-gold-muted rounded-full bg-white/60 backdrop-blur-sm"
+            className="mb-12 space-y-6"
+          >
+            <p className="text-xl md:text-2xl text-text-dark leading-[1.8]">
+              Bir an. Açıklayamadığın.
+            </p>
+            <p className="text-lg md:text-xl text-text-muted leading-[1.9] max-w-[700px] mx-auto">
+              O sabah - belki aynada bakarken, belki bir sessizlikte kalırken,
+              belki de hiçbir sebep yokken - içinden bir şey geçti. Tanıdık ama ismi yok.
+              Gerçek ama kanıtı yok.
+            </p>
+            <p className="text-xl md:text-2xl text-teal font-medium">
+              Kimseye anlatamadın.
+            </p>
+            <p className="text-base md:text-lg text-text-muted/80 italic max-w-[600px] mx-auto">
+              (Ya "hayal görüyorsun" derlerse? Ya "sen biraz garip" desinler?)
+            </p>
+          </motion.div>
+
+          {/* Paradox / Truth */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-12"
+          >
+            <p className="text-2xl md:text-3xl text-teal leading-[1.6] max-w-[650px] mx-auto">
+              Ne olduğunu bilmiyordun.<br />
+              <span className="text-gold">Ama gerçek olduğunu biliyordun.</span>
+            </p>
+          </motion.div>
+
+          {/* Badge / Normalization */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="inline-flex items-center gap-3 text-sm tracking-[0.15em] text-teal mb-10 px-6 py-3 border border-gold-muted rounded-full bg-white/60 backdrop-blur-sm"
           >
             <div className="flex gap-1">
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-heartbeat" />
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-heartbeat" style={{ animationDelay: '0.2s' }} />
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-heartbeat" style={{ animationDelay: '0.4s' }} />
             </div>
-            Beş bin kalp. Tek bir ritim.
+            Beş bin kalp. Aynı ritim. Yalnız değilsin.
           </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-6xl md:text-7xl lg:text-8xl text-teal mb-2 tracking-tight"
-            style={{ textShadow: '0 4px 30px rgba(13, 79, 79, 0.1)' }}
+
+          {/* Silence */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mb-10"
           >
-            Dur.
-            <span className="block text-[0.5em] text-gold italic mt-2">Ve Hatırla.</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-text-muted max-w-[500px] mx-auto my-8 leading-[1.9]"
-          >
-            On konaklık bir yolculuk.<br />
-            Malumat yığını değil, <strong className="text-teal font-medium">halden hale geçiş</strong>.<br />
-            Bilmek için değil, <strong className="text-teal font-medium">olmak</strong> için.
-          </motion.p>
-          
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-1 h-1 bg-gold rounded-full opacity-40" />
+              <div className="w-1 h-1 bg-gold rounded-full opacity-40" />
+              <div className="w-1 h-1 bg-gold rounded-full opacity-40" />
+            </div>
+          </motion.div>
+
+          {/* Invitation */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mb-8"
+          >
+            <p className="text-lg text-text-muted max-w-[550px] mx-auto leading-[1.9] mb-10">
+              Burası o anları yaşayanlar için.<br />
+              Anlatmaktan korkanlar.<br />
+              Yalnız hissedenler.<br />
+              <strong className="text-teal font-medium">Artık yalnız değiller.</strong>
+            </p>
+          </motion.div>
+          
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             {/* Kapıyı Arala Butonu */}
