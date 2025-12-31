@@ -1,0 +1,478 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { 
+  Sparkle, 
+  Heart, 
+  Eye, 
+  Moon, 
+  Wind, 
+  Lightning,
+  Spiral,
+  ArrowRight,
+  Play,
+  Check,
+  Star,
+  Users,
+  BookOpen,
+  Shield
+} from '@phosphor-icons/react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// OLUK.ORG ANA SAYFA
+// Ottoman Cyberpunk Estetiği | Teal #0D4F4F | Gold #C9A962 | Cream #F5F0E6
+// ═══════════════════════════════════════════════════════════════════════════
+
+export default function HomePage() {
+  const [activeExperience, setActiveExperience] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+
+  // 12 Deneyim verisi
+  const experiences = [
+    { icon: Lightning, title: 'Enerji Hissetme', desc: 'Avuçlarındaki sıcaklık, kimse görmedi.' },
+    { icon: Spiral, title: 'Déjà Vu', desc: 'Bu anı daha önce yaşadın, değil mi?' },
+    { icon: Eye, title: 'Sezgisel Bilme', desc: 'Telefon çalmadan kimin aradığını bildin.' },
+    { icon: Moon, title: 'Rüya Mesajları', desc: 'Uyandığında hâlâ oradaydın.' },
+    { icon: Users, title: 'Enerji Bulaşması', desc: 'Yanından geçtin, halin değişti.' },
+    { icon: Heart, title: 'Mekan Hafızası', desc: 'Duvarlarda bir şey vardı.' },
+    { icon: Wind, title: 'Ani Duygu Dalgası', desc: 'Sebepsiz ağladın. Ya da güldün.' },
+    { icon: Sparkle, title: 'Eşzamanlılık', desc: 'Düşündüğün anda karşına çıktı.' },
+    { icon: Shield, title: 'Bedensel Bilgelik', desc: 'Sırtın ürperdi, biri bakıyordu.' },
+    { icon: Star, title: 'Mistik Deneyim', desc: 'Bir an için her şey durdu.' },
+    { icon: BookOpen, title: 'Çocukluk Anıları', desc: 'Küçükken gördün, kimseye anlatmadın.' },
+    { icon: Eye, title: 'Açıklanamayan', desc: 'Bir şey oldu. Adı yok.' },
+  ];
+
+  // Auto-rotate experiences
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveExperience((prev) => (prev + 1) % experiences.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <main className="bg-[#F5F0E6] text-[#0D4F4F] overflow-hidden">
+      
+      {/* ═══════════════════════════════════════════════════════════════════
+          HERO SECTION - "Sana da mı oldu?"
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative min-h-screen flex items-center justify-center px-6">
+        {/* Animated background */}
+        <motion.div 
+          className="absolute inset-0 opacity-30"
+          style={{ y: backgroundY }}
+        >
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#C9A962]/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#0D4F4F]/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#C9A962]/10 to-transparent rounded-full" />
+        </motion.div>
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-[#C9A962]/30 bg-white/50 backdrop-blur-sm"
+          >
+            <Sparkle weight="duotone" className="text-[#C9A962]" size={16} />
+            <span className="text-sm tracking-[0.2em] uppercase">Türkiye'nin İlk Spiritüel Platformu</span>
+          </motion.div>
+
+          {/* Main headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-[1.1]"
+          >
+            Sana da mı oldu?
+          </motion.h1>
+
+          {/* Subheadline - emotional hook */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="space-y-4 mb-12"
+          >
+            <p className="text-xl md:text-2xl text-[#0D4F4F]/80 max-w-2xl mx-auto leading-relaxed">
+              Bir şey hissettin. Açıklayamadın.
+            </p>
+            <p className="text-lg text-[#0D4F4F]/60 italic">
+              (Ya deli sanırlarsa?)
+            </p>
+            <p className="text-xl md:text-2xl text-[#0D4F4F]/80">
+              Değilsin. Ve yalnız değilsin.
+            </p>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link
+              href="/kayit"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-[#0D4F4F] text-white rounded-full hover:bg-[#0D4F4F]/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-[#0D4F4F]/20"
+            >
+              <span className="font-medium">Yolculuğa Başla</span>
+              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+            </Link>
+            <Link
+              href="#deneyimler"
+              className="inline-flex items-center gap-3 px-8 py-4 border-2 border-[#0D4F4F]/20 rounded-full hover:border-[#C9A962] hover:bg-white/50 transition-all duration-300"
+            >
+              <Play weight="fill" size={20} />
+              <span>12 Deneyimi Keşfet</span>
+            </Link>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="w-6 h-10 border-2 border-[#0D4F4F]/30 rounded-full flex justify-center pt-2"
+            >
+              <div className="w-1.5 h-1.5 bg-[#C9A962] rounded-full" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          12 DENEYİM - Interactive Carousel
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="deneyimler" className="py-24 px-6 bg-gradient-to-b from-[#F5F0E6] to-white">
+        <div className="max-w-6xl mx-auto">
+          {/* Section header */}
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1 mb-4 text-sm tracking-[0.2em] text-[#C9A962] border border-[#C9A962]/30 rounded-full">
+              12 DENEYİM
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif mb-4">
+              Hangisi sana tanıdık?
+            </h2>
+            <p className="text-[#0D4F4F]/70 max-w-xl mx-auto">
+              Milyonlarca insan aynı şeyleri yaşadı. Sadece konuşmadı.
+            </p>
+          </div>
+
+          {/* Experience grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {experiences.map((exp, idx) => {
+              const Icon = exp.icon;
+              const isActive = idx === activeExperience;
+              return (
+                <motion.button
+                  key={exp.title}
+                  onClick={() => setActiveExperience(idx)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`relative p-6 rounded-2xl text-left transition-all duration-500 ${
+                    isActive 
+                      ? 'bg-[#0D4F4F] text-white shadow-xl shadow-[#0D4F4F]/20' 
+                      : 'bg-white hover:bg-[#F5F0E6] border border-[#0D4F4F]/10'
+                  }`}
+                >
+                  <Icon 
+                    size={28} 
+                    weight="duotone" 
+                    className={isActive ? 'text-[#C9A962]' : 'text-[#C9A962]'} 
+                  />
+                  <h3 className="font-medium mt-3 mb-1">{exp.title}</h3>
+                  <p className={`text-sm ${isActive ? 'text-white/70' : 'text-[#0D4F4F]/60'}`}>
+                    {exp.desc}
+                  </p>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-3 right-3 w-2 h-2 bg-[#C9A962] rounded-full"
+                    />
+                  )}
+                </motion.button>
+              );
+            })}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-12">
+            <Link
+              href="/deneyimler"
+              className="inline-flex items-center gap-2 text-[#0D4F4F] hover:text-[#C9A962] transition-colors"
+            >
+              <span>Tüm deneyimleri incele</span>
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          PROBLEM SECTION - Empathy
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#0D4F4F] text-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left - Problem */}
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-serif leading-tight">
+                Yaşadın.
+                <br />
+                <span className="text-[#C9A962]">Ama anlatamazdın.</span>
+              </h2>
+              
+              <div className="space-y-4 text-white/80">
+                <p>Bir odaya girdin, havası ağırdı. Birinin yanından geçtin, enerjin düştü. Rüyanda gördüğün şey ertesi gün oldu.</p>
+                
+                <p className="italic text-white/60">(Anlatsam deli derler.)</p>
+                
+                <p>Sustun. Yıllarca. Belki kendine bile itiraf etmedin.</p>
+              </div>
+            </div>
+
+            {/* Right - Validation */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Check weight="bold" className="text-[#C9A962] mt-1 flex-shrink-0" size={20} />
+                  <p>Bu deneyimler gerçek</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check weight="bold" className="text-[#C9A962] mt-1 flex-shrink-0" size={20} />
+                  <p>Bilimsel açıklamaları var</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check weight="bold" className="text-[#C9A962] mt-1 flex-shrink-0" size={20} />
+                  <p>Binlerce yıllık gelenekler bunları biliyor</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check weight="bold" className="text-[#C9A962] mt-1 flex-shrink-0" size={20} />
+                  <p>Ve sen yalnız değilsin</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SOLUTION SECTION - What is OLUK
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1 mb-4 text-sm tracking-[0.2em] text-[#C9A962] border border-[#C9A962]/30 rounded-full">
+              OLUK NEDİR?
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6">
+              Akışın Kanalı,<br />
+              <span className="text-[#C9A962]">Dönüşümün Yolu</span>
+            </h2>
+            <p className="text-[#0D4F4F]/70 max-w-2xl mx-auto text-lg">
+              OLUK, bin yıllık Sufi geleneğini modern bilimle buluşturan Türkiye'nin ilk sistematik spiritüel eğitim platformu.
+            </p>
+          </div>
+
+          {/* Features */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: BookOpen,
+                title: '4 Aşamalı Yolculuk',
+                desc: 'Arınma → Koruma → Aktivasyon → İleri Seviye. Her adım bir öncekinin üzerine inşa edilir.',
+              },
+              {
+                icon: Shield,
+                title: 'Güvenli Rehberlik',
+                desc: 'Spiritüel deneyimler riskli olabilir. OLUK seni korur, yönlendirir, asla yalnız bırakmaz.',
+              },
+              {
+                icon: Users,
+                title: 'Sırdaş Topluluk',
+                desc: 'Seninle aynı şeyleri yaşayan insanlar. Yargılanmadan paylaşabileceğin bir alan.',
+              },
+            ].map((feature, idx) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-2xl p-8 shadow-lg shadow-[#0D4F4F]/5 border border-[#0D4F4F]/5 hover:border-[#C9A962]/30 transition-colors"
+                >
+                  <div className="w-12 h-12 bg-[#0D4F4F]/5 rounded-xl flex items-center justify-center mb-6">
+                    <Icon size={24} weight="duotone" className="text-[#C9A962]" />
+                  </div>
+                  <h3 className="text-xl font-medium mb-3">{feature.title}</h3>
+                  <p className="text-[#0D4F4F]/70">{feature.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          JOURNEY SECTION - 4 Phases
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-gradient-to-b from-white to-[#F5F0E6]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif mb-4">Yolculuk Haritası</h2>
+            <p className="text-[#0D4F4F]/70">Dört aşama. Her biri bir kapı.</p>
+          </div>
+
+          <div className="space-y-6">
+            {[
+              { phase: '01', name: 'ARINMA', desc: 'Eski kalıpları temizle. Hafifle. Yer aç.', color: 'from-blue-500/20 to-blue-600/20' },
+              { phase: '02', name: 'KORUMA', desc: 'Enerjini koru. Sınırlarını öğren. Güçlen.', color: 'from-green-500/20 to-green-600/20' },
+              { phase: '03', name: 'AKTİVASYON', desc: 'İçindeki potansiyeli uyandır. Dönüşümü başlat.', color: 'from-amber-500/20 to-amber-600/20' },
+              { phase: '04', name: 'İLERİ SEVİYE', desc: 'Derinleş. Ustalaş. Yol göster.', color: 'from-purple-500/20 to-purple-600/20' },
+            ].map((item, idx) => (
+              <motion.div
+                key={item.phase}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className={`relative flex items-center gap-6 p-6 rounded-2xl bg-gradient-to-r ${item.color} border border-white/50`}
+              >
+                <span className="text-4xl font-serif text-[#0D4F4F]/20">{item.phase}</span>
+                <div>
+                  <h3 className="text-xl font-medium text-[#0D4F4F]">{item.name}</h3>
+                  <p className="text-[#0D4F4F]/70">{item.desc}</p>
+                </div>
+                <ArrowRight className="ml-auto text-[#0D4F4F]/30" size={24} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          TESTIMONIALS
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#0D4F4F] text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif mb-4">Onlar da Yaşadı</h2>
+            <p className="text-white/60">Ve artık konuşuyorlar.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: 'Yıllarca "benimle bir şey yanlış" dedim. OLUK sayesinde anladım: Yanlış olan bir şey yoktu. Sadece kimse anlatmamıştı.',
+                name: 'Elif K.',
+                role: 'İstanbul',
+              },
+              {
+                quote: 'İlk kez yargılanmadan konuşabildim. İlk kez "evet, bu normal" dediler.',
+                name: 'Ayşe M.',
+                role: 'Ankara',
+              },
+              {
+                quote: 'Meditasyon uygulamaları denedim, hiçbiri bu kadar derine inmedi. OLUK farklı.',
+                name: 'Zeynep T.',
+                role: 'İzmir',
+              },
+            ].map((testimonial, idx) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} weight="fill" className="text-[#C9A962]" size={16} />
+                  ))}
+                </div>
+                <p className="text-white/90 mb-6 leading-relaxed">"{testimonial.quote}"</p>
+                <div>
+                  <p className="font-medium">{testimonial.name}</p>
+                  <p className="text-white/50 text-sm">{testimonial.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FINAL CTA
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-32 px-6 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#C9A962]/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0D4F4F]/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl md:text-6xl font-serif mb-6">
+            Hazır mısın?
+          </h2>
+          <p className="text-xl text-[#0D4F4F]/70 mb-4">
+            Yıllardır taşıdığın soruların cevabı burada.
+          </p>
+          <p className="text-lg text-[#0D4F4F]/50 italic mb-12">
+            (Ve evet, sen de yapabilirsin.)
+          </p>
+
+          <Link
+            href="/kayit"
+            className="group inline-flex items-center gap-3 px-10 py-5 bg-[#0D4F4F] text-white text-lg rounded-full hover:bg-[#0D4F4F]/90 transition-all duration-300 hover:scale-105 shadow-xl shadow-[#0D4F4F]/20"
+          >
+            <span className="font-medium">Ücretsiz Başla</span>
+            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
+          </Link>
+
+          <p className="mt-6 text-sm text-[#0D4F4F]/50">
+            Kredi kartı gerekmez · İstediğin zaman iptal
+          </p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FOOTER
+      ═══════════════════════════════════════════════════════════════════ */}
+      <footer className="py-12 px-6 bg-[#0D4F4F] text-white/60">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2">
+              <Sparkle weight="duotone" className="text-[#C9A962]" size={24} />
+              <span className="font-serif text-xl text-white">OLUK</span>
+            </div>
+            
+            <div className="flex gap-6 text-sm">
+              <Link href="/hakkinda" className="hover:text-white transition-colors">Hakkında</Link>
+              <Link href="/iletisim" className="hover:text-white transition-colors">İletişim</Link>
+              <Link href="/gizlilik" className="hover:text-white transition-colors">Gizlilik</Link>
+              <Link href="/sartlar" className="hover:text-white transition-colors">Şartlar</Link>
+            </div>
+
+            <p className="text-sm">© 2025 OLUK. Tüm hakları saklıdır.</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  );
+}
