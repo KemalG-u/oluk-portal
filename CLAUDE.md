@@ -98,3 +98,134 @@ Veya slash komutları:
 ---
 
 *Son güncelleme: Aralık 2025*
+
+---
+
+## 🪞 AYNA MODÜLÜ - SEANS VERİLERİ (11 SEANS)
+
+### 📊 AYNA Modülü İstatistikleri
+
+| Metrik | Değer |
+|--------|-------|
+| Toplam Seans | 11 |
+| Toplam Süre | ~240 dakika |
+| Bölüm Sayısı | 7 |
+| Başlangıç Seansları | 1 |
+| Başlangıç-Orta | 2 |
+| Orta Seanslar | 5 |
+| Orta-Derin | 2 |
+| Derin Seanslar | 1 |
+
+### 🎯 Seanslar (Sırayla)
+
+#### 1. **Seans 1.1: İlk Karşılaşma** [Başlangıç]
+- Süre: 18-20 dk
+- Tema: İlk aynaya bakış
+- Anahtar: Yargılamadan gözlem
+
+#### 2. **Seans 2.1: Yüzeyin Altına** [Başlangıç-Orta]
+- Süre: 20-22 dk
+- Tema: Maskelerinle tanışma
+- Anahtar: Roller ve koruma
+
+#### 3. **Seans 3.1: Gölgeyle Tanışma** [Orta-Derin] ⚠️
+- Süre: 22-25 dk
+- Tema: Gölge parçası
+- Anahtar: Cesaret ve kabul
+- Uyarı: Derin çalışma
+
+#### 4. **Seans 3.2: Yansıtma Aynası** [Orta]
+- Süre: 18-20 dk
+- Tema: Başkaları içinde kendini görme
+- Anahtar: Jung'un projeksiyon teorisi
+
+#### 5. **Seans 4.1: İç Çocukla Buluşma** [Orta-Derin] ⚠️
+- Süre: 25-28 dk
+- Tema: Çocukluk travmasıyla tanışma
+- Anahtar: Şefkat ve terapötik buluşma
+- Uyarı: Yoğun duygular
+
+#### 6. **Seans 4.2: Yeniden Ebeveynlik** [Orta-Derin]
+- Süre: 22-25 dk
+- Tema: İç çocuğa anne/baba olma
+- Anahtar: Reparent ve öz-bakım
+
+#### 7. **Seans 5.1: Parça Haritası** [Orta]
+- Süre: 22-25 dk
+- Tema: İç sistem haritalama
+- Anahtar: Sistemik görüş
+
+#### 8. **Seans 5.2: İç Diyalog** [Orta]
+- Süre: 20-22 dk
+- Tema: Parçalarla konuşma
+- Anahtar: 6F protokolü
+
+#### 9. **Seans 6.1: Şefkat Nefesi** [Başlangıç-Orta]
+- Süre: 18-20 dk
+- Tema: Kendine şefkat
+- Anahtar: Metta meditasyonu
+
+#### 10. **Seans 6.2: Bütünleşme Ritüeli** [Derin]
+- Süre: 25-28 dk
+- Tema: Tüm parçaların kucaklaşması
+- Anahtar: Kutsal bütünleşme
+
+#### 11. **Seans 7.1: Yeni Ayna** [Orta]
+- Süre: 20-22 dk
+- Tema: Dönüşümü tamamlama
+- Anahtar: Yeni gözlerle başlangıç
+
+### 📚 Modülün Yapı Taşları
+
+**Bölüm 1: İLK BAKIŞ**
+- Seans: 1.1
+- Hedef: Kendine meraklı bakış
+
+**Bölüm 2: YÜZEY**
+- Seans: 2.1
+- Hedef: Mask farkındalığı
+
+**Bölüm 3: GÖLGE**
+- Seanslar: 3.1, 3.2
+- Hedef: Shadow work başlangıcı
+
+**Bölüm 4: DERİNLİK**
+- Seanslar: 4.1, 4.2
+- Hedef: İç çocuk şifası
+
+**Bölüm 5: PARÇALAR**
+- Seanslar: 5.1, 5.2
+- Hedef: İç sistem haritalama
+
+**Bölüm 6: KABUL**
+- Seanslar: 6.1, 6.2
+- Hedef: Bütünleşme başlangıcı
+
+**Bölüm 7: YENİ BAKIŞ**
+- Seans: 7.1
+- Hedef: Dönüşümü tamamlama
+
+---
+
+*AYNA Modülü Verileri - 31 Aralık 2025*
+*11 Seans - 240 Dakika - 7 Bölüm*
+
+
+### 📄 JSON Dosyası
+
+**Tam seans verileri:** `upload/AYNA_SEANSLAR.json`
+
+Her seans şu alanları içerir:
+- `id`: Seans numarası (1-11)
+- `slug`: URL-friendly slug
+- `title`: Seans başlığı
+- `bölüm`: Seans bölümü
+- `duration`: Süre (dk)
+- `difficulty`: Zorluk seviyesi
+- `warning`: Uyarı metni (varsa)
+- `content`: TÜSEK BİLGİSİ - Tam seans içeriği
+
+---
+
+*AYNA Modülü JSON Verileri - 31 Aralık 2025 - TAMAMLANDI ✅*
+
