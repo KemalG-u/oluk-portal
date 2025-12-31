@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
 import { isikData } from '@/lib/isik-data';
 import { ChevronRight, Clock, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'IŞIK Modülü - Enerji Farkındalığı | OLUK',
-  description: 'Bedeninizdeki enerjiyi hissedin. Nefes, kalp ve ışık çalışması. Bilimsel temelli, Sufi geleneğiyle uyumlu.',
+  description: 'Bedeninizdeki enerjiyi hissetmek için nefes, kalp ve ışık çalışması. Bilimsel temelli, Sufi geleneğiyle uyumlu.',
   openGraph: {
     title: 'IŞIK Modülü - Enerji Farkındalığı',
     description: 'Enerji çalışması: bedeni tanı, nefes kullan, ışığını açılım. 6 bölüm, 10 seans, 360-420 dakika.',
@@ -21,8 +22,25 @@ export const metadata: Metadata = {
 };
 
 export default function IsikModule() {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'IŞIK Modülü',
+    description: 'Enerji farkındalığı, nefes, kalp ve ışık çalışması; Sufi gelenek ve modern bilim sentezi.',
+    provider: {
+      '@type': 'Organization',
+      name: 'OLUK',
+      url: 'https://oluk.org',
+    },
+    numberOfLessons: 6,
+    timeRequired: 'PT360M',
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-cream to-cream-light">
+      <Script id="isik-ld-json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(structuredData)}
+      </Script>
       {/* Header */}
       <header className="bg-deep-teal text-cream py-6 px-6">
         <div className="max-w-6xl mx-auto">

@@ -806,7 +806,7 @@ Derin bir tane.
 
 Fark ettin mi?
 
-Az önce mucize oldu.
+Az önce vücudun dev bir biyokimyasal döngü kurdu.
 
 ---
 
@@ -820,7 +820,7 @@ Günde 20.000 kez nefes alıyorsun.
 
 Ama nefes sıradan değil.
 
-Nefes mucize.
+Nefes, biyokimya ve sinir sisteminin ortak orkestrasyonu.
 
 ---
 
@@ -1975,7 +1975,7 @@ Ayaklara odaklan.
       slug: 'kalp-merkezi',
       title: 'Kalp Merkezi',
       subtitle: `Sultan'ın Tahtı`,
-      description: 'Kalbin gücünü keşfet. Koherans.',
+      description: 'Kalbin gücünü hisset, koheransı kur.',
       icon: '❤️',
       duration: '55-65 dk',
       dersCount: 1,
