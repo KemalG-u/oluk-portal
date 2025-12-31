@@ -256,7 +256,7 @@ Senin de.
 
 *[Müzik sıcak, toparlayıcı]*
 
-Üç yolculuk yaptın.
+Üç durağa baktın.
 
 Zirve anı: Orada yaşanan değer.
 Öfke anı: Orada çiğnenen değer.
@@ -299,7 +299,7 @@ Yönünü gösteriyor.
 Yavaşça dön.
 
 Bu görselleştirmeden.
-Bu içsel yolculuktan.
+Bu içsel keşiften.
 
 *[15 saniye]*
 

@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { amacData } from '@/lib/amac-data';
 import { ChevronLeft, ChevronRight, Play, Clock, AlertCircle, Phone } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export const dynamicParams = false;
 
@@ -96,8 +98,38 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
   const isSensitive = seans.sensitive;
   const seansNumber = displaySeansNo;
 
+  // Schema.org MeditationPractice/CreativeWork markup
+  const seansSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': `https://oluk.org/moduller/amac/${bolum.slug}/seans-${seansNumber}`,
+    name: seans.title,
+    description: `${seans.duration} rehberli meditasyon seansı. ${seans.difficulty} seviye.`,
+    duration: seans.duration,
+    inLanguage: 'tr',
+    isPartOf: {
+      '@type': 'Course',
+      name: `${bolum.title}: ${bolum.subtitle}`,
+      courseCode: `AMAC-${bolum.order}`
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'OLUK',
+      url: 'https://oluk.org'
+    },
+    educationalLevel: seans.difficulty === 'İleri' ? 'Advanced' : seans.difficulty === 'Orta' ? 'Intermediate' : 'Beginner',
+    isAccessibleForFree: true,
+    contentRating: isSensitive ? 'Sensitive content - emotional triggers possible' : 'General audience'
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F4FF]">
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(seansSchema) }}
+      />
+
       {/* Breadcrumb */}
       <div className="px-6 py-4" style={{ backgroundColor: `${primary}0D` }}>
         <div className="max-w-4xl mx-auto flex items-center gap-2 text-sm" style={{ color: `${primary}99` }}>
@@ -192,11 +224,58 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
                   <Play className="w-5 h-5" style={{ color: accent }} />
                   <h2 className="font-serif text-2xl m-0" style={{ color: primary }}>Seans Senaryosu</h2>
                 </div>
-                {seans.content.split('\n\n').map((para, idx) => (
-                  <p key={idx} className="leading-relaxed mb-4 whitespace-pre-wrap font-light text-base" style={{ color: `${primary}CC` }}>
-                    {para}
-                  </p>
-                ))}
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    p: ({ children }) => (
+                      <p className="leading-relaxed mb-4 whitespace-pre-wrap font-light text-base" style={{ color: `${primary}CC` }}>
+                        {children}
+                      </p>
+                    ),
+                    h2: ({ children }) => (
+                      <h2 className="font-serif text-2xl mt-8 mb-4" style={{ color: primary }}>
+                        {children}
+                      </h2>
+                    ),
+                    h3: ({ children }) => (
+                      <h3 className="font-serif text-xl mt-6 mb-3" style={{ color: primary }}>
+                        {children}
+                      </h3>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="list-disc pl-6 space-y-2 mb-4" style={{ color: `${primary}CC` }}>
+                        {children}
+                      </ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="list-decimal pl-6 space-y-2 mb-4" style={{ color: `${primary}CC` }}>
+                        {children}
+                      </ol>
+                    ),
+                    li: ({ children }) => (
+                      <li className="leading-relaxed" style={{ color: `${primary}CC` }}>
+                        {children}
+                      </li>
+                    ),
+                    strong: ({ children }) => (
+                      <strong className="font-semibold" style={{ color: primary }}>
+                        {children}
+                      </strong>
+                    ),
+                    em: ({ children }) => (
+                      <em className="italic" style={{ color: `${primary}CC` }}>
+                        {children}
+                      </em>
+                    ),
+                    blockquote: ({ children }) => (
+                      <blockquote className="border-l-4 pl-4 italic" style={{ borderColor: accent, color: `${primary}CC` }}>
+                        {children}
+                      </blockquote>
+                    )
+                  }}
+                >
+                  {seans.content}
+                </ReactMarkdown>
               </div>
             </div>
 

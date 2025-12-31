@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { amacData } from '@/lib/amac-data';
 import { ChevronLeft, ChevronRight, BookOpen, Clock } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export const dynamicParams = false;
 
@@ -30,6 +32,11 @@ export async function generateMetadata({ params }: { params: { bolum: string } }
     openGraph: {
       title: `${bolum.title}: ${bolum.subtitle}`,
       description: bolum.description,
+    },
+    // Schema.org için Article metadata
+    other: {
+      'article:author': 'OLUK',
+      'article:published_time': '2025-01-01T00:00:00Z',
     }
   };
 }
@@ -53,8 +60,37 @@ export default function BolumDersPage({ params }: { params: { bolum: string } })
   const prevBolum = amacData.bolumler.find((b) => b.order === bolum.order - 1);
   const nextBolum = amacData.bolumler.find((b) => b.order === bolum.order + 1);
 
+  // Schema.org Course/LearningResource markup (AI crawlers için)
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: `${bolum.title}: ${bolum.subtitle}`,
+    description: bolum.description,
+    provider: {
+      '@type': 'Organization',
+      name: 'OLUK',
+      url: 'https://oluk.org'
+    },
+    courseCode: `AMAC-${bolum.order}`,
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'online',
+      courseWorkload: bolum.ders.duration
+    },
+    teaches: bolum.ders.learnings,
+    educationalLevel: bolum.order <= 2 ? 'Beginner' : 'Intermediate',
+    inLanguage: 'tr',
+    isAccessibleForFree: true
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F4FF]">
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+
       {/* Breadcrumb */}
       <div className="px-6 py-4" style={{ backgroundColor: `${primary}0D` }}>
         <div className="max-w-4xl mx-auto flex items-center gap-2 text-sm" style={{ color: `${primary}99` }}>
@@ -98,13 +134,59 @@ export default function BolumDersPage({ params }: { params: { bolum: string } })
           </div>
 
           <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border" style={{ borderColor: `${accent}33` }}>
-            <div className="prose prose-lg max-w-none">
-              {bolum.ders.content.split('\n\n').map((para, idx) => (
-                <p key={idx} className="leading-relaxed mb-4 whitespace-pre-wrap font-light text-lg" style={{ color: `${primary}CC` }}>
-                  {para}
-                </p>
-              ))}
-            </div>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              className="prose prose-lg max-w-none"
+              components={{
+                p: ({ children }) => (
+                  <p className="leading-relaxed mb-4 whitespace-pre-wrap font-light text-lg" style={{ color: `${primary}CC` }}>
+                    {children}
+                  </p>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="font-serif text-3xl mt-8 mb-4" style={{ color: primary }}>
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="font-serif text-2xl mt-6 mb-3" style={{ color: primary }}>
+                    {children}
+                  </h3>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc pl-6 space-y-2 mb-4" style={{ color: `${primary}CC` }}>
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal pl-6 space-y-2 mb-4" style={{ color: `${primary}CC` }}>
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="leading-relaxed" style={{ color: `${primary}CC` }}>
+                    {children}
+                  </li>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold" style={{ color: primary }}>
+                    {children}
+                  </strong>
+                ),
+                em: ({ children }) => (
+                  <em className="italic" style={{ color: `${primary}CC` }}>
+                    {children}
+                  </em>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote className="border-l-4 pl-4 italic" style={{ borderColor: accent, color: `${primary}CC` }}>
+                    {children}
+                  </blockquote>
+                )
+              }}
+            >
+              {bolum.ders.content}
+            </ReactMarkdown>
           </div>
 
           <div className="bg-[#F5F0FF] rounded-2xl p-8 mb-12 border" style={{ borderColor: `${accent}33` }}>

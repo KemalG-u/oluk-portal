@@ -1,6 +1,9 @@
 // AMAÇ Modülü İçerik Verisi
 // 6 bölüm, 6 ders, 10 seans
 
+import fs from 'fs';
+import path from 'path';
+
 export interface AmacSeans {
   id: number;
   slug: string;
@@ -31,6 +34,33 @@ export interface AmacBolum {
   };
   seans: AmacSeans[];
 }
+
+function loadMarkdown(file: string) {
+  const filePath = path.join(process.cwd(), 'upload', file);
+  return fs.readFileSync(filePath, 'utf8').trim();
+}
+
+const dersContent = {
+  1: loadMarkdown('AMAC_DERS_1_1.md'),
+  2: loadMarkdown('AMAC_DERS_2_1.md'),
+  3: loadMarkdown('AMAC_DERS_3_1.md'),
+  4: loadMarkdown('AMAC_DERS_4_1.md'),
+  5: loadMarkdown('AMAC_DERS_5_1.md'),
+  6: loadMarkdown('AMAC_DERS_6_1.md'),
+};
+
+const seansContent = {
+  '1-1': loadMarkdown('AMAC_SEANS_1_1.md'),
+  '2-1': loadMarkdown('AMAC_SEANS_2_1.md'),
+  '2-2': loadMarkdown('AMAC_SEANS_2_2.md'),
+  '3-1': loadMarkdown('AMAC_SEANS_3_1.md'),
+  '3-2': loadMarkdown('AMAC_SEANS_3_2.md'),
+  '4-1': loadMarkdown('AMAC_SEANS_4_1.md'),
+  '4-2': loadMarkdown('AMAC_SEANS_4_2.md'),
+  '5-1': loadMarkdown('AMAC_SEANS_5_1.md'),
+  '5-2': loadMarkdown('AMAC_SEANS_5_2.md'),
+  '6-1': loadMarkdown('AMAC_SEANS_6_1.md'),
+};
 
 export const amacData: {
   modulId: string;
@@ -69,7 +99,7 @@ export const amacData: {
       ders: {
         title: 'Neden?',
         duration: '15-18 dk',
-        content: `Viktor Frankl Auschwitz’te bile “neden” sorusuna tutundu ve logoterapiyi doğurdu. Modern hayat konfor sunarken içimizde varoluşsal bir boşluk bırakıyor. Frankl üç anlam kaynağı önerir: yaratmak (eser, emek, çocuk, kod), deneyimlemek (doğa, sanat, sevgi) ve tutum (değiştiremediğin acıya yaklaşım). Anlam bazen bulunur, bazen inşa edilir; dışarıdaki malzemeyi nasıl işleyeceğimiz bize kalır. Küçük anlamlar da değerlidir; sabah kahvesi, bir arkadaşla gülmek, biten bir iş. Sufi gelenekte zahir ve batın ayrımı, “kendini bil” çağrısı anlamın içsel boyutunu hatırlatır. Frankl’ın sorusu perspektifi çevirir: “Hayat benden ne bekliyor?” Bu hafta her gece kısa bir anlam günlüğü tutarak (ne yarattım, ne deneyimledim, zor anlara nasıl yaklaştım) boşluğa tohumlar ekiyoruz. Anlamsızlık derinleşip hiçbir şeyin anlamı yok hale geliyorsa bu depresyon belirtisi olabilir; profesyonel destek ve 182 hattı hatırlatılır.`,
+        content: dersContent[1],
         learnings: [
           'Varoluşsal boşluğu ve logoterapi yaklaşımını kavramak',
           'Yaratmak, deneyimlemek ve tutumla anlam üretmek',
@@ -84,7 +114,7 @@ export const amacData: {
           duration: '18-20 dk',
           difficulty: 'Orta',
           warning: 'Varoluşsal boşluk duygusu tetikleyici olabilir; bunaltırsa ara ver ve bedeni hisset.',
-          content: `Hazırlık nefesleriyle beden gevşiyor. İçteki varoluşsal boşluk karanlık bir oda gibi hayal edilip yargısızca izleniyor. Seans boyunca iki kez “Neden yaşıyorum?” sorusu soruluyor; cevap zorunlu değil, sorunun kendisi önemli. Boşluğa anlam tohumları ekleniyor: hayatına anlam veren küçük veya büyük şeyler o alana bırakılıyor. Kapanışta nefese dönülüyor, bedene ve odaya yerleşiliyor; hisler kısa bir notla somutlanıyor.`,
+          content: seansContent['1-1'],
           sensitive: false
         }
       ]
@@ -103,7 +133,7 @@ export const amacData: {
       ders: {
         title: 'Pusula',
         duration: '15-18 dk',
-        content: `Değer, uğruna fedakarlık yapabildiğin şeydir; hedefler biter, değerler yön verir. Schwartz’ın on değeri (öz-yönelim, uyarılma, hazcılık, başarı, güç, güvenlik, uyum, gelenek, iyilikseverlik, evrenselcilik) birbirine zıt ve yakın ilişkiler kurar; çatışmalar seçim gerektirir. Değerler aile, kültür ve deneyimle gelir ama seçilebilir. Beyan edilen değerlerle yaşanan değerler arasında fark oluşabilir; hiyerarşini bilmek kararları kolaylaştırır. Tasavvuf edep, sabır, şükür, tevekkül, kanaat ve hizmet vurgusuyla egoyu yumuşatır. Keşif soruları: zirve anları, öfke anları, kahramanlar ve “son gün” senaryosu. Pratik olarak değer kartları hazırlanır, sıralanır ve ilk üç çekirdek değer seçilir.`,
+        content: dersContent[2],
         learnings: [
           'Çekirdek değerleri ve çatışmalarını fark etmek',
           'Beyan edilen ve yaşanan değer boşluğunu görmek',
@@ -118,7 +148,7 @@ export const amacData: {
           duration: '20-22 dk',
           difficulty: 'Başlangıç',
           warning: '',
-          content: `Zirve anı, öfke anı ve hayran olunan kahraman üzerinden üç değer kaynağına gidiliyor. Her sahnede beden duyumu ve duygularla yaşanan/çiğnenen değerler bulunuyor. Son bölümde ortak tema ve çekirdek değerler pusula metaforuyla bir araya getiriliyor; seans sonunda üç değer not ediliyor.`,
+          content: seansContent['2-1'],
           sensitive: false
         },
         {
@@ -128,7 +158,7 @@ export const amacData: {
           duration: '15-18 dk',
           difficulty: 'Orta',
           warning: '',
-          content: `Önceki seanstan seçilen bir değer üzerine yoğunlaşılıyor. Son haftaya bakıp değerle uyumlu ve uyumsuz anlar dürüstçe görülüyor; boşluğun nedeni (yorgunluk, korku, alışkanlık) not ediliyor. Boşluğu daraltmak için bu haftaya ait küçük ve yapılabilir tek adım seçilip yazılıyor.`,
+          content: seansContent['2-2'],
           sensitive: false
         }
       ]
@@ -147,7 +177,7 @@ export const amacData: {
       ders: {
         title: 'Memento Mori',
         duration: '16-18 dk',
-        content: `Stoacılar, Steve Jobs ve Yalom’un ölüm farkındalığı pratiği zamanı keskinleştirir; ölüm kaygısı diğer kaygıların kökeninde olabilir. Ölümü hatırlamak öncelikleri netleştirir, ilişkileri öne çıkarır, sıradan günü hediye yapar. Tasavvufta “ölmeden önce ölmek” ve Şeb-i Arus egonun çözülüşünü anlatır. Pratikler: sabah “belki son günüm” ile başlamak, karar anında ölüm aynasını tutmak, haftalık kısa ölüm meditasyonu. Yakın kayıp veya depresyon durumunda seansı atlamak önerilir; 182 hattı hatırlatılır.`,
+        content: dersContent[3],
         learnings: [
           'Ölüm farkındalığını yaşam kalitesini artıran bir araç olarak görmek',
           'Zaman yanılsamasını kırıp öncelikleri netleştirmek',
@@ -162,7 +192,7 @@ export const amacData: {
           duration: '20-22 dk',
           difficulty: 'İleri',
           warning: 'Ölüm teması derin duygular uyandırabilir; yakın kayıp, depresyon veya yoğun kaygıda isen seansı atla. Destek hattı: 182.',
-          content: `Doktorun “24 saatin var” dediği bir senaryo canlandırılıyor. Son günün nereye gidildiği, kiminle olunacağı, kime hangi sözlerin söyleneceği görülüyor; geceye ve hayatın tamamına bakılıyor. Ardından bunun bir zihinsel deney olduğu fark edilip hâlâ zamanın olduğu hissediliyor; son günde istenen şeylerin şimdi de yapılabileceği vurgulanıyor.`,
+          content: seansContent['3-1'],
           sensitive: true
         },
         {
@@ -172,7 +202,7 @@ export const amacData: {
           duration: '18-20 dk',
           difficulty: 'Orta-İleri',
           warning: 'Zaman ve sonluluk teması bazı kişiler için zorlayıcı olabilir; bunaltırsa ara ver. Destek hattı: 182.',
-          content: `Doğumdan ölüme uzanan bir zaman şeridi görselleştiriliyor. Katılımcı şimdiki noktasından geçmişe (10, 20 yıl önceki ben) ve geleceğe (10, 20 yıl sonrası, şeridin sonu) yürüyor. Kuş bakışı perspektifte dönüm noktaları ve boşluklar görülüyor; şeridin kalanını nasıl doldurmak istediğine dair tek somut niyet yazılıyor.`,
+          content: seansContent['3-2'],
           sensitive: true
         }
       ]
@@ -191,7 +221,7 @@ export const amacData: {
       ders: {
         title: 'İkigai',
         duration: '15-18 dk',
-        content: `İkigai “sabah kalkma sebebi”dir; büyük olmak zorunda değildir. Batıdaki dört daire modeli (sevdiğin, iyi olduğun, dünyanın ihtiyacı, para kazanabildiğin) pratik bir harita sunar; kesişimler farklı tuzaklar yaratır. İkigai süreçtir ve evrilir; küçük ikigailer de değerlidir. Türk kültüründeki “gönül işi, alın teri” örnekleri yerel karşılık sunar. Pratik: dört listeyi yaz, kesişimlere bak; kıskançlıklar, çocukluk akış anları ve denemeler ipucu verir. Sabırla, küçük adımlarla ilerle.`,
+        content: dersContent[4],
         learnings: [
           'İkigai kavramını dört daire modeliyle uygulamak',
           'Kesişimlerdeki tatminsizlik tuzaklarını görmek',
@@ -206,7 +236,7 @@ export const amacData: {
           duration: '22-25 dk',
           difficulty: 'Orta',
           warning: '',
-          content: `Sevdiğin, iyi olduğun, dünyanın ihtiyacı ve para kazanabildiğin alanlar dört renkli daire olarak görselleştiriliyor. Her daireye girip örnekler hatırlanıyor; kesişimlerdeki hisler yoklanıyor. Ortak nokta (ikigai) bulanık da olsa işaretleniyor; harita seans sonrası yazılı hale getiriliyor.`,
+          content: seansContent['4-1'],
           sensitive: false
         },
         {
@@ -216,7 +246,7 @@ export const amacData: {
           duration: '18-20 dk',
           difficulty: 'Başlangıç-Orta',
           warning: '',
-          content: `On adımlı bir zaman yolunda gelecekteki benle (10 yıl sonrası) buluşma yapılır. Gelecek benin yüzü, evi, işi ve ilişkileri görülür; “Ne öğrendin?”, “En kritik karar neydi?”, “Bana ne tavsiye edersin?” soruları sorulur. Alınan mesaj ve tavsiyelerle bugün geri dönülür, not alınır.`,
+          content: seansContent['4-2'],
           sensitive: false
         }
       ]
@@ -235,7 +265,7 @@ export const amacData: {
       ders: {
         title: 'Daha Büyük Bir Şey',
         duration: '16-18 dk',
-        content: `Maslow piramidinin üstüne eklediği kendini aşma katmanı mutluluğun egodan öteye bağlandığını söyler. Ego tuzağı (daha fazla başarı/onay) tatmin getirmez; paradoks olarak kendini unutan kendini bulur. Frankl’ın “başarı kovalanmaz” formülü, hizmet-aşk-dava üçlüsü ve sufi “fena” anlayışı ortak noktada buluşur. Spiritüel bypass riskine karşı önce sağlıklı bir benlik inşa, sonra aşma vurgulanır. Pratik: perspektifi genişlet, katkı odaklı sorular sor, doğaya ve sessizliğe çık, küçük hizmet denemeleri yap.`,
+        content: dersContent[5],
         learnings: [
           'Kendini gerçekleştirme ile kendini aşma farkını görmek',
           'Ego tuzaklarını ve spiritüel bypass riskini fark etmek',
@@ -250,7 +280,7 @@ export const amacData: {
           duration: '22-25 dk',
           difficulty: 'İleri',
           warning: 'Mistik birlik hissi bazı kişilerde güçlü duygular uyandırabilir; bunaltırsa ara ver.',
-          content: `Ego sınırı küçük bir damla olarak hissediliyor; ardından uçsuz denize karışma görsellemesiyle sınırlar gevşiyor. Birlik ve bağlantı hissi, diğer damlalarla ortak alan, huzur ve genişlik olarak deneyimleniyor. Kapanışta damla sınırı geri geliyor ama denizi bilmenin hafifliği taşınıyor; hisler yazılıyor.`,
+          content: seansContent['5-1'],
           sensitive: false
         },
         {
@@ -260,7 +290,7 @@ export const amacData: {
           duration: '18-20 dk',
           difficulty: 'Başlangıç-Orta',
           warning: '',
-          content: `Kalpteki sevgi ışığı genişletilip üç çemberde (yakınlar, tanıdıklar, tanımadıklar) paylaşılıyor. “Nasıl hizmet edebilirim?” sorusuyla yetenek, kaynak ve zaman hatırlanıyor; küçük, yapılabilir bir hizmet taahhüdü (kime, ne zaman, nasıl) seçilip kalbe mühürleniyor.`,
+          content: seansContent['5-2'],
           sensitive: false
         }
       ]
@@ -279,7 +309,7 @@ export const amacData: {
       ders: {
         title: 'Yaşamak',
         duration: '14-16 dk',
-        content: `Bilmek yapmak değildir; alışkanlık, korku ve mükemmeliyetçilik bilgi-eylem uçurumu yaratır. Niyet hareketi dönüştürür; tasavvuftaki “himmet” azim + niyet + yüksek hedef bileşimidir. Sistemler hedeflerden üstündür; %1 iyileşme kuralı ve mikro adımlar sürdürülebilirlik sağlar. Rutinlere Frankl’ın üç anlam kaynağı yerleştirilebilir. Taahhüt küçük başlar, güven inşa eder. Finalde tek somut yaşam taahhüdü yazılır.`,
+        content: dersContent[6],
         learnings: [
           'Bilgi-eylem boşluğunu niyet ve mikro adımlarla kapatmak',
           'Hedef yerine sistem kurmanın önemini görmek',
@@ -294,7 +324,7 @@ export const amacData: {
           duration: '20-25 dk',
           difficulty: 'Orta',
           warning: '',
-          content: `Modülün özet yürüyüşünde tüm duraklar hatırlanıyor (anlam, değerler, ölüm, ikigai, kendini aşma). Katılımcı en önemli öğrenimi ve dönüşümü seçiyor. Ardından kişisel bir niyet cümlesi kuruluyor (“Ben ... niyetindeyim”) ve bu niyetle uyumlu, hafta içinde yapılacak tek somut eylem kararlaştırılıp söz veriliyor. Kapanışta niyet kalbe mühürleniyor ve yazılı hale getiriliyor.`,
+          content: seansContent['6-1'],
           sensitive: false
         }
       ]

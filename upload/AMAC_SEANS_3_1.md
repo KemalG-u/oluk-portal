@@ -373,7 +373,7 @@ Gözlerini yavaşça aç.
 
 Hoş geldin geri.
 
-Zor bir yolculuktu.
+Zor bir seanstı.
 Cesur oldun.
 
 *[10 saniye]*

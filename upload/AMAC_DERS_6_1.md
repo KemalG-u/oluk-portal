@@ -192,7 +192,7 @@ Sonra büyüt.
 
 Bu modül burada bitiyor.
 
-Ama yolculuk bitmiyor.
+Ama iş bitmiyor.
 
 Anlam bir kere bulunmaz.
 Her gün yeniden inşa edilir.

@@ -68,7 +68,7 @@ Zihnin sakinleşsin.
 
 ---
 
-### [03:00 - 06:00] YOLCULUK
+### [03:00 - 06:00] ZAMAN YOLU
 
 *[Müzik genişler, zaman hissi]*
 
@@ -319,7 +319,7 @@ Gelecek zaten orada bekliyor.
 |-------|------|-----|
 | Açılış | 0:30 | İlham verici, açık |
 | Hazırlık | 2:30 | Sakin, hazırlayıcı |
-| Yolculuk | 3:00 | Genişleyen, zaman |
+| Zaman Yolu | 3:00 | Genişleyen, zaman |
 | Gelecek Ben | 5:00 | Sıcak, karşılaşma |
 | Konuşma | 3:30 | Hafif, samimi |
 | Mesaj | 2:30 | Derin, önemli |

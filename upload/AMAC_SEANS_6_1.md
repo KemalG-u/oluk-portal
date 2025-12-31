@@ -71,7 +71,7 @@ Zihnin sakinleşsin.
 
 ---
 
-### [03:30 - 08:00] YOLCULUK ÖZETİ
+### [03:30 - 08:00] MODÜL ÖZETİ
 
 *[Müzik gezinti hissi]*
 
@@ -128,7 +128,7 @@ Son durak: Eylem.
 
 *[Müzik derinleşir]*
 
-Bu yolculuktan ne öğrendin?
+Bu modülden ne öğrendin?
 
 *[20 saniye]*
 
@@ -141,7 +141,7 @@ Bir an. Bir söz. Bir his.
 Neyin değişti?
 
 Bakış açın mı? Önceliklerin mi?
-Bir karar mı? Bir farkındalık mı?
+Bir karar mı? Bir gördüğün şey mi?
 
 *[30 saniye]*
 
