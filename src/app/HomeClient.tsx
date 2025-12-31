@@ -328,39 +328,120 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          JOURNEY SECTION - 4 Phases
+          MODÜLLER SECTION - 4 Modules (UNLOCKED)
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 bg-gradient-to-b from-white to-[#F5F0E6]">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif mb-4">Yolculuk Haritası</h2>
-            <p className="text-[#0D4F4F]/70">Dört aşama. Her biri bir kapı.</p>
+            <h2 className="text-4xl md:text-5xl font-serif mb-4">4 Modül, Tamamı Açık</h2>
+            <p className="text-[#0D4F4F]/70">Her modül bir kapı. Hepsi seni bekliyor.</p>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {[
-              { phase: '01', name: 'ARINMA', desc: 'Eski kalıpları temizle. Hafifle. Yer aç.', color: 'from-blue-500/20 to-blue-600/20' },
-              { phase: '02', name: 'KORUMA', desc: 'Enerjini koru. Sınırlarını öğren. Güçlen.', color: 'from-green-500/20 to-green-600/20' },
-              { phase: '03', name: 'AKTİVASYON', desc: 'İçindeki potansiyeli uyandır. Dönüşümü başlat.', color: 'from-amber-500/20 to-amber-600/20' },
-              { phase: '04', name: 'İLERİ SEVİYE', desc: 'Derinleş. Ustalaş. Yol göster.', color: 'from-purple-500/20 to-purple-600/20' },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.phase}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className={`relative flex items-center gap-6 p-6 rounded-2xl bg-gradient-to-r ${item.color} border border-white/50`}
-              >
-                <span className="text-4xl font-serif text-[#0D4F4F]/20">{item.phase}</span>
-                <div>
-                  <h3 className="text-xl font-medium text-[#0D4F4F]">{item.name}</h3>
-                  <p className="text-[#0D4F4F]/70">{item.desc}</p>
-                </div>
-                <ArrowRight className="ml-auto text-[#0D4F4F]/30" size={24} />
-              </motion.div>
-            ))}
+              { 
+                href: '/moduller/ayna', 
+                name: 'AYNA', 
+                desc: 'İçini gör. Gerçek yüzünle tanış. Değişim buradan başlar.', 
+                color: '#0D4F4F',
+                icon: Eye
+              },
+              { 
+                href: '/moduller/isik', 
+                name: 'IŞIK', 
+                desc: 'Karanlıktan çık. Enerjini yükselt. Işığını saklama artık.', 
+                color: '#C9A962',
+                icon: Sparkle
+              },
+              { 
+                href: '/moduller/baglanti', 
+                name: 'BAĞLANTI', 
+                desc: 'Her şey birbirine bağlı. Ağı hisset. Tek olmadığını gör.', 
+                color: '#2D6A4F',
+                icon: Wind
+              },
+              { 
+                href: '/moduller/amac', 
+                name: 'AMAÇ', 
+                desc: 'Neden buradasın? Misyonun ne? Cevap içinde gizli.', 
+                color: '#6B21A8',
+                icon: Lightning
+              },
+            ].map((modul, idx) => {
+              const Icon = modul.icon;
+              return (
+                <motion.div
+                  key={modul.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Link
+                    href={modul.href}
+                    className="group block relative p-8 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] border-2"
+                    style={{ 
+                      borderColor: `${modul.color}20`,
+                      backgroundColor: `${modul.color}05`
+                    }}
+                  >
+                    <div 
+                      className="absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"
+                      style={{ backgroundColor: modul.color }}
+                    />
+                    
+                    <div className="relative z-10">
+                      <div 
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                        style={{ backgroundColor: `${modul.color}15` }}
+                      >
+                        <Icon size={28} weight="duotone" style={{ color: modul.color }} />
+                      </div>
+                      
+                      <h3 
+                        className="text-2xl font-semibold mb-3"
+                        style={{ color: modul.color }}
+                      >
+                        {modul.name}
+                      </h3>
+                      
+                      <p className="text-[#0D4F4F]/70 mb-6 leading-relaxed">
+                        {modul.desc}
+                      </p>
+                      
+                      <div 
+                        className="inline-flex items-center gap-2 font-medium group-hover:gap-3 transition-all"
+                        style={{ color: modul.color }}
+                      >
+                        <span>Keşfet</span>
+                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
+
+          {/* Sırdaş Quick Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <Link
+              href="/sirdas"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-[#0D4F4F]/10 rounded-full hover:border-[#C9A962] hover:shadow-lg transition-all"
+            >
+              <Users weight="duotone" size={24} className="text-[#0D4F4F]" />
+              <span className="font-medium text-[#0D4F4F]">Sırdaş ile Konuş</span>
+              <ArrowRight size={18} className="text-[#0D4F4F] group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <p className="mt-3 text-sm text-[#0D4F4F]/60">
+              Senin için buradayım. Her an, her soru.
+            </p>
+          </motion.div>
         </div>
       </section>
 

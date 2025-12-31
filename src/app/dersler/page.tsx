@@ -31,7 +31,7 @@ const FAZLAR = [
     renk: '#C9A962',
     asama: null,
     sure: '~8 Hafta',
-    kilitli: true,
+    kilitli: false,
     onkosul: 'ARINMA',
   },
   {
@@ -44,7 +44,7 @@ const FAZLAR = [
     renk: '#8B4513',
     asama: null,
     sure: '~10 Hafta',
-    kilitli: true,
+    kilitli: false,
     onkosul: 'KORUMA',
   },
   {
@@ -57,7 +57,7 @@ const FAZLAR = [
     renk: '#4A2C6A',
     asama: null,
     sure: 'Süresiz',
-    kilitli: true,
+    kilitli: false,
     onkosul: 'AKTİVASYON',
   },
 ];

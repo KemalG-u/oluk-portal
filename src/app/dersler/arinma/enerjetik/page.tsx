@@ -38,10 +38,10 @@ import Link from "next/link";
 
 const dersler = [
   { numara: 1, baslik: "Enerjetik Temizlik Nedir?", sure: 15, kilitli: false },
-  { numara: 2, baslik: "Enerji Alanı Farkındalığı", sure: 10, kilitli: true },
-  { numara: 3, baslik: "Çakralar ve Akış", sure: 20, kilitli: true },
-  { numara: 4, baslik: "Enerji Blokajları", sure: 15, kilitli: true },
-  { numara: 5, baslik: "Enerji Koruma", sure: 25, kilitli: true },
+  { numara: 2, baslik: "Enerji Alanı Farkındalığı", sure: 10, kilitli: false },
+  { numara: 3, baslik: "Çakralar ve Akış", sure: 20, kilitli: false },
+  { numara: 4, baslik: "Enerji Blokajları", sure: 15, kilitli: false },
+  { numara: 5, baslik: "Enerji Koruma", sure: 25, kilitli: false },
 ];
 
 function DersKart({ ders }: { ders: typeof dersler[0] }) {
