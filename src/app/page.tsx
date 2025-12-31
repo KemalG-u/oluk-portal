@@ -52,7 +52,7 @@ export default function HomePage() {
       setActiveExperience((prev) => (prev + 1) % experiences.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [experiences.length]);
 
   return (
     <main className="bg-[#F5F0E6] text-[#0D4F4F] overflow-hidden">
