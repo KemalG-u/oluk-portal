@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g>
+    <circle cx="44.706" cy="19.258" r="13.5" fill="#fce4cd"/>
+    <path d="M25.211,51.96A18.322,18.322,0,1,1,43.533,33.638,18.342,18.342,0,0,1,25.211,51.96Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path d="M23.6,15.316h8.637a18.322,18.322,0,0,1,0,36.644H24.09" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path d="M25.211,47.982A14.344,14.344,0,1,1,39.555,33.638,14.36,14.36,0,0,1,25.211,47.982Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path d="M25.211,44A10.366,10.366,0,1,1,35.577,33.638,10.378,10.378,0,0,1,25.211,44Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path d="M25.211,40.025A6.387,6.387,0,1,1,31.6,33.638,6.395,6.395,0,0,1,25.211,40.025Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <circle cx="25.211" cy="33.638" r="2.409" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <polyline points="43.627 48.084 53.607 48.084 57.148 48.084 57.148 52.105 25.759 52.105" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <line x1="53.205" y1="52.005" x2="53.205" y2="49.201" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

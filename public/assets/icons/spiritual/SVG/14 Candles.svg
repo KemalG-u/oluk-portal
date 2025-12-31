@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g>
+    <circle cx="46.101" cy="17.295" r="13.5" fill="#fce4cd"/>
+    <g>
+      <g>
+        <rect x="10.333" y="28.139" width="11.792" height="25.287" stroke-width="2" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="16.334" y1="22.482" x2="16.326" y2="27.186" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M16.455,15.266c-2.518,1.327-6.416,9.668-.046,9.913,4.921.191,4.33-6.513.046-9.913Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M22.126,33.135a8.651,8.651,0,0,1-4.3-.608,8.663,8.663,0,0,0-6.656,0,8.67,8.67,0,0,1-.833.3" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g>
+        <rect x="41.874" y="31.139" width="11.792" height="22.287" stroke-width="2" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="47.875" y1="25.482" x2="47.867" y2="30.186" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M47.931,18.277c-2.519,1.327-6.417,9.668-.047,9.913,4.921.191,4.33-6.513.047-9.913Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M53.667,36.135a8.653,8.653,0,0,1-4.3-.608,8.661,8.661,0,0,0-6.655,0,8.786,8.786,0,0,1-.834.3" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g>
+        <rect x="26.104" y="22.756" width="11.792" height="30.671" stroke-width="2" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="32.105" y1="17.098" x2="32.097" y2="21.802" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M32.2,9.886c-2.518,1.327-6.416,9.667-.046,9.912,4.921.191,4.33-6.513.046-9.912Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M37.624,27.26a8.828,8.828,0,0,1-5.241-.483,8.836,8.836,0,0,0-6.28-.194" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+    <rect x="6.817" y="52.83" width="50.367" height="3.284" rx="1.205" fill="#fff" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+  </g>
+</svg>

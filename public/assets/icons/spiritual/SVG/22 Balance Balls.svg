@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g>
+    <circle cx="45.762" cy="18.524" r="13.5" fill="#fce4cd"/>
+    <polyline points="51.135 47.34 52.209 47.34 55.615 53.818 9.308 53.818 12.714 47.34 18.185 47.34" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <g>
+      <path d="M34.529,46.854a18.393,18.393,0,1,1,8.962-21.86" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <g>
+        <line x1="13.268" y1="18.029" x2="40.132" y2="19.726" fill="#fff" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <line x1="8.861" y1="23.625" x2="39.887" y2="25.584" fill="#fff" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <line x1="8.492" y1="29.475" x2="32.576" y2="30.996" fill="#fff" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <line x1="8.122" y1="35.326" x2="30.514" y2="36.74" fill="#fff" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <line x1="11.79" y1="41.432" x2="31.794" y2="42.695" fill="#fff" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+    <path d="M43.994,49.878A12.343,12.343,0,1,1,55.261,36.546,12.356,12.356,0,0,1,43.994,49.878Z" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <g>
+      <line x1="32.581" y1="31.446" x2="52.429" y2="29.78" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line x1="31.087" y1="36.522" x2="54.494" y2="34.558" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line x1="31.499" y1="41.438" x2="54.906" y2="39.474" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line x1="34.617" y1="46.127" x2="52.614" y2="44.617" fill="none" stroke="#e86a13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

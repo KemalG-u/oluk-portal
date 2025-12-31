@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g>
+    <circle cx="45.358" cy="16.708" r="13.5" fill="#fce4cd"/>
+    <path d="M23.364,16.618H42.015a7.808,7.808,0,0,1,0,15.615H23.309" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <line x1="34.074" y1="48.116" x2="15.367" y2="48.116" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <line x1="15.422" y1="32.501" x2="34.074" y2="32.501" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M31.305,32.5H49.957a7.808,7.808,0,0,1,0,15.615H31.25" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M31.305,48.116a7.808,7.808,0,1,1,7.807-7.807A7.817,7.817,0,0,1,31.305,48.116Z" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M31.323,44.934a4.645,4.645,0,1,1,4.643-4.644A4.649,4.649,0,0,1,31.323,44.934Z" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <circle cx="31.343" cy="40.313" r="1.629" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M15.422,48.116a7.808,7.808,0,1,1,7.807-7.807A7.817,7.817,0,0,1,15.422,48.116Z" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M15.443,44.934a4.645,4.645,0,1,1,4.644-4.644A4.649,4.649,0,0,1,15.443,44.934Z" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <circle cx="15.482" cy="40.283" r="1.629" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M23.364,32.233a7.808,7.808,0,1,1,7.807-7.807A7.817,7.817,0,0,1,23.364,32.233Z" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M23.362,29.075a4.645,4.645,0,1,1,4.644-4.644A4.65,4.65,0,0,1,23.362,29.075Z" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <circle cx="23.377" cy="24.394" r="1.466" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <rect x="7.505" y="48.084" width="50.367" height="3.284" rx="1.205" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <line x1="52.442" y1="48.213" x2="52.442" y2="51.002" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+    <line x1="12.488" y1="48.213" x2="12.488" y2="51.002" fill="none" stroke="#e86a13" stroke-miterlimit="10" stroke-width="2"/>
+  </g>
+</svg>
