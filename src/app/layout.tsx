@@ -8,6 +8,7 @@ import Analytics from './analytics';
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://oluk-portal.vercel.app"),
   title: "OLUK | Spiritüel Dönüşüm Platformu",
   description: "Arınma, koruma ve aktivasyon ile içsel dönüşüm yolculuğun. Türkiye'nin en kapsamlı spiritüel gelişim platformu.",
   keywords: [
