@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from '@/components/Header';
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
+import Analytics from './analytics';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -98,6 +99,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className="font-sans bg-cream text-text-dark antialiased overflow-x-hidden">
+        <Analytics />
         <Header />
         <div className="pt-16 md:pt-20">
           {children}
