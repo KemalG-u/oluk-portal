@@ -6,7 +6,11 @@ from google.genai import types
 import time
 import os
 
-client = genai.Client(api_key="AIzaSyDO5QD3aQZgdwIxfnJU9efhd9O915sJ-P0")
+# API key from environment variable (DO NOT commit secrets)
+api_key = os.getenv('GOOGLE_API_KEY')
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY environment variable not set")
+client = genai.Client(api_key=api_key)
 
 # Test içerikleri
 TEST_CONTENTS = {
