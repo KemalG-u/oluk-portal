@@ -1,7 +1,7 @@
 # OLUK SKİLL İNDEKSİ
 
 **Son Güncelleme:** 29 Aralık 2025  
-**Toplam Skill:** 80 (eklenecek: 50)
+**Toplam Skill:** 140 (130 mevcut + 10 SEO)
 
 ## DURUM
 
@@ -167,3 +167,27 @@
 - 41-Anahtar Kelime Uzmanı ✅
 - 42-Kullanıcı Hikayeleri Yazarı ✅
 - 43-FAQ/Yardım İçerik Yazarı ✅
+
+## SEO DEPARTMANI (10)
+
+### İçerik & Kalite Grubu
+| No | Skill | Dosya | Görev | Model |
+|----|-------|-------|-------|-------|
+| SEO-01 | SEO İçerik Denetçisi | SEO/SEO-01-ICERIK-DENETCISI.md | E-E-A-T analizi, içerik kalitesi | Sonnet |
+| SEO-09 | Otorite İnşaatçısı | SEO/SEO-09-OTORITE-INSAATCISI.md | E-E-A-T sinyal güçlendirme | Sonnet |
+| SEO-10 | SEO İçerik Yazarı | SEO/SEO-10-ICERIK-YAZARI.md | SEO-optimized içerik üretimi | Sonnet |
+
+### Teknik Optimizasyon Grubu
+| No | Skill | Dosya | Görev | Model |
+|----|-------|-------|-------|-------|
+| SEO-02 | Meta Optimizer | SEO/SEO-02-META-OPTIMIZER.md | Title, description, OG tags | Haiku |
+| SEO-03 | Keyword Stratejisti | SEO/SEO-03-KEYWORD-STRATEJISTI.md | Keyword araştırma, density | Haiku |
+| SEO-04 | Yapı Mimarı | SEO/SEO-04-YAPI-MIMARI.md | Schema.org, header hierarchy | Haiku |
+| SEO-05 | Snippet Avcısı | SEO/SEO-05-SNIPPET-AVCISI.md | Featured snippet, PAA | Haiku |
+
+### Analiz & Monitoring Grubu
+| No | Skill | Dosya | Görev | Model |
+|----|-------|-------|-------|-------|
+| SEO-06 | İçerik Planlayıcı | SEO/SEO-06-ICERIK-PLANLAYICI.md | Topic cluster, takvim | Haiku |
+| SEO-07 | İçerik Tazeleyici | SEO/SEO-07-ICERIK-TAZELEYICI.md | Content freshness analizi | Haiku |
+| SEO-08 | Kanibalizasyon Dedektörü | SEO/SEO-08-KANIBALIZASYON-DEDEKTORU.md | Keyword çakışma tespiti | Haiku |
