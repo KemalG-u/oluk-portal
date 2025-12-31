@@ -10,6 +10,38 @@ export const dynamicParams = false;
 const primary = '#6B21A8';
 const accent = '#A78BFA';
 
+function normalizeSeansParam(rawParam: string | string[] | undefined) {
+  const raw = Array.isArray(rawParam) ? rawParam[0] : rawParam;
+
+  if (!raw) {
+    return { seansNo: null, seansSlug: '' };
+  }
+
+  const sanitized = String(raw).replace(/^seans-/, '');
+  const seansNo = Number.parseInt(sanitized, 10);
+  const seansSlug = raw.startsWith('seans-') ? raw : `seans-${sanitized}`;
+
+  return {
+    seansNo: Number.isFinite(seansNo) ? seansNo : null,
+    seansSlug,
+  };
+}
+
+function resolveSeans(params: { bolum: string; seansNo: string }) {
+  const bolum = amacData.bolumler.find((b) => b.slug === params.bolum);
+  const { seansNo, seansSlug } = normalizeSeansParam(params.seansNo);
+  const seansIndex = bolum?.seans.findIndex((seans, idx) => seans.slug === seansSlug || (seansNo && idx + 1 === seansNo)) ?? -1;
+  const seans = seansIndex >= 0 && bolum ? bolum.seans[seansIndex] : undefined;
+  const displaySeansNo = seansIndex >= 0 ? seansIndex + 1 : seansNo;
+
+  return {
+    bolum,
+    seans,
+    seansIndex,
+    displaySeansNo,
+  };
+}
+
 export async function generateStaticParams() {
   const params: Array<{ bolum: string; seansNo: string }> = [];
 
@@ -23,11 +55,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { bolum: string; seansNo: string } }): Promise<Metadata> {
-  const bolum = amacData.bolumler.find((b) => b.slug === params.bolum);
-  const seansNo = parseInt(params.seansNo);
-  const seans = bolum?.seans[seansNo - 1];
+  const { bolum, seans, displaySeansNo } = resolveSeans(params);
 
-  if (!bolum || !seans) {
+  if (!bolum || !seans || !displaySeansNo) {
     return {
       title: 'Seans Bulunamadı | OLUK AMAÇ',
       description: 'İstenen seans bulunamadı.'
@@ -36,7 +66,7 @@ export async function generateMetadata({ params }: { params: { bolum: string; se
 
   return {
     title: `${seans.title} - ${bolum.title} | OLUK AMAÇ`,
-    description: `${seans.title} seansı. ${seans.duration} meditasyon. ${bolum.title} bölümü.`,
+    description: `${seans.title} seansı. ${seans.duration} meditasyon. ${bolum.title} bölümü. Seans ${displaySeansNo}.`,
     openGraph: {
       title: seans.title,
       description: `${seans.duration} rehberli seans`
@@ -45,11 +75,9 @@ export async function generateMetadata({ params }: { params: { bolum: string; se
 }
 
 export default function SeansPage({ params }: { params: { bolum: string; seansNo: string } }) {
-  const bolum = amacData.bolumler.find((b) => b.slug === params.bolum);
-  const seansNo = parseInt(params.seansNo);
-  const seans = bolum?.seans[seansNo - 1];
+  const { bolum, seans, seansIndex, displaySeansNo } = resolveSeans(params);
 
-  if (!bolum || !seans) {
+  if (!bolum || !seans || !displaySeansNo) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -62,10 +90,11 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
     );
   }
 
-  const prevSeans = seansNo > 1 ? bolum.seans[seansNo - 2] : null;
-  const nextSeans = seansNo < bolum.seans.length ? bolum.seans[seansNo] : null;
+  const prevSeans = seansIndex > 0 ? bolum.seans[seansIndex - 1] : null;
+  const nextSeans = seansIndex >= 0 && seansIndex < bolum.seans.length - 1 ? bolum.seans[seansIndex + 1] : null;
   const nextBolum = nextSeans ? null : amacData.bolumler.find((b) => b.order === bolum.order + 1);
   const isSensitive = seans.sensitive;
+  const seansNumber = displaySeansNo;
 
   return (
     <main className="min-h-screen bg-[#F8F4FF]">
@@ -92,7 +121,7 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
             <span>{bolum.title} Bölümüne Dön</span>
           </Link>
           <div className="text-5xl mb-4">{bolum.icon}</div>
-          <p className="text-sm tracking-widest uppercase mb-2" style={{ color: accent }}>Seans {seansNo}</p>
+          <p className="text-sm tracking-widest uppercase mb-2" style={{ color: accent }}>Seans {seansNumber}</p>
           <h1 className="font-serif text-4xl md:text-5xl mb-2">{seans.title}</h1>
           <p className="text-cream/80 max-w-2xl mx-auto mb-6 flex items-center gap-2 justify-center">
             <Clock className="w-4 h-4" />
@@ -144,7 +173,7 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
               </div>
               <div className="text-center">
                 <div className="text-sm mb-1" style={{ color: `${primary}99` }}>Seans</div>
-                <div className="font-serif text-lg" style={{ color: primary }}>{seansNo}/{bolum.seansCount}</div>
+                <div className="font-serif text-lg" style={{ color: primary }}>{seansNumber}/{bolum.seansCount}</div>
               </div>
               <div className="text-center">
                 <div className="text-sm mb-1" style={{ color: `${primary}99` }}>Zorluk</div>
@@ -182,7 +211,7 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
 
             <div className="flex gap-4 pt-8 border-t" style={{ borderColor: `${accent}33` }}>
               {prevSeans ? (
-                <Link href={`/moduller/amac/${bolum.slug}/seans-${seansNo - 1}`} className="flex-1">
+                <Link href={`/moduller/amac/${bolum.slug}/seans-${seansNumber - 1}`} className="flex-1">
                   <div className="bg-[#F3ECFF] rounded-lg p-4 hover:bg-[#EDE1FF] transition text-center">
                     <p className="text-xs" style={{ color: `${primary}99` }}>← Önceki Seans</p>
                     <p className="font-serif text-sm" style={{ color: primary }}>{prevSeans.title}</p>
@@ -198,7 +227,7 @@ export default function SeansPage({ params }: { params: { bolum: string; seansNo
               )}
 
               {nextSeans ? (
-                <Link href={`/moduller/amac/${bolum.slug}/seans-${seansNo + 1}`} className="flex-1">
+                <Link href={`/moduller/amac/${bolum.slug}/seans-${seansNumber + 1}`} className="flex-1">
                   <div className="bg-[#F3ECFF] rounded-lg p-4 hover:bg-[#EDE1FF] transition text-center">
                     <p className="text-xs" style={{ color: `${primary}99` }}>Sonraki Seans →</p>
                     <p className="font-serif text-sm" style={{ color: primary }}>{nextSeans.title}</p>

@@ -2,6 +2,8 @@
 
 import type { Metadata } from "next";
 import Header from '@/components/Header';
+import Breadcrumb from '@/components/Breadcrumb';
+import BottomNav from '@/components/BottomNav';
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo';
 import Analytics from './analytics';
@@ -102,9 +104,11 @@ export default function RootLayout({
       <body className="font-sans bg-cream text-text-dark antialiased overflow-x-hidden">
         <Analytics />
         <Header />
-        <div className="pt-16 md:pt-20">
+        <Breadcrumb />
+        <div className="pt-12 md:pt-16 pb-16">
           {children}
         </div>
+        <BottomNav />
       </body>
     </html>
   );
