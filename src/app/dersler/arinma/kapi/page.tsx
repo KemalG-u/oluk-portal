@@ -1,8 +1,12 @@
 
-'use client';
-
+import type { Metadata } from "next";
 import Link from 'next/link';
 import { ArrowLeft, Lock, ChevronRight, Play, CheckCircle2, Circle, BookOpen, Clock, Target } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Arınma Kapısı | OLUK',
+  description: 'Arınma yolculuğunun giriş dersi: hazırlık, farkındalık ve temel kavramlar.',
+};
 
 const DERSLER = [
   {

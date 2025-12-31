@@ -1,7 +1,11 @@
-'use client';
-
+import type { Metadata } from "next";
 import Link from 'next/link';
 import { ArrowLeft, Lock, ChevronRight, Sparkles, Heart, Brain, Zap, Users, Infinity, Eye, DoorOpen } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Arınma Fazı | OLUK',
+  description: 'Fiziksel, duygusal, zihinsel ve enerjetik temizlik için Arınma fazının aşamalarını keşfet.',
+};
 
 
 interface Asama {

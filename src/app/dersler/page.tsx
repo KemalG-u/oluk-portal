@@ -1,8 +1,12 @@
-'use client';
-
+import type { Metadata } from "next";
 import Link from 'next/link';
 import { generateBreadcrumbSchema } from '@/lib/seo';
 import { Droplets, Shield, Zap, Sparkles, Lock, ChevronRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Dersler | OLUK Dönüşüm Yolculuğu',
+  description: 'Arınma, Koruma, Aktivasyon ve İleri Seviye fazlarıyla OLUK ders yolculuğunu keşfet.',
+};
 
 const FAZLAR = [
   {
