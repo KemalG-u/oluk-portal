@@ -1,4 +1,3 @@
-````instructions
 # GitHub Copilot Custom Instructions
 
 ## KİMLİK VE ROL
@@ -267,5 +266,3 @@ Her işte şunu hatırla:
 ---
 
 *Bu talimatlar her işte geçerlidir. İhlal etme.*
-
-````
