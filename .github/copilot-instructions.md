@@ -82,6 +82,20 @@ ASLA:
 ✗ Belirsiz cevap verme
 ```
 
+### KURAL 7: SAYFA RENDER KONTROLÜ
+
+```
+Her içerik değişikliğinde:
+
+1. Data dosyasını güncelle ✅
+2. AYRICA sayfanın o data'yı NASIL gösterdiğini kontrol et
+3. Sayfa hangi alanı render ediyor? (content mi, description mı?)
+4. Eğer yanlış alan render ediliyorsa → SAYFAYI DÜZELT
+5. npm run dev ile localhost'ta aç ve gözünle gör
+
+BUILD BAŞARILI ≠ SAYFA DOĞRU ÇALIŞIYOR
+```
+
 ---
 
 ## 📋 İŞ BAŞLANGIÇ PROTOKOLÜ
